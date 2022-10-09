@@ -52,12 +52,12 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
     private void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
 
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.battery_clock_widget);
-
         new CountDownTimer(Long.MAX_VALUE, 60_000) {
 
             @Override
             public void onTick(long l) {
+                RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.battery_clock_widget);
+
                 draw(views, appWidgetManager, appWidgetId, context);
             }
 
@@ -67,6 +67,8 @@ public class BatteryClockWidget extends AppWidgetProvider {
             }
         }.start();
 
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.battery_clock_widget);
+
         draw(views, appWidgetManager, appWidgetId, context);
     }
 
@@ -75,8 +77,6 @@ public class BatteryClockWidget extends AppWidgetProvider {
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
         }
-
-        Log.e("BALLS", "updated");
     }
 
     @Override
@@ -106,9 +106,9 @@ public class BatteryClockWidget extends AppWidgetProvider {
             return;
         }
 
-        Bitmap _bitmap = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888);
-        _bitmap.eraseColor(Color.TRANSPARENT);
-        Canvas canvas = new Canvas(_bitmap);
+        Bitmap bitmap = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888);
+        bitmap.eraseColor(Color.TRANSPARENT);
+        Canvas canvas = new Canvas(bitmap);
 
         canvas.drawCircle(250, 250, 240, _circlePaint);
 
@@ -132,10 +132,10 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
         canvas.drawLine(250F, 250F, (float) (250 + Math.cos(hourRadians) * 120), (float) (250 + Math.sin(hourRadians) * 120), _hourPaint);
 
-        views.setImageViewBitmap(R.id.imageView, _bitmap);
-
-        _bitmap.recycle();
+        views.setImageViewBitmap(R.id.imageView, bitmap);
 
         appWidgetManager.updateAppWidget(appWidgetId, views);
+
+        bitmap.recycle();
     }
 }
