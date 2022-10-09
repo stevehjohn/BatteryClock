@@ -21,7 +21,6 @@ public class BatteryClockWidget extends AppWidgetProvider {
     private final Paint _minutePaint;
     private final Paint _hourPaint;
     private final Paint _dotPaint;
-    private Bitmap _bitmap;
 
     public BatteryClockWidget() {
 
@@ -99,15 +98,15 @@ public class BatteryClockWidget extends AppWidgetProvider {
     }
 
     public void draw(RemoteViews views, AppWidgetManager appWidgetManager, int appWidgetId, Context context) {
-        Log.e("BALLS", "DRAW!");
+        Log.i(BatteryClockWidget.class.getName(), "DRAW!");
 
         if (views == null) {
-            Log.e("BALLS", "Views is null.");
+            Log.i(BatteryClockWidget.class.getName(), "Views is null.");
 
             return;
         }
 
-        _bitmap = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888);
+        Bitmap _bitmap = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888);
         _bitmap.eraseColor(Color.TRANSPARENT);
         Canvas canvas = new Canvas(_bitmap);
 
@@ -134,6 +133,8 @@ public class BatteryClockWidget extends AppWidgetProvider {
         canvas.drawLine(250F, 250F, (float) (250 + Math.cos(hourRadians) * 120), (float) (250 + Math.sin(hourRadians) * 120), _hourPaint);
 
         views.setImageViewBitmap(R.id.imageView, _bitmap);
+
+        _bitmap.recycle();
 
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
