@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.BatteryManager;
 import android.os.CountDownTimer;
+import android.text.style.IconMarginSpan;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -21,6 +22,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
     private final Paint _minutePaint;
     private final Paint _hourPaint;
     private final Paint _dotPaint;
+    private final Paint _backgroundPaint;
 
     public BatteryClockWidget() {
 
@@ -48,6 +50,10 @@ public class BatteryClockWidget extends AppWidgetProvider {
         _dotPaint.setARGB(255, 255, 255, 255);
         _dotPaint.setStyle(Paint.Style.STROKE);
         _dotPaint.setStrokeWidth(4);
+
+        _backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        _backgroundPaint.setARGB(64, 64, 64, 64);
+        _backgroundPaint.setStrokeWidth(4);
     }
 
     private void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
@@ -106,16 +112,18 @@ public class BatteryClockWidget extends AppWidgetProvider {
             return;
         }
 
-        Bitmap bitmap = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = Bitmap.createBitmap(Constants.BitmapDimensions, Constants.BitmapDimensions, Bitmap.Config.ARGB_8888);
         bitmap.eraseColor(Color.TRANSPARENT);
         Canvas canvas = new Canvas(bitmap);
 
-        canvas.drawCircle(250, 250, 240, _circlePaint);
+        canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.BackgroundRadius, _backgroundPaint);
+
+        canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.FrameRadius, _circlePaint);
 
         BatteryManager batteryManager = (BatteryManager) context.getSystemService(Context.BATTERY_SERVICE);
         int level = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
 
-        canvas.drawArc(10, 10, 490, 490, 270, (int) -(level * 3.6), false, _arcPaint);
+        canvas.drawArc(Constants.ArcCenterMin, Constants.ArcCenterMin, Constants.ArcCenterMax, Constants.ArcCenterMax, 270, (int) -(level * 3.6), false, _arcPaint);
 
         for (int i = 0; i < 12; i++) {
             float dotRadians = (float) ((float) ((i * 30) * (Math.PI / 180)) - Math.PI / 2);
@@ -126,11 +134,11 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
         float minuteRadians = (float) ((float) ((Calendar.getInstance().get(Calendar.MINUTE) * 6) * (Math.PI / 180)) - Math.PI / 2);
 
-        canvas.drawLine(250F, 250F, (float) (250 + Math.cos(minuteRadians) * 190), (float) (250 + Math.sin(minuteRadians) * 190), _minutePaint);
+        canvas.drawLine(Constants.BitmapCenter, Constants.BitmapCenter, (float) (250 + Math.cos(minuteRadians) * 190), (float) (250 + Math.sin(minuteRadians) * 190), _minutePaint);
 
         float hourRadians = (float) ((float) ((Calendar.getInstance().get(Calendar.HOUR) * 30 + Calendar.getInstance().get(Calendar.MINUTE) / 2) * (Math.PI / 180)) - Math.PI / 2);
 
-        canvas.drawLine(250F, 250F, (float) (250 + Math.cos(hourRadians) * 120), (float) (250 + Math.sin(hourRadians) * 120), _hourPaint);
+        canvas.drawLine(Constants.BitmapCenter, Constants.BitmapCenter, (float) (250 + Math.cos(hourRadians) * 120), (float) (250 + Math.sin(hourRadians) * 120), _hourPaint);
 
         views.setImageViewBitmap(R.id.imageView, bitmap);
 
