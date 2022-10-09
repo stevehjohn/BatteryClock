@@ -98,8 +98,6 @@ public class BatteryClockWidget extends AppWidgetProvider {
         // Enter relevant functionality for when the last widget is disabled
     }
 
-    private static int _temp = 30;
-
     public void draw(RemoteViews views, AppWidgetManager appWidgetManager, int appWidgetId, Context context) {
         Log.e("BALLS", "DRAW!");
 
@@ -131,18 +129,12 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
         canvas.drawLine(250F, 250F, (float) (250 + Math.cos(minuteRadians) * 190), (float) (250 + Math.sin(minuteRadians) * 190), _minutePaint);
 
-        float hourRadians = (float) ((float) ((Calendar.getInstance().get(Calendar.HOUR) * 30) * (Math.PI / 180)) - Math.PI / 2);
+        float hourRadians = (float) ((float) ((Calendar.getInstance().get(Calendar.HOUR) * 30 + Calendar.getInstance().get(Calendar.MINUTE) / 2) * (Math.PI / 180)) - Math.PI / 2);
 
         canvas.drawLine(250F, 250F, (float) (250 + Math.cos(hourRadians) * 120), (float) (250 + Math.sin(hourRadians) * 120), _hourPaint);
 
         views.setImageViewBitmap(R.id.imageView, _bitmap);
 
         appWidgetManager.updateAppWidget(appWidgetId, views);
-
-        _temp += 10;
-
-        if (_temp > 359) {
-            _temp = 0;
-        }
     }
 }
