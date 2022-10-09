@@ -3,7 +3,6 @@ package com.outsidecontextproblem.batteryclock;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -17,6 +16,9 @@ import java.util.Calendar;
 public class BatteryClockWidget extends AppWidgetProvider {
 
     private final Paint _arcPaint;
+    private final Paint _circlePaint;
+    private final Paint _minutePaint;
+    private final Paint _hourPaint;
     private Bitmap _bitmap;
 
     public BatteryClockWidget() {
@@ -26,6 +28,20 @@ public class BatteryClockWidget extends AppWidgetProvider {
         _arcPaint.setStyle(Paint.Style.STROKE);
         _arcPaint.setStrokeWidth(20);
 
+        _circlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        _circlePaint.setARGB(64, 255, 255, 255);
+        _circlePaint.setStyle(Paint.Style.STROKE);
+        _circlePaint.setStrokeWidth(4);
+
+        _minutePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        _minutePaint.setARGB(255, 255, 255, 255);
+        _minutePaint.setStyle(Paint.Style.STROKE);
+        _minutePaint.setStrokeWidth(4);
+
+        _hourPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        _hourPaint.setARGB(255, 255, 255, 255);
+        _hourPaint.setStyle(Paint.Style.STROKE);
+        _hourPaint.setStrokeWidth(8);
     }
 
     private void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
@@ -90,9 +106,16 @@ public class BatteryClockWidget extends AppWidgetProvider {
         _bitmap.eraseColor(Color.TRANSPARENT);
         Canvas canvas = new Canvas(_bitmap);
 
-        int minute = Calendar.getInstance().get(Calendar.MINUTE);
-
+        canvas.drawCircle(250, 250, 240, _circlePaint);
         canvas.drawArc(10, 10, 490, 490, 270, -_temp, false, _arcPaint);
+
+        float minuteRadians = (float) ((float) ((Calendar.getInstance().get(Calendar.MINUTE) * 6) * (Math.PI / 180)) - Math.PI / 2);
+
+        canvas.drawLine(250F, 250F, (float) (250 + Math.cos(minuteRadians) * 190), (float) (250 + Math.sin(minuteRadians) * 190), _minutePaint);
+
+        float hourRadians = (float) ((float) ((Calendar.getInstance().get(Calendar.HOUR) * 30) * (Math.PI / 180)) - Math.PI / 2);
+
+        canvas.drawLine(250F, 250F, (float) (250 + Math.cos(hourRadians) * 120), (float) (250 + Math.sin(hourRadians) * 120), _hourPaint);
 
         views.setImageViewBitmap(R.id.imageView, _bitmap);
 
