@@ -128,8 +128,8 @@ public class BatteryClockWidget extends AppWidgetProvider {
         for (int i = 0; i < 12; i++) {
             float dotRadians = (float) ((float) ((i * 30) * (Math.PI / 180)) - Math.PI / 2);
 
-            canvas.drawLine((float) (Constants.BitmapCenter + Math.cos(dotRadians) * 200), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * 200),
-                            (float) (Constants.BitmapCenter + Math.cos(dotRadians) * 210), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * 210), _dotPaint);
+            canvas.drawLine((float) (Constants.BitmapCenter + Math.cos(dotRadians) * 200), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * Constants.TickStart),
+                            (float) (Constants.BitmapCenter + Math.cos(dotRadians) * 210), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * Constants.TickEnd), _dotPaint);
         }
 
         float minuteRadians = (float) ((float) ((Calendar.getInstance().get(Calendar.MINUTE) * 6) * (Math.PI / 180)) - Math.PI / 2);
