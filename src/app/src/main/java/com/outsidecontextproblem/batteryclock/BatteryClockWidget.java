@@ -52,7 +52,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
         _dotPaint.setStrokeWidth(4);
 
         _backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        _backgroundPaint.setARGB(64, 64, 64, 64);
+        _backgroundPaint.setARGB(192, 32, 32, 32);
         _backgroundPaint.setStrokeWidth(4);
     }
 
