@@ -128,17 +128,17 @@ public class BatteryClockWidget extends AppWidgetProvider {
         for (int i = 0; i < 12; i++) {
             float dotRadians = (float) ((float) ((i * 30) * (Math.PI / 180)) - Math.PI / 2);
 
-            canvas.drawLine((float) (250 + Math.cos(dotRadians) * 200), (float) (250 + Math.sin(dotRadians) * 200),
-                            (float) (250 + Math.cos(dotRadians) * 210), (float) (250 + Math.sin(dotRadians) * 210), _dotPaint);
+            canvas.drawLine((float) (Constants.BitmapCenter + Math.cos(dotRadians) * 200), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * 200),
+                            (float) (Constants.BitmapCenter + Math.cos(dotRadians) * 210), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * 210), _dotPaint);
         }
 
         float minuteRadians = (float) ((float) ((Calendar.getInstance().get(Calendar.MINUTE) * 6) * (Math.PI / 180)) - Math.PI / 2);
 
-        canvas.drawLine(Constants.BitmapCenter, Constants.BitmapCenter, (float) (250 + Math.cos(minuteRadians) * 190), (float) (250 + Math.sin(minuteRadians) * 190), _minutePaint);
+        canvas.drawLine(Constants.BitmapCenter, Constants.BitmapCenter, (float) (Constants.BitmapCenter + Math.cos(minuteRadians) * Constants.MinuteHandLength), (float) (Constants.BitmapCenter + Math.sin(minuteRadians) * Constants.MinuteHandLength), _minutePaint);
 
         float hourRadians = (float) ((float) ((Calendar.getInstance().get(Calendar.HOUR) * 30 + Calendar.getInstance().get(Calendar.MINUTE) / 2) * (Math.PI / 180)) - Math.PI / 2);
 
-        canvas.drawLine(Constants.BitmapCenter, Constants.BitmapCenter, (float) (250 + Math.cos(hourRadians) * 120), (float) (250 + Math.sin(hourRadians) * 120), _hourPaint);
+        canvas.drawLine(Constants.BitmapCenter, Constants.BitmapCenter, (float) (Constants.BitmapCenter + Math.cos(hourRadians) * Constants.HourHandLength), (float) (Constants.BitmapCenter + Math.sin(hourRadians) * Constants.HourHandLength), _hourPaint);
 
         views.setImageViewBitmap(R.id.imageView, bitmap);
 

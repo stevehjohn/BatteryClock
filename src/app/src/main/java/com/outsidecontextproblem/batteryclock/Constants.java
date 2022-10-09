@@ -7,5 +7,6 @@ public class Constants {
     public static int FrameRadius = 230;
     public static int ArcCenterMin = 20;
     public static int ArcCenterMax = 480;
-
+    public static int HourHandLength = 120;
+    public static int MinuteHandLength = 190;
 }
