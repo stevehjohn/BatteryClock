@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.BatteryManager;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -46,6 +47,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
         _dotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _dotPaint.setARGB(255, 255, 255, 255);
+        _dotPaint.setStyle(Paint.Style.STROKE);
         _dotPaint.setStrokeWidth(4);
     }
 
@@ -57,7 +59,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
             @Override
             public void onTick(long l) {
-                draw(views, appWidgetManager, appWidgetId);
+                draw(views, appWidgetManager, appWidgetId, context);
             }
 
             @Override
@@ -66,7 +68,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
             }
         }.start();
 
-        draw(views, appWidgetManager, appWidgetId);
+        draw(views, appWidgetManager, appWidgetId, context);
     }
 
     @Override
@@ -98,7 +100,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
     private static int _temp = 30;
 
-    public void draw(RemoteViews views, AppWidgetManager appWidgetManager, int appWidgetId) {
+    public void draw(RemoteViews views, AppWidgetManager appWidgetManager, int appWidgetId, Context context) {
         Log.e("BALLS", "DRAW!");
 
         if (views == null) {
@@ -112,21 +114,26 @@ public class BatteryClockWidget extends AppWidgetProvider {
         Canvas canvas = new Canvas(_bitmap);
 
         canvas.drawCircle(250, 250, 240, _circlePaint);
-        canvas.drawArc(10, 10, 490, 490, 270, -_temp, false, _arcPaint);
+
+        BatteryManager batteryManager = (BatteryManager) context.getSystemService(Context.BATTERY_SERVICE);
+        int level = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
+
+        canvas.drawArc(10, 10, 490, 490, 270, (int) -(level * 3.6), false, _arcPaint);
 
         for (int i = 0; i < 12; i++) {
             float dotRadians = (float) ((float) ((i * 30) * (Math.PI / 180)) - Math.PI / 2);
 
-            canvas.drawCircle((float) (250 + Math.cos(dotRadians) * 200), (float) (250 + Math.sin(dotRadians) * 200), 3, _dotPaint);
+            canvas.drawLine((float) (250 + Math.cos(dotRadians) * 200), (float) (250 + Math.sin(dotRadians) * 200),
+                            (float) (250 + Math.cos(dotRadians) * 210), (float) (250 + Math.sin(dotRadians) * 210), _dotPaint);
         }
 
         float minuteRadians = (float) ((float) ((Calendar.getInstance().get(Calendar.MINUTE) * 6) * (Math.PI / 180)) - Math.PI / 2);
 
-        canvas.drawLine(250F, 250F, (float) (250 + Math.cos(minuteRadians) * 170), (float) (250 + Math.sin(minuteRadians) * 170), _minutePaint);
+        canvas.drawLine(250F, 250F, (float) (250 + Math.cos(minuteRadians) * 190), (float) (250 + Math.sin(minuteRadians) * 190), _minutePaint);
 
         float hourRadians = (float) ((float) ((Calendar.getInstance().get(Calendar.HOUR) * 30) * (Math.PI / 180)) - Math.PI / 2);
 
-        canvas.drawLine(250F, 250F, (float) (250 + Math.cos(hourRadians) * 100), (float) (250 + Math.sin(hourRadians) * 100), _hourPaint);
+        canvas.drawLine(250F, 250F, (float) (250 + Math.cos(hourRadians) * 120), (float) (250 + Math.sin(hourRadians) * 120), _hourPaint);
 
         views.setImageViewBitmap(R.id.imageView, _bitmap);
 
