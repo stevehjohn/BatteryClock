@@ -9,4 +9,6 @@ public class Constants {
     public static int ArcCenterMax = 480;
     public static int HourHandLength = 120;
     public static int MinuteHandLength = 190;
+    public static int TickStart = 200;
+    public static int TickEnd = 210;
 }
