@@ -7,15 +7,17 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.hardware.display.DisplayManager;
 import android.os.BatteryManager;
-import android.os.CountDownTimer;
-import android.text.style.IconMarginSpan;
+import android.os.Handler;
+import android.text.format.DateUtils;
 import android.util.Log;
+import android.view.Display;
 import android.widget.RemoteViews;
 
 import java.util.Calendar;
 
-public class BatteryClockWidget extends AppWidgetProvider {
+public class BatteryClockWidget extends AppWidgetProvider implements Runnable, DisplayManager.DisplayListener {
 
     private final Paint _arcPaint;
     private final Paint _circlePaint;
@@ -23,7 +25,12 @@ public class BatteryClockWidget extends AppWidgetProvider {
     private final Paint _hourPaint;
     private final Paint _dotPaint;
     private final Paint _backgroundPaint;
-    private CountDownTimer _countDownTimer;
+
+    private DisplayManager _displayManager;
+    private Handler _handler;
+    private AppWidgetManager _appWidgetManager;
+    private Context _context;
+    private int _appWidgetId;
 
     public BatteryClockWidget() {
 
@@ -59,21 +66,20 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
     private void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
 
-        if (_countDownTimer == null) {
-            _countDownTimer = new CountDownTimer(Long.MAX_VALUE, 60_000) {
+        _context = context;
+        _appWidgetManager = appWidgetManager;
+        _appWidgetId = appWidgetId;
 
-                @Override
-                public void onTick(long l) {
-                    RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.battery_clock_widget);
+        if (_displayManager == null) {
+            _displayManager = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
 
-                    draw(views, appWidgetManager, appWidgetId, context);
-                }
+            _displayManager.registerDisplayListener(this, null);
+        }
 
-                @Override
-                public void onFinish() {
+        if (_handler == null) {
+            _handler = new Handler();
 
-                }
-            }.start();
+            _handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
         }
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.battery_clock_widget);
@@ -106,8 +112,34 @@ public class BatteryClockWidget extends AppWidgetProvider {
         // Enter relevant functionality for when the last widget is disabled
     }
 
+    @Override
+    public void run() {
+        Log.i(BatteryClockWidget.class.getName(), "run()");
+
+        RemoteViews views = new RemoteViews(_context.getPackageName(), R.layout.battery_clock_widget);
+
+        draw(views, _appWidgetManager, _appWidgetId, _context);
+
+        _handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
+    }
+
     public void draw(RemoteViews views, AppWidgetManager appWidgetManager, int appWidgetId, Context context) {
-        Log.i(BatteryClockWidget.class.getName(), "DRAW!");
+        Log.i(BatteryClockWidget.class.getName(), "draw()");
+
+        boolean displayOn = false;
+
+        for (Display display : _displayManager.getDisplays()) {
+            if (display.getState() != Display.STATE_OFF) {
+                displayOn = true;
+                break;
+            }
+        }
+
+        if (! displayOn) {
+            Log.i(BatteryClockWidget.class.getName(), "Display is off, skipping update.");
+
+            return;
+        }
 
         if (views == null) {
             Log.i(BatteryClockWidget.class.getName(), "Views is null.");
@@ -131,8 +163,8 @@ public class BatteryClockWidget extends AppWidgetProvider {
         for (int i = 0; i < 12; i++) {
             float dotRadians = (float) ((float) ((i * 30) * (Math.PI / 180)) - Math.PI / 2);
 
-            canvas.drawLine((float) (Constants.BitmapCenter + Math.cos(dotRadians) * 200), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * Constants.TickStart),
-                            (float) (Constants.BitmapCenter + Math.cos(dotRadians) * 210), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * Constants.TickEnd), _dotPaint);
+            canvas.drawLine((float) (Constants.BitmapCenter + Math.cos(dotRadians) * Constants.TickStart), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * Constants.TickStart),
+                            (float) (Constants.BitmapCenter + Math.cos(dotRadians) * Constants.TickEnd), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * Constants.TickEnd), _dotPaint);
         }
 
         float minuteRadians = (float) ((float) ((Calendar.getInstance().get(Calendar.MINUTE) * 6) * (Math.PI / 180)) - Math.PI / 2);
@@ -148,5 +180,20 @@ public class BatteryClockWidget extends AppWidgetProvider {
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
         bitmap.recycle();
+    }
+
+    @Override
+    public void onDisplayAdded(int i) {
+    }
+
+    @Override
+    public void onDisplayRemoved(int i) {
+    }
+
+    @Override
+    public void onDisplayChanged(int i) {
+        Log.i(BatteryClockWidget.class.getName(), "onDisplayChanged()");
+
+        run();
     }
 }
