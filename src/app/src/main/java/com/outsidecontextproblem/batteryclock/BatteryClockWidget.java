@@ -194,6 +194,8 @@ public class BatteryClockWidget extends AppWidgetProvider implements Runnable, D
     public void onDisplayChanged(int i) {
         Log.i(BatteryClockWidget.class.getName(), "onDisplayChanged()");
 
-        run();
+        RemoteViews views = new RemoteViews(_context.getPackageName(), R.layout.battery_clock_widget);
+
+        draw(views, _appWidgetManager, _appWidgetId, _context);
     }
 }
