@@ -3,12 +3,14 @@ package com.outsidecontextproblem.batteryclock;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.hardware.display.DisplayManager;
 import android.os.BatteryManager;
+import android.os.Bundle;
 import android.os.Handler;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -79,6 +81,7 @@ public class BatteryClockWidget extends AppWidgetProvider implements Runnable, D
         if (_handler == null) {
             _handler = new Handler();
 
+            _handler.removeCallbacks(this);
             _handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
         }
 
@@ -105,11 +108,13 @@ public class BatteryClockWidget extends AppWidgetProvider implements Runnable, D
     @Override
     public void onEnabled(Context context) {
         // Enter relevant functionality for when the first widget is created
+        Log.i(BatteryClockWidget.class.getName(), "onEnabled()");
     }
 
     @Override
     public void onDisabled(Context context) {
         // Enter relevant functionality for when the last widget is disabled
+        Log.i(BatteryClockWidget.class.getName(), "onDisabled()");
     }
 
     @Override
@@ -120,7 +125,15 @@ public class BatteryClockWidget extends AppWidgetProvider implements Runnable, D
 
         draw(views, _appWidgetManager, _appWidgetId, _context);
 
+        _handler.removeCallbacks(this);
         _handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+
+        Log.i(BatteryClockWidget.class.getName(), intent.getAction());
     }
 
     public void draw(RemoteViews views, AppWidgetManager appWidgetManager, int appWidgetId, Context context) {
@@ -197,5 +210,19 @@ public class BatteryClockWidget extends AppWidgetProvider implements Runnable, D
         RemoteViews views = new RemoteViews(_context.getPackageName(), R.layout.battery_clock_widget);
 
         draw(views, _appWidgetManager, _appWidgetId, _context);
+    }
+
+    @Override
+    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
+        super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions);
+
+        Log.i(BatteryClockWidget.class.getName(), "onAppWidgetOptionsChanged()");
+    }
+
+    @Override
+    public void onRestored(Context context, int[] oldWidgetIds, int[] newWidgetIds) {
+        super.onRestored(context, oldWidgetIds, newWidgetIds);
+
+        Log.i(BatteryClockWidget.class.getName(), "onRestored()");
     }
 }
