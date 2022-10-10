@@ -2,8 +2,10 @@ package com.outsidecontextproblem.batteryclock;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentCallbacks2;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -17,9 +19,11 @@ import android.util.Log;
 import android.view.Display;
 import android.widget.RemoteViews;
 
+import androidx.annotation.NonNull;
+
 import java.util.Calendar;
 
-public class BatteryClockWidget extends AppWidgetProvider implements Runnable, DisplayManager.DisplayListener {
+public class BatteryClockWidget extends AppWidgetProvider implements Runnable, DisplayManager.DisplayListener, ComponentCallbacks2 {
 
     private final Paint _arcPaint;
     private final Paint _circlePaint;
@@ -71,6 +75,10 @@ public class BatteryClockWidget extends AppWidgetProvider implements Runnable, D
         _context = context;
         _appWidgetManager = appWidgetManager;
         _appWidgetId = appWidgetId;
+
+        Log.i(BatteryClockWidget.class.getName(), "Registering callbacks...");
+
+        context.registerComponentCallbacks(this);
 
         if (_displayManager == null) {
             _displayManager = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
@@ -224,5 +232,20 @@ public class BatteryClockWidget extends AppWidgetProvider implements Runnable, D
         super.onRestored(context, oldWidgetIds, newWidgetIds);
 
         Log.i(BatteryClockWidget.class.getName(), "onRestored()");
+    }
+
+    @Override
+    public void onTrimMemory(int i) {
+        Log.i(BatteryClockWidget.class.getName(), "onTrimMemory()");
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration configuration) {
+        Log.i(BatteryClockWidget.class.getName(), "onConfigurationChanged()");
+    }
+
+    @Override
+    public void onLowMemory() {
+        Log.i(BatteryClockWidget.class.getName(), "onLowMemory()");
     }
 }
