@@ -23,6 +23,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
     private final Paint _hourPaint;
     private final Paint _dotPaint;
     private final Paint _backgroundPaint;
+    private CountDownTimer _countDownTimer;
 
     public BatteryClockWidget() {
 
@@ -58,20 +59,22 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
     private void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
 
-        new CountDownTimer(Long.MAX_VALUE, 60_000) {
+        if (_countDownTimer == null) {
+            _countDownTimer = new CountDownTimer(Long.MAX_VALUE, 60_000) {
 
-            @Override
-            public void onTick(long l) {
-                RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.battery_clock_widget);
+                @Override
+                public void onTick(long l) {
+                    RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.battery_clock_widget);
 
-                draw(views, appWidgetManager, appWidgetId, context);
-            }
+                    draw(views, appWidgetManager, appWidgetId, context);
+                }
 
-            @Override
-            public void onFinish() {
+                @Override
+                public void onFinish() {
 
-            }
-        }.start();
+                }
+            }.start();
+        }
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.battery_clock_widget);
 
