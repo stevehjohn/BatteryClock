@@ -25,8 +25,8 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
             final Context context = BatteryClockWidgetConfigureActivity.this;
 
             // When the button is clicked, store the string locally
-            String widgetText = mAppWidgetText.getText().toString();
-            saveTitlePref(context, mAppWidgetId, widgetText);
+//            String widgetText = mAppWidgetText.getText().toString();
+//            saveTitlePref(context, mAppWidgetId, widgetText);
 
             // It is the responsibility of the configuration activity to update the app widget
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
@@ -98,9 +98,6 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
             return;
         }
 
-//        Intent serviceIntent = new Intent(this, BatteryClockWidgetService.class);
-//        startService(serviceIntent);
-
-        mAppWidgetText.setText(loadTitlePref(BatteryClockWidgetConfigureActivity.this, mAppWidgetId));
+//        mAppWidgetText.setText(loadTitlePref(BatteryClockWidgetConfigureActivity.this, mAppWidgetId));
     }
 }
