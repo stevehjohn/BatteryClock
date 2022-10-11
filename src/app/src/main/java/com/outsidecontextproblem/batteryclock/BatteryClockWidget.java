@@ -105,19 +105,19 @@ public class BatteryClockWidget extends AppWidgetProvider {
             @Override
             public void onReceive(Context context, Intent incomingIntent) {
 
-                if (incomingIntent.getAction().compareTo(Intent.ACTION_TIME_TICK) == 0) {
-                    Intent intent2 = new Intent(context, BatteryClockWidget.class);
-                    intent2.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+            if (incomingIntent.getAction().compareTo(Intent.ACTION_TIME_TICK) == 0) {
+                Intent intent2 = new Intent(context, BatteryClockWidget.class);
+                intent2.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
 
-                    AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-                    int[] ids = appWidgetManager.getAppWidgetIds(new ComponentName(context, BatteryClockWidget.class));
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+                int[] ids = appWidgetManager.getAppWidgetIds(new ComponentName(context, BatteryClockWidget.class));
 
-                    appWidgetManager.notifyAppWidgetViewDataChanged(ids, android.R.id.list);
+                appWidgetManager.notifyAppWidgetViewDataChanged(ids, android.R.id.list);
 
-                    intent2.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+                intent2.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 
-                    context.sendBroadcast(intent2);
-                }
+                context.sendBroadcast(intent2);
+            }
             }
         };
 
