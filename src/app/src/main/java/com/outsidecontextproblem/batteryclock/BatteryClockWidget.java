@@ -4,6 +4,8 @@ import static androidx.core.content.ContextCompat.startForegroundService;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -30,6 +32,8 @@ public class BatteryClockWidget extends AppWidgetProvider {
     private final Paint _backgroundPaint;
 
     private DisplayManager _displayManager;
+
+    private BroadcastReceiver _receiver;
 
     public BatteryClockWidget() {
 
@@ -97,14 +101,40 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
     @Override
     public void onEnabled(Context context) {
-        // Enter relevant functionality for when the first widget is created
         Log.i(BatteryClockWidget.class.getName(), "onEnabled()");
+
+        _receiver = new BroadcastReceiver() {
+
+            @Override
+            public void onReceive(Context context, Intent incomingIntent) {
+
+                if (incomingIntent.getAction().compareTo(Intent.ACTION_TIME_TICK) == 0) {
+                    Intent intent2 = new Intent(context, BatteryClockWidget.class);
+                    intent2.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+
+                    AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+                    int[] ids = appWidgetManager.getAppWidgetIds(new ComponentName(context, BatteryClockWidget.class));
+
+                    appWidgetManager.notifyAppWidgetViewDataChanged(ids, android.R.id.list);
+
+                    intent2.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+
+                    context.sendBroadcast(intent2);
+                }
+            }
+        };
+
+        context.getApplicationContext().registerReceiver(_receiver, new IntentFilter(Intent.ACTION_TIME_TICK));
     }
 
     @Override
     public void onDisabled(Context context) {
-        // Enter relevant functionality for when the last widget is disabled
         Log.i(BatteryClockWidget.class.getName(), "onDisabled()");
+
+        if (_receiver != null) {
+            context.getApplicationContext().unregisterReceiver(_receiver);
+            _receiver = null;
+        }
     }
 
     @Override
