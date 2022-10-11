@@ -182,7 +182,9 @@ public class BatteryClockWidget extends AppWidgetProvider {
         BatteryManager batteryManager = (BatteryManager) context.getSystemService(Context.BATTERY_SERVICE);
         int level = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
 
-        canvas.drawArc(Constants.ArcCenterMin, Constants.ArcCenterMin, Constants.ArcCenterMax, Constants.ArcCenterMax, 270, (int) -(level * 3.6), false, _arcPaint);
+        int batteryArcOffset = Constants.BitmapCenter - Constants.BatteryIndicatorRadius;
+
+        canvas.drawArc(batteryArcOffset, batteryArcOffset, Constants.BitmapDimensions - batteryArcOffset, Constants.BitmapDimensions - batteryArcOffset, 270, (int) -(level * 3.6), false, _arcPaint);
 
         for (int i = 0; i < 12; i++) {
             float dotRadians = (float) ((float) ((i * 30) * (Math.PI / 180)) - Math.PI / 2);
@@ -193,13 +195,17 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
         float minuteDegrees = Calendar.getInstance().get(Calendar.MINUTE) * 6;
 
-        canvas.drawArc(Constants.ArcCenterMin + 40, Constants.ArcCenterMin + 40, Constants.ArcCenterMax - 40, Constants.ArcCenterMax - 40, 270, minuteDegrees, false, _minuteTrailPaint);
+        int minuteArcOffset = Constants.BitmapCenter - Constants.MinuteHandLength;
+
+        canvas.drawArc(minuteArcOffset, minuteArcOffset, Constants.BitmapDimensions - minuteArcOffset, Constants.BitmapDimensions - minuteArcOffset, 270, minuteDegrees, false, _minuteTrailPaint);
 
         float minuteRadians = (float) ((float) ((Calendar.getInstance().get(Calendar.MINUTE) * 6) * (Math.PI / 180)) - Math.PI / 2);
 
         float hourDegrees = Calendar.getInstance().get(Calendar.HOUR) * 30 + (int) (Calendar.getInstance().get(Calendar.MINUTE) / 2);
 
-        canvas.drawArc(Constants.ArcCenterMin + 110, Constants.ArcCenterMin + 110, Constants.ArcCenterMax - 110, Constants.ArcCenterMax - 110, 270, hourDegrees, false, _minuteTrailPaint);
+        int hourArcOffset = Constants.BitmapCenter - Constants.HourHandLength;
+
+        canvas.drawArc(hourArcOffset, hourArcOffset, Constants.BitmapDimensions - hourArcOffset, Constants.BitmapDimensions - hourArcOffset, 270, hourDegrees, false, _minuteTrailPaint);
 
         canvas.drawLine(Constants.BitmapCenter, Constants.BitmapCenter, (float) (Constants.BitmapCenter + Math.cos(minuteRadians) * Constants.MinuteHandLength), (float) (Constants.BitmapCenter + Math.sin(minuteRadians) * Constants.MinuteHandLength), _minutePaint);
 
