@@ -1,7 +1,5 @@
 package com.outsidecontextproblem.batteryclock;
 
-import static androidx.core.content.ContextCompat.startForegroundService;
-
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.BroadcastReceiver;
