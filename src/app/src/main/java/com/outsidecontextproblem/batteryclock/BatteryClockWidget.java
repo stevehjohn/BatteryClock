@@ -92,7 +92,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
         // When the user deletes the widget, delete the preference associated with it.
         for (int appWidgetId : appWidgetIds) {
-            BatteryClockWidgetConfigureActivity.deleteTitlePref(context, appWidgetId);
+//            BatteryClockWidgetConfigureActivity.deleteTitlePref(context, appWidgetId);
         }
     }
 
