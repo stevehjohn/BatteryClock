@@ -98,6 +98,9 @@ public class BatteryClockWidget extends AppWidgetProvider {
     public void onEnabled(Context context) {
         // Enter relevant functionality for when the first widget is created
         Log.i(BatteryClockWidget.class.getName(), "onEnabled()");
+
+        Intent serviceIntent = new Intent(context, BatteryClockWidgetService.class);
+        context.startService(serviceIntent);
     }
 
     @Override
