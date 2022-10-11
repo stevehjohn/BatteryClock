@@ -40,31 +40,30 @@ public class BatteryClockWidget extends AppWidgetProvider {
         _arcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _arcPaint.setARGB(255, 107, 99, 255);
         _arcPaint.setStyle(Paint.Style.STROKE);
-        _arcPaint.setStrokeWidth(20);
+        _arcPaint.setStrokeWidth(Constants.BezelIndicator);
 
         _circlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _circlePaint.setARGB(64, 255, 255, 255);
         _circlePaint.setStyle(Paint.Style.STROKE);
-        _circlePaint.setStrokeWidth(4);
+        _circlePaint.setStrokeWidth(Constants.BezelOutline);
 
         _minutePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _minutePaint.setARGB(255, 255, 255, 255);
         _minutePaint.setStyle(Paint.Style.STROKE);
-        _minutePaint.setStrokeWidth(4);
+        _minutePaint.setStrokeWidth(Constants.MinuteHandThickness);
 
         _hourPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _hourPaint.setARGB(255, 255, 255, 255);
         _hourPaint.setStyle(Paint.Style.STROKE);
-        _hourPaint.setStrokeWidth(4);
+        _hourPaint.setStrokeWidth(Constants.HourHandThickness);
 
         _dotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _dotPaint.setARGB(255, 255, 255, 255);
         _dotPaint.setStyle(Paint.Style.STROKE);
-        _dotPaint.setStrokeWidth(4);
+        _dotPaint.setStrokeWidth(Constants.TickThickness);
 
         _backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _backgroundPaint.setARGB(192, 32, 32, 32);
-        _backgroundPaint.setStrokeWidth(4);
     }
 
     private void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {

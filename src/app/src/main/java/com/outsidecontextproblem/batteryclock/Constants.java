@@ -11,4 +11,10 @@ public class Constants {
     public static int MinuteHandLength = 190;
     public static int TickStart = 200;
     public static int TickEnd = 210;
+
+    public static int BezelIndicator = 20;
+    public static int BezelOutline = 4;
+    public static int MinuteHandThickness = 4;
+    public static int HourHandThickness = 4;
+    public static int TickThickness = 4;
 }
