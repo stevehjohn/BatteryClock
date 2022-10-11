@@ -98,8 +98,8 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
             return;
         }
 
-        Intent serviceIntent = new Intent(this, BatteryClockWidgetService.class);
-        startService(serviceIntent);
+//        Intent serviceIntent = new Intent(this, BatteryClockWidgetService.class);
+//        startService(serviceIntent);
 
         mAppWidgetText.setText(loadTitlePref(BatteryClockWidgetConfigureActivity.this, mAppWidgetId));
     }
