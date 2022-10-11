@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -98,9 +99,6 @@ public class BatteryClockWidget extends AppWidgetProvider {
     public void onEnabled(Context context) {
         // Enter relevant functionality for when the first widget is created
         Log.i(BatteryClockWidget.class.getName(), "onEnabled()");
-
-        Intent serviceIntent = new Intent(context, BatteryClockWidgetService.class);
-        context.startService(serviceIntent);
     }
 
     @Override
