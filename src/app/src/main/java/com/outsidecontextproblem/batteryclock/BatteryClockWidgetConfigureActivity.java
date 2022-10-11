@@ -81,8 +81,8 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         binding = BatteryClockWidgetConfigureBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        mAppWidgetText = binding.appwidgetText;
-        binding.addButton.setOnClickListener(mOnClickListener);
+//        mAppWidgetText = binding.appwidgetText;
+        binding.buttonAdd.setOnClickListener(mOnClickListener);
 
         // Find the widget id from the intent.
         Intent intent = getIntent();
