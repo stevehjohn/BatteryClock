@@ -205,7 +205,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
         int dayArcOffset = Constants.BitmapCenter - Constants.DayArcRadius;
 
-        float degreesForDay = 360 / 7;
+        float degreesForDay = 360F / 7F;
 
         float dayDegrees = (((Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1) + 7) % 7) * degreesForDay;
 
