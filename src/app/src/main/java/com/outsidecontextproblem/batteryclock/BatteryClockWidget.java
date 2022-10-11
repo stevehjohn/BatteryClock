@@ -29,6 +29,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
     private final Paint _dotPaint;
     private final Paint _backgroundPaint;
     private final Paint _minuteTrailPaint;
+    private final Paint _hourTrailPaint;
 
     private DisplayManager _displayManager;
 
@@ -68,6 +69,11 @@ public class BatteryClockWidget extends AppWidgetProvider {
         _minuteTrailPaint.setARGB(64, 255, 255, 255);
         _minuteTrailPaint.setStyle(Paint.Style.STROKE);
         _minuteTrailPaint.setStrokeWidth(Constants.BezelOutline);
+
+        _hourTrailPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        _hourTrailPaint.setARGB(64, 255, 255, 255);
+        _hourTrailPaint.setStyle(Paint.Style.STROKE);
+        _hourTrailPaint.setStrokeWidth(Constants.BezelOutline);
     }
 
     private void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
@@ -205,7 +211,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
         int hourArcOffset = Constants.BitmapCenter - Constants.HourHandLength;
 
-        canvas.drawArc(hourArcOffset, hourArcOffset, Constants.BitmapDimensions - hourArcOffset, Constants.BitmapDimensions - hourArcOffset, 270, hourDegrees, false, _minuteTrailPaint);
+        canvas.drawArc(hourArcOffset, hourArcOffset, Constants.BitmapDimensions - hourArcOffset, Constants.BitmapDimensions - hourArcOffset, 270, hourDegrees, false, _hourTrailPaint);
 
         canvas.drawLine(Constants.BitmapCenter, Constants.BitmapCenter, (float) (Constants.BitmapCenter + Math.cos(minuteRadians) * Constants.MinuteHandLength), (float) (Constants.BitmapCenter + Math.sin(minuteRadians) * Constants.MinuteHandLength), _minutePaint);
 
