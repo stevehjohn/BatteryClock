@@ -1,7 +1,6 @@
 package com.outsidecontextproblem.batteryclock;
 
 import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
@@ -32,21 +31,7 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
 
-        NotificationChannel notificationChannel = new NotificationChannel(
-                NOTIFICATION_CHANNEL_ID,
-                NOTIFICATION_CHANNEL_ID,
-                NotificationManager.IMPORTANCE_LOW
-        );
-
-        _notificationManager = getSystemService((NotificationManager.class));
-
-        _notificationManager.createNotificationChannel(notificationChannel);
-
-        _notificationBuilder = new Notification.Builder(this, NOTIFICATION_CHANNEL_ID)
-                .setContentText("Badger")
-                .setSmallIcon(R.drawable.ic_launcher_background);
-
-        startForeground(NOTIFICATION_ID, _notificationBuilder.build());
+        Log.i(BatteryClockWidgetService.class.getName(), "onStartCommand()");
 
         if (_handler == null) {
             _handler = new Handler();
