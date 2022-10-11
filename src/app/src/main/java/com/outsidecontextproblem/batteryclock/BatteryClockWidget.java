@@ -28,6 +28,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
     private final Paint _hourPaint;
     private final Paint _dotPaint;
     private final Paint _backgroundPaint;
+    private final Paint _minuteTrailPaint;
 
     private DisplayManager _displayManager;
 
@@ -62,6 +63,11 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
         _backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _backgroundPaint.setARGB(192, 32, 32, 32);
+
+        _minuteTrailPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        _minuteTrailPaint.setARGB(64, 255, 255, 255);
+        _minuteTrailPaint.setStyle(Paint.Style.STROKE);
+        _minuteTrailPaint.setStrokeWidth(Constants.BezelOutline);
     }
 
     private void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
@@ -185,7 +191,15 @@ public class BatteryClockWidget extends AppWidgetProvider {
                     (float) (Constants.BitmapCenter + Math.cos(dotRadians) * Constants.TickEnd), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * Constants.TickEnd), _dotPaint);
         }
 
+        float minuteDegrees = Calendar.getInstance().get(Calendar.MINUTE) * 6;
+
+        canvas.drawArc(Constants.ArcCenterMin + 40, Constants.ArcCenterMin + 40, Constants.ArcCenterMax - 40, Constants.ArcCenterMax - 40, 270, minuteDegrees, false, _minuteTrailPaint);
+
         float minuteRadians = (float) ((float) ((Calendar.getInstance().get(Calendar.MINUTE) * 6) * (Math.PI / 180)) - Math.PI / 2);
+
+        float hourDegrees = Calendar.getInstance().get(Calendar.HOUR) * 30 + (int) (Calendar.getInstance().get(Calendar.MINUTE) / 2);
+
+        canvas.drawArc(Constants.ArcCenterMin + 110, Constants.ArcCenterMin + 110, Constants.ArcCenterMax - 110, Constants.ArcCenterMax - 110, 270, hourDegrees, false, _minuteTrailPaint);
 
         canvas.drawLine(Constants.BitmapCenter, Constants.BitmapCenter, (float) (Constants.BitmapCenter + Math.cos(minuteRadians) * Constants.MinuteHandLength), (float) (Constants.BitmapCenter + Math.sin(minuteRadians) * Constants.MinuteHandLength), _minutePaint);
 
