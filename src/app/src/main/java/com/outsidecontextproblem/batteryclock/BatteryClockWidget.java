@@ -30,6 +30,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
     private final Paint _backgroundPaint;
     private final Paint _minuteTrailPaint;
     private final Paint _hourTrailPaint;
+    private final Paint _dayArcPaint;
 
     private DisplayManager _displayManager;
 
@@ -74,6 +75,9 @@ public class BatteryClockWidget extends AppWidgetProvider {
         _hourTrailPaint.setARGB(64, 255, 255, 255);
         _hourTrailPaint.setStyle(Paint.Style.STROKE);
         _hourTrailPaint.setStrokeWidth(Constants.BezelOutline);
+
+        _dayArcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        _dayArcPaint.setARGB(64, 255, 255, 255);
     }
 
     private void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
@@ -198,6 +202,16 @@ public class BatteryClockWidget extends AppWidgetProvider {
             canvas.drawLine((float) (Constants.BitmapCenter + Math.cos(dotRadians) * Constants.TickStart), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * Constants.TickStart),
                     (float) (Constants.BitmapCenter + Math.cos(dotRadians) * Constants.TickEnd), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * Constants.TickEnd), _dotPaint);
         }
+
+        int dayArcOffset = Constants.BitmapCenter - Constants.DayArcRadius;
+
+        float degreesForDay = 360 / 7;
+
+        float dayDegrees = (((Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1) + 7) % 7) * degreesForDay;
+
+        dayDegrees += (degreesForDay / 24) * Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+
+        canvas.drawArc(dayArcOffset, dayArcOffset, Constants.BitmapDimensions - dayArcOffset, Constants.BitmapDimensions - dayArcOffset, 270, dayDegrees, true, _dayArcPaint);
 
         float minuteDegrees = Calendar.getInstance().get(Calendar.MINUTE) * 6;
 

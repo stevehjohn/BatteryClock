@@ -6,8 +6,9 @@ public class Constants {
     public static int BackgroundRadius = 250;
     public static int FrameRadius = 230;
     public static int BatteryIndicatorRadius = 230;
-    public static int HourHandLength = 120;
+    public static int HourHandLength = 140;
     public static int MinuteHandLength = 190;
+    public static int DayArcRadius = 90;
     public static int TickStart = 200;
     public static int TickEnd = 210;
 
