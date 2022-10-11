@@ -1,5 +1,7 @@
 package com.outsidecontextproblem.batteryclock;
 
+import static androidx.core.content.ContextCompat.startForegroundService;
+
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentCallbacks2;
@@ -117,6 +119,9 @@ public class BatteryClockWidget extends AppWidgetProvider implements Runnable, D
     public void onEnabled(Context context) {
         // Enter relevant functionality for when the first widget is created
         Log.i(BatteryClockWidget.class.getName(), "onEnabled()");
+
+        Intent serviceIntent = new Intent(context, BatteryClockWidgetService.class);
+        startForegroundService(context, serviceIntent);
     }
 
     @Override
