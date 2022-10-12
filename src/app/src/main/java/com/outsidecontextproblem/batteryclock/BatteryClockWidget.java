@@ -34,8 +34,6 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
     private DisplayManager _displayManager;
 
-    private BroadcastReceiver _receiver;
-
     public BatteryClockWidget() {
 
         _arcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -115,41 +113,11 @@ public class BatteryClockWidget extends AppWidgetProvider {
     @Override
     public void onEnabled(Context context) {
         Log.i(BatteryClockWidget.class.getName(), "onEnabled()");
-
-        _receiver = new BroadcastReceiver() {
-
-            @Override
-            public void onReceive(Context context, Intent incomingIntent) {
-
-                if (incomingIntent.getAction().compareTo(Intent.ACTION_TIME_TICK) == 0) {
-
-                    Intent intent = new Intent(context, BatteryClockWidget.class);
-                    intent.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
-                    intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-
-                    AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-                    int[] ids = appWidgetManager.getAppWidgetIds(new ComponentName(context, BatteryClockWidget.class));
-
-                    appWidgetManager.notifyAppWidgetViewDataChanged(ids, android.R.id.list);
-
-                    intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
-
-                    context.sendBroadcast(intent);
-                }
-            }
-        };
-
-        context.getApplicationContext().registerReceiver(_receiver, new IntentFilter(Intent.ACTION_TIME_TICK));
     }
 
     @Override
     public void onDisabled(Context context) {
         Log.i(BatteryClockWidget.class.getName(), "onDisabled()");
-
-        if (_receiver != null) {
-            context.getApplicationContext().unregisterReceiver(_receiver);
-            _receiver = null;
-        }
     }
 
     @Override
@@ -240,19 +208,5 @@ public class BatteryClockWidget extends AppWidgetProvider {
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
         bitmap.recycle();
-    }
-
-    @Override
-    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
-        super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions);
-
-        Log.i(BatteryClockWidget.class.getName(), "onAppWidgetOptionsChanged()");
-    }
-
-    @Override
-    public void onRestored(Context context, int[] oldWidgetIds, int[] newWidgetIds) {
-        super.onRestored(context, oldWidgetIds, newWidgetIds);
-
-        Log.i(BatteryClockWidget.class.getName(), "onRestored()");
     }
 }
