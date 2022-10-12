@@ -1,6 +1,5 @@
 package com.outsidecontextproblem.batteryclock;
 
-import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -23,10 +22,6 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
 
     private static final int NOTIFICATION_ID = 824954302;
 
-    private NotificationManager _notificationManager;
-
-    private Notification.Builder _notificationBuilder;
-
     private Handler _handler;
 
     @Override
@@ -41,15 +36,15 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
                 NotificationManager.IMPORTANCE_LOW
         );
 
-        _notificationManager = getSystemService((NotificationManager.class));
+        NotificationManager notificationManager = getSystemService((NotificationManager.class));
 
-        _notificationManager.createNotificationChannel(notificationChannel);
+        notificationManager.createNotificationChannel(notificationChannel);
 
-        _notificationBuilder = new Notification.Builder(this, NOTIFICATION_CHANNEL_ID)
-                .setContentText("WANK!")
+        Notification.Builder notificationBuilder = new Notification.Builder(this, NOTIFICATION_CHANNEL_ID)
+                .setContentText("Nothing to see here... just updating your clock widget.")
                 .setSmallIcon(R.drawable.ic_launcher_background);
 
-        startForeground(NOTIFICATION_ID, _notificationBuilder.build());
+        startForeground(NOTIFICATION_ID, notificationBuilder.build());
 
         if (_handler == null) {
             _handler = new Handler();
