@@ -207,7 +207,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
         float degreesForDay = 360F / 7F;
 
-        float dayDegrees = (((Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1) + 7) % 7) * degreesForDay;
+        float dayDegrees = (((Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 2) + 7) % 7) * degreesForDay;
 
         dayDegrees += (degreesForDay / 24) * Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
 
