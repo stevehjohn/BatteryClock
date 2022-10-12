@@ -192,7 +192,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
         float minuteRadians = (float) ((float) ((Calendar.getInstance().get(Calendar.MINUTE) * 6) * (Math.PI / 180)) - Math.PI / 2);
 
-        float hourDegrees = Calendar.getInstance().get(Calendar.HOUR) * 30 + (int) (Calendar.getInstance().get(Calendar.MINUTE) / 2);
+        float hourDegrees = Calendar.getInstance().get(Calendar.HOUR) * 30 + (Calendar.getInstance().get(Calendar.MINUTE) / 2);
 
         int hourArcOffset = Constants.BitmapCenter - Constants.HourHandLength;
 
