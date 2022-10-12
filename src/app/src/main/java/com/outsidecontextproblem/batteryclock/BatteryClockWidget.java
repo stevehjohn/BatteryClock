@@ -122,17 +122,19 @@ public class BatteryClockWidget extends AppWidgetProvider {
             public void onReceive(Context context, Intent incomingIntent) {
 
                 if (incomingIntent.getAction().compareTo(Intent.ACTION_TIME_TICK) == 0) {
-                    Intent intent2 = new Intent(context, BatteryClockWidget.class);
-                    intent2.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+
+                    Intent intent = new Intent(context, BatteryClockWidget.class);
+                    intent.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+                    intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
 
                     AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
                     int[] ids = appWidgetManager.getAppWidgetIds(new ComponentName(context, BatteryClockWidget.class));
 
                     appWidgetManager.notifyAppWidgetViewDataChanged(ids, android.R.id.list);
 
-                    intent2.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+                    intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 
-                    context.sendBroadcast(intent2);
+                    context.sendBroadcast(intent);
                 }
             }
         };
@@ -250,33 +252,6 @@ public class BatteryClockWidget extends AppWidgetProvider {
     @Override
     public void onRestored(Context context, int[] oldWidgetIds, int[] newWidgetIds) {
         super.onRestored(context, oldWidgetIds, newWidgetIds);
-
-        Log.i(BatteryClockWidget.class.getName(), "onRestored()");
-
-        _receiver = null;
-
-        _receiver = new BroadcastReceiver() {
-
-            @Override
-            public void onReceive(Context context, Intent incomingIntent) {
-
-                if (incomingIntent.getAction().compareTo(Intent.ACTION_TIME_TICK) == 0) {
-                    Intent intent2 = new Intent(context, BatteryClockWidget.class);
-                    intent2.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-
-                    AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-                    int[] ids = appWidgetManager.getAppWidgetIds(new ComponentName(context, BatteryClockWidget.class));
-
-                    appWidgetManager.notifyAppWidgetViewDataChanged(ids, android.R.id.list);
-
-                    intent2.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
-
-                    context.sendBroadcast(intent2);
-                }
-            }
-        };
-
-        context.getApplicationContext().registerReceiver(_receiver, new IntentFilter(Intent.ACTION_TIME_TICK));
 
         Log.i(BatteryClockWidget.class.getName(), "onRestored()");
     }
