@@ -1,11 +1,13 @@
 package com.outsidecontextproblem.batteryclock;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -98,6 +100,29 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
             return;
         }
 
+        Context context = getApplicationContext();
+
+        if (serviceIsRunning(context)) {
+            return;
+        }
+
+        Log.i(BatteryClockWidget.class.getName(), "onEnabled(): Starting service.");
+
+        Intent serviceIntent = new Intent(context, BatteryClockWidgetService.class);
+        context.startForegroundService(serviceIntent);
+
 //        mAppWidgetText.setText(loadTitlePref(BatteryClockWidgetConfigureActivity.this, mAppWidgetId));
+    }
+
+    private boolean serviceIsRunning(Context context) {
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+
+        for (ActivityManager.RunningServiceInfo service : activityManager.getRunningServices(Integer.MAX_VALUE)) {
+            if (BatteryClockWidgetService.class.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

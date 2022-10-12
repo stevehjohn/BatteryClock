@@ -27,4 +27,5 @@ public class BatteryClockBootBroadcastReceiver extends BroadcastReceiver {
         }
 
         return false;
-    }}
+    }
+}

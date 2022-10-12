@@ -1,5 +1,6 @@
 package com.outsidecontextproblem.batteryclock;
 
+import android.app.ActivityManager;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.BroadcastReceiver;
