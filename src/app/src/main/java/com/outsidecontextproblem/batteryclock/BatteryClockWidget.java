@@ -1,20 +1,15 @@
 package com.outsidecontextproblem.batteryclock;
 
-import android.app.ActivityManager;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.hardware.display.DisplayManager;
 import android.os.BatteryManager;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.widget.RemoteViews;
@@ -105,9 +100,8 @@ public class BatteryClockWidget extends AppWidgetProvider {
     public void onDeleted(Context context, int[] appWidgetIds) {
         Log.i(BatteryClockWidget.class.getName(), "onDelete()");
 
-        // When the user deletes the widget, delete the preference associated with it.
         for (int appWidgetId : appWidgetIds) {
-//            BatteryClockWidgetConfigureActivity.deleteTitlePref(context, appWidgetId);
+            BatteryClockWidgetConfigureActivity.deleteWidgetPreferences(context, appWidgetId);
         }
     }
 
