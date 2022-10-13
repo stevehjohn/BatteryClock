@@ -22,22 +22,39 @@
             android:layout_height="wrap_content">
 
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:elementTitle="Battery Level Indicator"
                 android:id="@+id/configuratorBattery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:elementTitle="Bezel"
                 android:id="@+id/configuratorBezel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/configuratorBattery" />
 
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:elementTitle="Hour Markings"
                 android:id="@+id/configuratorTicks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/configuratorBezel" />
+
+            <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:elementTitle="Minute Hand"
+                android:id="@+id/configuratorMinute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/configuratorTicks" />
+
+            <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:elementTitle="Minute Arc"
+                android:id="@+id/configuratorMinuteArc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/configuratorMinute" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
