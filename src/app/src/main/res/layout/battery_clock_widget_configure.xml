@@ -1,25 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/imageClock"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight=".3"
+        android:padding="10dp"/>
 
-        <TextView
-            android:id="@+id/textView2"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".5"
+        android:paddingTop="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:elementTitle="Battery Level Indicator"
+                app:elementThickness="20"
+                app:redComponent="22"
+                app:greenComponent="20"
+                app:blueComponent="51"
+                app:colourOpacity="51"
+                android:id="@+id/configuratorBattery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:elementTitle="Bezel"
+                app:elementThickness="4"
+                app:redComponent="51"
+                app:greenComponent="51"
+                app:blueComponent="51"
+                app:colourOpacity="13"
+                android:id="@+id/configuratorBezel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/configuratorBattery" />
+
+            <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:elementTitle="Hour Markings"
+                app:elementThickness="4"
+                app:redComponent="51"
+                app:greenComponent="51"
+                app:blueComponent="51"
+                app:colourOpacity="51"
+                android:id="@+id/configuratorTicks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/configuratorBezel" />
+
+            <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:elementTitle="Minute Hand"
+                app:elementThickness="4"
+                app:redComponent="51"
+                app:greenComponent="51"
+                app:blueComponent="51"
+                app:colourOpacity="51"
+                android:id="@+id/configuratorMinute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/configuratorTicks" />
+
+            <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:elementTitle="Minute Arc"
+                app:elementThickness="4"
+                app:redComponent="51"
+                app:greenComponent="51"
+                app:blueComponent="51"
+                app:colourOpacity="13"
+                android:id="@+id/configuratorMinuteArc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/configuratorMinute" />
+
+            <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:elementTitle="Hour Hand"
+                app:elementThickness="4"
+                app:redComponent="51"
+                app:greenComponent="51"
+                app:blueComponent="51"
+                app:colourOpacity="51"
+                android:id="@+id/configuratorHour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/configuratorMinuteArc" />
+
+            <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:elementTitle="Hour Arc"
+                app:elementThickness="4"
+                app:redComponent="51"
+                app:greenComponent="51"
+                app:blueComponent="51"
+                app:colourOpacity="13"
+                android:id="@+id/configuratorHourArc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/configuratorHour" />
+
+            <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:elementTitle="Week Progress Indicator"
+                app:showElementThickness="false"
+                app:redComponent="51"
+                app:greenComponent="51"
+                app:blueComponent="51"
+                app:colourOpacity="13"
+                android:id="@+id/configuratorWeek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/configuratorHourArc" />
+
+            <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:elementTitle="Clock Background"
+                app:showElementThickness="false"
+                app:redComponent="6"
+                app:greenComponent="6"
+                app:blueComponent="6"
+                app:colourOpacity="38"
+                android:id="@+id/configuratorBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/configuratorWeek" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonCancel"
+            android:layout_weight=".5"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Configuration options coming soon..."
-            android:textSize="20sp" />
+            android:layout_marginTop="24dp"
+            android:text="@string/cancel"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/configuratorTicks" />
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="0dp" />
 
         <Button
             android:id="@+id/buttonAdd"
+            android:layout_weight=".5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -28,6 +168,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@+id/configuratorTicks" />
+
+    </LinearLayout>
+
 </LinearLayout>
