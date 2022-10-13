@@ -6,10 +6,12 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding;
 
@@ -17,6 +19,8 @@ import com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConf
  * The configuration screen for the {@link BatteryClockWidget BatteryClockWidget} AppWidget.
  */
 public class BatteryClockWidgetConfigureActivity extends Activity {
+
+    private BatteryClockRenderer _batteryClockRenderer;
 
     private static final String PREFS_NAME = "com.outsidecontextproblem.batteryclock.BatteryClockWidget";
     private static final String PREF_PREFIX_KEY = "appwidget_";
@@ -45,6 +49,8 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
     public BatteryClockWidgetConfigureActivity() {
         super();
+
+        _batteryClockRenderer = new BatteryClockRenderer();
     }
 
     // Write the prefix to the SharedPreferences object for this widget
@@ -116,6 +122,12 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         context.startForegroundService(serviceIntent);
 
 //        mAppWidgetText.setText(loadTitlePref(BatteryClockWidgetConfigureActivity.this, mAppWidgetId));
+
+        Bitmap bitmap = _batteryClockRenderer.render(75, 10, 10, 3);
+
+        ImageView imageView = findViewById(R.id.imageClock);
+
+        imageView.setImageBitmap(bitmap);
     }
 
     private boolean serviceIsRunning(Context context) {

@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.Display;
 import android.widget.RemoteViews;
 
+import java.util.Calendar;
+
 public class BatteryClockWidget extends AppWidgetProvider {
 
     private final BatteryClockRenderer _batteryClockRenderer;
@@ -96,7 +98,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
         BatteryManager batteryManager = (BatteryManager) context.getSystemService(Context.BATTERY_SERVICE);
         int level = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
 
-        Bitmap bitmap = _batteryClockRenderer.render(level);
+        Bitmap bitmap = _batteryClockRenderer.render(level, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), (((Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 2) + 7) % 7));
 
         views.setImageViewBitmap(R.id.imageView, bitmap);
 
