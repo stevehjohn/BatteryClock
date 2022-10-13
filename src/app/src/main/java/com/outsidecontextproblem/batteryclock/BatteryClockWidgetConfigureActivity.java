@@ -81,12 +81,15 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
         _settings = new Settings(_appWidgetId);
 
-        applySettings(context);
+        applySettingsToView(context);
 
         _elementListener = () -> onElementChanged();
 
         ClockElementConfigurator clockElementConfigurator = findViewById(R.id.configuratorBattery);
         clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
+        clockElementConfigurator = findViewById(R.id.configuratorBezel);
+        clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
+        // TODO: The rest...
 
         if (! serviceIsRunning(context)) {
             Log.i(BatteryClockWidget.class.getName(), "onCreate(): Starting service.");
@@ -95,24 +98,24 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
             context.startForegroundService(serviceIntent);
         }
 
-        Bitmap bitmap = _batteryClockRenderer.render(75, 10, 10, 3);
-
-        ImageView imageView = findViewById(R.id.imageClock);
-
-        imageView.setImageBitmap(bitmap);
+        updatePreview();
     }
 
     private void onElementChanged() {
+        updatePaints();
 
+        updatePreview();
+    }
+
+    private void updatePaints() {
         ClockElementConfigurator configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBattery);
-        updatePaint(_batteryClockRenderer.getArcPaint(), configurator);
+        updatePaint(_batteryClockRenderer.getBatteryArcPaint(), configurator);
         updateSettings(_settings.getBatteryLevelIndicatorSettings(), configurator);
 
-        Bitmap bitmap = _batteryClockRenderer.render(75, 10, 10, 3);
+        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBezel);
+        updatePaint(_batteryClockRenderer.getBezelPaint(), configurator);
+        updateSettings(_settings.getBezelSettings(), configurator);
 
-        ImageView imageView = findViewById(R.id.imageClock);
-
-        imageView.setImageBitmap(bitmap);
     }
 
     private void updatePaint(Paint paint, ClockElementConfigurator configurator) {
@@ -128,11 +131,22 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         settings.setBlue(configurator.getBlue());
     }
 
-    private void applySettings(Context context) {
+    private void applySettingsToView(Context context) {
         _settings.loadSettings(context);
 
         configureElement(findViewById(R.id.configuratorBattery), _settings.getBatteryLevelIndicatorSettings());
-        // TODO: The rest...
+        configureElement(findViewById(R.id.configuratorBezel), _settings.getBezelSettings());
+//        configureElement(findViewById(R.id.configuratorTicks), _settings.getBatteryLevelIndicatorSettings());
+//        configureElement(findViewById(R.id.configuratorMinute), _settings.getBatteryLevelIndicatorSettings());
+//        configureElement(findViewById(R.id.configuratorMinuteArc), _settings.getBatteryLevelIndicatorSettings());
+//        configureElement(findViewById(R.id.configuratorHour), _settings.getBatteryLevelIndicatorSettings());
+//        configureElement(findViewById(R.id.configuratorHourArc), _settings.getBatteryLevelIndicatorSettings());
+//        configureElement(findViewById(R.id.configuratorWeek), _settings.getBatteryLevelIndicatorSettings());
+//        configureElement(findViewById(R.id.configuratorBackground), _settings.getBatteryLevelIndicatorSettings());
+
+        updatePaints();
+
+        updatePreview();
     }
 
     private void configureElement(ClockElementConfigurator configurator, ElementSettings settings) {
@@ -141,6 +155,16 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         configurator.setRed(settings.getRed());
         configurator.setGreen(settings.getGreen());
         configurator.setBlue(settings.getBlue());
+
+        updatePaint(_batteryClockRenderer.getBatteryArcPaint(), configurator);
+    }
+
+    private void updatePreview() {
+        Bitmap bitmap = _batteryClockRenderer.render(75, 10, 10, 3);
+
+        ImageView imageView = findViewById(R.id.imageClock);
+
+        imageView.setImageBitmap(bitmap);
     }
 
     private boolean serviceIsRunning(Context context) {
