@@ -119,14 +119,13 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
     }
 
     private void updatePaints() {
+        _batteryClockRenderer.updateFromSettings(_settings);
+
         ClockElementConfigurator configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBattery);
-        updatePaint(_batteryClockRenderer.getBatteryArcPaint(), configurator);
         updateSettings(_settings.getBatteryLevelIndicatorSettings(), configurator);
 
         configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBezel);
-        updatePaint(_batteryClockRenderer.getBezelPaint(), configurator);
         updateSettings(_settings.getBezelSettings(), configurator);
-
     }
 
     private void updatePaint(Paint paint, ClockElementConfigurator configurator) {
@@ -167,7 +166,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         configurator.setGreen(settings.getGreen());
         configurator.setBlue(settings.getBlue());
 
-        updatePaint(_batteryClockRenderer.getBatteryArcPaint(), configurator);
+        _batteryClockRenderer.updateFromSettings(_settings);
     }
 
     private void updatePreview() {
