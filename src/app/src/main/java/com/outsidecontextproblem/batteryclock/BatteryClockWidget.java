@@ -12,6 +12,7 @@ import android.view.Display;
 import android.widget.RemoteViews;
 
 import java.util.Calendar;
+import java.util.Dictionary;
 
 public class BatteryClockWidget extends AppWidgetProvider {
 
