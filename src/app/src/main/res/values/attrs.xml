@@ -11,5 +11,7 @@
         <attr name="redComponent" format="integer" />
         <attr name="greenComponent" format="integer" />
         <attr name="blueComponent" format="integer" />
+        <attr name="colourOpacity" format="integer" />
+        <attr name="showElementThickness" format="boolean" />
     </declare-styleable>
 </resources>
