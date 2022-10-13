@@ -10,6 +10,9 @@ public class ElementSettings {
 
     private static final String SETTING_THICKNESS = "thickness";
     private static final String SETTING_OPACITY = "opacity";
+    private static final String SETTING_RED = "red";
+    private static final String SETTING_GREEN = "green";
+    private static final String SETTING_BLUE = "blue";
 
     private int _appWidgetId;
 
@@ -75,6 +78,9 @@ public class ElementSettings {
 
         _thickness = prefs.getInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_THICKNESS), _thicknessDefault);
         _opacity = prefs.getInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_OPACITY), _opacityDefault);
+        _red = prefs.getInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_RED), _thicknessDefault);
+        _green = prefs.getInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_GREEN), _opacityDefault);
+        _blue = prefs.getInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_BLUE), _opacityDefault);
     }
 
     @SuppressLint("DefaultLocale")
@@ -83,6 +89,9 @@ public class ElementSettings {
 
         prefs.putInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_THICKNESS), _thickness);
         prefs.putInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_OPACITY), _opacity);
+        prefs.putInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_RED), _red);
+        prefs.putInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_GREEN), _green);
+        prefs.putInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_BLUE), _blue);
 
         prefs.apply();
     }

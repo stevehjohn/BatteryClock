@@ -25,10 +25,10 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
     private final View.OnClickListener _addOnClickListener = view -> {
         final Context context = BatteryClockWidgetConfigureActivity.this;
 
-        savePreferences(context);
-
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         BatteryClockWidget.updateAppWidget(context, appWidgetManager, _appWidgetId);
+
+        _settings.saveSettings(context);
 
         Intent resultValue = new Intent();
         resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, _appWidgetId);
@@ -49,10 +49,6 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         super();
 
         _batteryClockRenderer = new BatteryClockRenderer();
-    }
-
-    private void savePreferences(Context context) {
-        _settings.saveSettings(context);
     }
 
     static void deleteWidgetPreferences(Context context, int appWidgetId) {
@@ -141,6 +137,10 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
     private void configureElement(ClockElementConfigurator configurator, ElementSettings settings) {
         configurator.setElementThickness(settings.getThickness());
+        configurator.setOpacity(settings.getOpacity());
+        configurator.setRed(settings.getRed());
+        configurator.setGreen(settings.getGreen());
+        configurator.setBlue(settings.getBlue());
     }
 
     private boolean serviceIsRunning(Context context) {
