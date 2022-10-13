@@ -10,12 +10,14 @@
         android:id="@+id/imageClock"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".3"/>
+        android:layout_weight=".3"
+        android:padding="10dp"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".5">
+        android:layout_weight=".5"
+        android:paddingTop="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -55,6 +57,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/configuratorMinute" />
+
+            <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:elementTitle="Hour Hand"
+                android:id="@+id/configuratorHour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/configuratorMinuteArc" />
+
+            <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:elementTitle="Hour Arc"
+                android:id="@+id/configuratorHourArc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/configuratorHour" />
+
+            <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:elementTitle="Week Progress Indicator"
+                android:id="@+id/configuratorWeek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/configuratorHourArc" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
