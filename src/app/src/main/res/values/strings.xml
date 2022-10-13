@@ -2,9 +2,10 @@
     <string name="app_name">BatteryClock</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="configure">BatteryClock Configuration</string>
-    <string name="done_button">Done</string>
+    <string name="done_button">Save</string>
     <string name="app_widget_description">Battery level indicator and clock widget</string>
     <string name="thickness">Thickness: %d</string>
     <string name="colour">Colour</string>
     <string name="opacity">Opacity</string>
+    <string name="cancel">Cancel</string>
 </resources>

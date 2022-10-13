@@ -5,8 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import java.util.Calendar;
-
 public class BatteryClockRenderer {
 
     private final Paint _arcPaint;
@@ -63,7 +61,7 @@ public class BatteryClockRenderer {
         _dayArcPaint.setARGB(64, 255, 255, 255);
     }
 
-    public Bitmap render(int level) {
+    public Bitmap render(int level, int hour, int minute, int dayOfWeek) {
 
         Bitmap bitmap = Bitmap.createBitmap(Constants.BitmapDimensions, Constants.BitmapDimensions, Bitmap.Config.ARGB_8888);
         bitmap.eraseColor(Color.TRANSPARENT);
@@ -88,21 +86,21 @@ public class BatteryClockRenderer {
 
         float degreesForDay = 360F / 7F;
 
-        float dayDegrees = (((Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 2) + 7) % 7) * degreesForDay;
+        float dayDegrees = dayOfWeek * degreesForDay;
 
-        dayDegrees += (degreesForDay / 24) * Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        dayDegrees += (degreesForDay / 24) * hour;
 
         canvas.drawArc(dayArcOffset, dayArcOffset, Constants.BitmapDimensions - dayArcOffset, Constants.BitmapDimensions - dayArcOffset, 270, dayDegrees, true, _dayArcPaint);
 
-        float minuteDegrees = Calendar.getInstance().get(Calendar.MINUTE) * 6;
+        float minuteDegrees = minute * 6;
 
         int minuteArcOffset = Constants.BitmapCenter - Constants.MinuteHandLength;
 
         canvas.drawArc(minuteArcOffset, minuteArcOffset, Constants.BitmapDimensions - minuteArcOffset, Constants.BitmapDimensions - minuteArcOffset, 270, minuteDegrees, false, _minuteTrailPaint);
 
-        float minuteRadians = (float) ((float) ((Calendar.getInstance().get(Calendar.MINUTE) * 6) * (Math.PI / 180)) - Math.PI / 2);
+        float minuteRadians = (float) ((float) ((minute * 6) * (Math.PI / 180)) - Math.PI / 2);
 
-        float hourDegrees = Calendar.getInstance().get(Calendar.HOUR) * 30 + (Calendar.getInstance().get(Calendar.MINUTE) / 2F);
+        float hourDegrees = hour * 30 + (minute / 2F);
 
         int hourArcOffset = Constants.BitmapCenter - Constants.HourHandLength;
 
@@ -110,7 +108,7 @@ public class BatteryClockRenderer {
 
         canvas.drawLine(Constants.BitmapCenter, Constants.BitmapCenter, (float) (Constants.BitmapCenter + Math.cos(minuteRadians) * Constants.MinuteHandLength), (float) (Constants.BitmapCenter + Math.sin(minuteRadians) * Constants.MinuteHandLength), _minutePaint);
 
-        float hourRadians = (float) ((float) ((Calendar.getInstance().get(Calendar.HOUR) * 30 + Calendar.getInstance().get(Calendar.MINUTE) / 2) * (Math.PI / 180)) - Math.PI / 2);
+        float hourRadians = (float) ((float) ((hour * 30 + minute / 2) * (Math.PI / 180)) - Math.PI / 2);
 
         canvas.drawLine(Constants.BitmapCenter, Constants.BitmapCenter, (float) (Constants.BitmapCenter + Math.cos(hourRadians) * Constants.HourHandLength), (float) (Constants.BitmapCenter + Math.sin(hourRadians) * Constants.HourHandLength), _hourPaint);
 
