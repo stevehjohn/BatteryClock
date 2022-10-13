@@ -17,11 +17,15 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
     private static final BatteryClockRenderer _batteryClockRenderer = new BatteryClockRenderer();
 
-    public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
+    public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Settings settings) {
 
         Log.i(BatteryClockWidget.class.getName(), "updateAppWidget()");
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.battery_clock_widget);
+
+        if (settings != null) {
+            _batteryClockRenderer.updateFromSettings(settings);
+        }
 
         draw(views, appWidgetManager, appWidgetId, context);
     }
@@ -31,7 +35,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
         Log.i(BatteryClockWidget.class.getName(), "onUpdate()");
 
         for (int appWidgetId : appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId);
+            updateAppWidget(context, appWidgetManager, appWidgetId, null);
         }
     }
 

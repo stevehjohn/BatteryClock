@@ -32,7 +32,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         final Context context = BatteryClockWidgetConfigureActivity.this;
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-        BatteryClockWidget.updateAppWidget(context, appWidgetManager, _appWidgetId);
+        BatteryClockWidget.updateAppWidget(context, appWidgetManager, _appWidgetId, _settings);
 
         _settings.saveSettings(context);
 
