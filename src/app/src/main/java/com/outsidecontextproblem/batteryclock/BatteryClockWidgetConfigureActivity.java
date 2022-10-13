@@ -6,19 +6,12 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 
 import com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BatteryClockWidgetConfigureActivity extends Activity {
 
@@ -97,6 +90,8 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
         clockElementConfigurator = findViewById(R.id.configuratorBezel);
         clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
+        clockElementConfigurator = findViewById(R.id.configuratorBackground);
+        clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
         // TODO: The rest...
 
         if (! serviceIsRunning(context)) {
@@ -126,6 +121,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
         configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBezel);
         updateSettings(_settings.getBezelSettings(), configurator);
+
+        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBackground);
+        updateSettings(_settings.getBackgroundSettings(), configurator);
     }
 
     private void updateSettings(ElementSettings settings, ClockElementConfigurator configurator) {
@@ -147,7 +145,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 //        configureElement(findViewById(R.id.configuratorHour), _settings.getBatteryLevelIndicatorSettings());
 //        configureElement(findViewById(R.id.configuratorHourArc), _settings.getBatteryLevelIndicatorSettings());
 //        configureElement(findViewById(R.id.configuratorWeek), _settings.getBatteryLevelIndicatorSettings());
-//        configureElement(findViewById(R.id.configuratorBackground), _settings.getBatteryLevelIndicatorSettings());
+        configureElement(findViewById(R.id.configuratorBackground), _settings.getBackgroundSettings());
 
         updatePaints();
 
