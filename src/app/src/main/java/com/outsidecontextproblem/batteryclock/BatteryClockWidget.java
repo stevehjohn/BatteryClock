@@ -15,21 +15,11 @@ import java.util.Calendar;
 
 public class BatteryClockWidget extends AppWidgetProvider {
 
-    private final BatteryClockRenderer _batteryClockRenderer;
+    private static final BatteryClockRenderer _batteryClockRenderer = new BatteryClockRenderer();
 
-    private DisplayManager _displayManager;
-
-    public BatteryClockWidget() {
-        _batteryClockRenderer = new BatteryClockRenderer();
-    }
-
-    private void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
+    public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
 
         Log.i(BatteryClockWidget.class.getName(), "updateAppWidget()");
-
-        if (_displayManager == null) {
-            _displayManager = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
-        }
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.battery_clock_widget);
 
@@ -71,12 +61,14 @@ public class BatteryClockWidget extends AppWidgetProvider {
         super.onReceive(context, intent);
     }
 
-    public void draw(RemoteViews views, AppWidgetManager appWidgetManager, int appWidgetId, Context context) {
+    public static void draw(RemoteViews views, AppWidgetManager appWidgetManager, int appWidgetId, Context context) {
         Log.i(BatteryClockWidget.class.getName(), "draw()");
 
         boolean displayOn = false;
 
-        for (Display display : _displayManager.getDisplays()) {
+        DisplayManager displayManager = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
+
+        for (Display display : displayManager.getDisplays()) {
             if (display.getState() != Display.STATE_OFF) {
                 displayOn = true;
                 break;

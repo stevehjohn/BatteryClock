@@ -28,9 +28,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         savePreferences(context);
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.battery_clock_widget);
-        appWidgetManager.updateAppWidget(_appWidgetId, views);
+        BatteryClockWidget.updateAppWidget(context, appWidgetManager, _appWidgetId);
 
         Intent resultValue = new Intent();
         resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, _appWidgetId);
