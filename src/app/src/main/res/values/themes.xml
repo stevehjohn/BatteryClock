@@ -28,4 +28,24 @@
         <!-- Apply padding to avoid the content of the widget colliding with the rounded corners -->
         <item name="appWidgetPadding">16dp</item>
     </style>
+
+    <style name="redSliderColour">
+        <item name="colorAccent">@android:color/holo_red_light</item>
+        <item name="android:progressTint">@android:color/holo_red_light</item>
+    </style>
+
+    <style name="greenSliderColour">
+        <item name="colorAccent">@android:color/holo_green_light</item>
+        <item name="android:progressTint">@android:color/holo_green_light</item>
+    </style>
+
+    <style name="blueSliderColour">
+        <item name="colorAccent">@android:color/holo_blue_light</item>
+        <item name="android:progressTint">@android:color/holo_blue_light</item>
+    </style>
+
+    <style name="greySliderColour">
+        <item name="colorAccent">@android:color/darker_gray</item>
+    </style>
+
 </resources>
