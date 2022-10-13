@@ -100,6 +100,8 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
     private void applySettings(Context context) {
         _settings.loadSettings(context);
+
+        // TODO: Pass settings to the controls on the activity.
     }
 
     private boolean serviceIsRunning(Context context) {
