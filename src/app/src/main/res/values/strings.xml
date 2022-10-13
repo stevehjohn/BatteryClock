@@ -4,7 +4,7 @@
     <string name="configure">BatteryClock Configuration</string>
     <string name="done_button">Save</string>
     <string name="app_widget_description">Battery level indicator and clock widget</string>
-    <string name="thickness">Thickness: %d</string>
+    <string name="thickness">Thickness</string>
     <string name="colour">Colour</string>
     <string name="opacity">Opacity</string>
     <string name="cancel">Cancel</string>

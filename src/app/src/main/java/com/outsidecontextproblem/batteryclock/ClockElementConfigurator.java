@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 
 public class ClockElementConfigurator extends LinearLayout {
 
+    private SeekBar.OnSeekBarChangeListener _listener;
+
     public ClockElementConfigurator(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
@@ -30,11 +32,10 @@ public class ClockElementConfigurator extends LinearLayout {
     }
 
     private void initializeEvents() {
-        SeekBar seekBar = findViewById(R.id.seekThickness);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        _listener = new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                Log.i("BADGER", String.format("%d", i));
+                raiseChange();
             }
 
             @Override
@@ -44,7 +45,26 @@ public class ClockElementConfigurator extends LinearLayout {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
-        });
+        };
+
+        SeekBar seekBar = findViewById(R.id.seekThickness);
+        seekBar.setOnSeekBarChangeListener(_listener);
+
+        seekBar = findViewById(R.id.seekRed);
+        seekBar.setOnSeekBarChangeListener(_listener);
+
+        seekBar = findViewById(R.id.seekGreen);
+        seekBar.setOnSeekBarChangeListener(_listener);
+
+        seekBar = findViewById(R.id.seekBlue);
+        seekBar.setOnSeekBarChangeListener(_listener);
+
+        seekBar = findViewById(R.id.colourOpacity);
+        seekBar.setOnSeekBarChangeListener(_listener);
+    }
+
+    private void raiseChange() {
+        Log.i("BADGER", "Change!");
     }
 
     private void initialize(Context context, @Nullable AttributeSet attrs) {
@@ -63,10 +83,7 @@ public class ClockElementConfigurator extends LinearLayout {
             seekBar.setVisibility(GONE);
         }
 
-        int thickness = properties.getInt(R.styleable.ClockElementConfigurator_elementThickness, 0);
-        textView.setText(String.format(getResources().getString(R.string.thickness), thickness));
-
-        seekBar.setProgress(thickness);
+        seekBar.setProgress(properties.getInt(R.styleable.ClockElementConfigurator_elementThickness, 0));
 
         seekBar = findViewById(R.id.seekRed);
         seekBar.setProgress(properties.getInt(R.styleable.ClockElementConfigurator_redComponent, 22));
