@@ -128,11 +128,6 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         updateSettings(_settings.getBezelSettings(), configurator);
     }
 
-    private void updatePaint(Paint paint, ClockElementConfigurator configurator) {
-        paint.setStrokeWidth(configurator.getElementThickness());
-        paint.setARGB(configurator.getOpacity() * 5, configurator.getRed() * 5, configurator.getGreen() * 5, configurator.getBlue() * 5);
-    }
-
     private void updateSettings(ElementSettings settings, ClockElementConfigurator configurator) {
         settings.setThickness(configurator.getElementThickness());
         settings.setOpacity(configurator.getOpacity());
