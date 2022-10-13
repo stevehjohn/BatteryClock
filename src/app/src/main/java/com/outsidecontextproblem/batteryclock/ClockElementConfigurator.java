@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -34,5 +35,8 @@ public class ClockElementConfigurator extends LinearLayout {
         int thickness = properties.getInt(R.styleable.ClockElementConfigurator_elementThickness, 0);
         textView = findViewById(R.id.textThickness);
         textView.setText(String.format(getResources().getString(R.string.thickness), thickness));
+
+        SeekBar seekBar = findViewById(R.id.seekThickness);
+        seekBar.setProgress(thickness);
     }
 }
