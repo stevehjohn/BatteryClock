@@ -7,7 +7,7 @@ import android.graphics.Paint;
 
 public class BatteryClockRenderer {
 
-    public final Paint _arcPaint;
+    private final Paint _arcPaint;
     private final Paint _circlePaint;
     private final Paint _minutePaint;
     private final Paint _hourPaint;
@@ -59,6 +59,10 @@ public class BatteryClockRenderer {
 
         _dayArcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _dayArcPaint.setARGB(65, 255, 255, 255);
+    }
+
+    public Paint getArcPaint() {
+        return _arcPaint;
     }
 
     public Bitmap render(int level, int hour, int minute, int dayOfWeek) {
