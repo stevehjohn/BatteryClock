@@ -17,7 +17,7 @@ public class Settings {
     public Settings(int appWidgetId) {
         _appWidgetId = appWidgetId;
 
-        _batteryLevelIndicatorSettings = new ElementSettings(_appWidgetId, Constants.BezelIndicator);
+        _batteryLevelIndicatorSettings = new ElementSettings(_appWidgetId, Constants.BezelIndicator, 255, 110, 100, 255);
     }
 
     public void loadSettings(Context context) {
