@@ -7,5 +7,6 @@
     
     <declare-styleable name="ClockElementConfigurator">
         <attr name="elementTitle" format="string" />
+        <attr name="elementThickness" format="integer" />
     </declare-styleable>
 </resources>
