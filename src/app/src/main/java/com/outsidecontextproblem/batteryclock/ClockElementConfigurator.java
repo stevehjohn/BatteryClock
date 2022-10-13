@@ -41,6 +41,46 @@ public class ClockElementConfigurator extends LinearLayout {
         return seekBar.getProgress();
     }
 
+    public void setRed(int red) {
+        SeekBar seekBar = findViewById(R.id.seekRed);
+        seekBar.setProgress(red);
+    }
+
+    public int getRed() {
+        SeekBar seekBar = findViewById(R.id.seekRed);
+        return seekBar.getProgress();
+    }
+
+    public void setGreen(int green) {
+        SeekBar seekBar = findViewById(R.id.seekGreen);
+        seekBar.setProgress(green);
+    }
+
+    public int getGreen() {
+        SeekBar seekBar = findViewById(R.id.seekGreen);
+        return seekBar.getProgress();
+    }
+
+    public void setBlue(int blue) {
+        SeekBar seekBar = findViewById(R.id.seekBlue);
+        seekBar.setProgress(blue);
+    }
+
+    public int getBlue() {
+        SeekBar seekBar = findViewById(R.id.seekBlue);
+        return seekBar.getProgress();
+    }
+
+    public void setOpacity(int opacity) {
+        SeekBar seekBar = findViewById(R.id.colourOpacity);
+        seekBar.setProgress(opacity);
+    }
+
+    public int getOpacity() {
+        SeekBar seekBar = findViewById(R.id.colourOpacity);
+        return seekBar.getProgress();
+    }
+
     private void initializeEvents() {
         _onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
             @Override
