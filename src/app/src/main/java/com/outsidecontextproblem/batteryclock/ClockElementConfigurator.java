@@ -3,6 +3,7 @@ package com.outsidecontextproblem.batteryclock;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -16,12 +17,34 @@ public class ClockElementConfigurator extends LinearLayout {
         super(context, attrs);
 
         initialize(context, attrs);
+
+        initializeEvents();
     }
 
     public ClockElementConfigurator(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         initialize(context, attrs);
+
+        initializeEvents();
+    }
+
+    private void initializeEvents() {
+        SeekBar seekBar = findViewById(R.id.seekThickness);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                Log.i("BADGER", String.format("%d", i));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
     }
 
     private void initialize(Context context, @Nullable AttributeSet attrs) {
