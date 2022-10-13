@@ -7,7 +7,7 @@ import android.graphics.Paint;
 
 public class BatteryClockRenderer {
 
-    private final Paint _arcPaint;
+    public final Paint _arcPaint;
     private final Paint _circlePaint;
     private final Paint _minutePaint;
     private final Paint _hourPaint;

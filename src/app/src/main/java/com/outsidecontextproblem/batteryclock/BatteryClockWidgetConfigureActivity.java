@@ -106,17 +106,25 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
     }
 
     private void onElementChanged() {
-        Log.i("BADGER", "Element changed!");
+
+        _batteryClockRenderer._arcPaint.setStrokeWidth(((ClockElementConfigurator) findViewById(R.id.configuratorBattery)).getElementThickness());
+
+        Bitmap bitmap = _batteryClockRenderer.render(75, 10, 10, 3);
+
+        ImageView imageView = findViewById(R.id.imageClock);
+
+        imageView.setImageBitmap(bitmap);
     }
 
     private void applySettings(Context context) {
         _settings.loadSettings(context);
 
-        // TODO: Pass settings to the controls on the activity.
         configureElement(findViewById(R.id.configuratorBattery), _settings.getBatteryLevelIndicatorSettings());
+        // TODO: The rest...
     }
 
     private void configureElement(ClockElementConfigurator configurator, ElementSettings settings) {
+        configurator.setElementThickness(settings.getThickness());
     }
 
     private boolean serviceIsRunning(Context context) {

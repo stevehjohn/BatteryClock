@@ -31,6 +31,16 @@ public class ClockElementConfigurator extends LinearLayout {
         initializeEvents();
     }
 
+    public void setElementThickness(int thickness) {
+        SeekBar seekBar = findViewById(R.id.seekThickness);
+        seekBar.setProgress(thickness);
+    }
+
+    public int getElementThickness() {
+        SeekBar seekBar = findViewById(R.id.seekThickness);
+        return seekBar.getProgress();
+    }
+
     private void initializeEvents() {
         _onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
             @Override
