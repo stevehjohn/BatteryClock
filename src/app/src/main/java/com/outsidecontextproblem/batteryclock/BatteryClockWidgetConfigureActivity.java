@@ -10,9 +10,15 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 
 import com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BatteryClockWidgetConfigureActivity extends Activity {
 
@@ -79,6 +85,8 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
         Context context = getApplicationContext();
 
+        configureTimezones(context);
+
         _settings = new Settings(_appWidgetId);
 
         applySettingsToView(context);
@@ -99,6 +107,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         }
 
         updatePreview();
+    }
+
+    private void configureTimezones(Context context) {
     }
 
     private void onElementChanged() {
