@@ -90,6 +90,8 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
         clockElementConfigurator = findViewById(R.id.configuratorBezel);
         clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
+        clockElementConfigurator = findViewById(R.id.configuratorTicks);
+        clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
         clockElementConfigurator = findViewById(R.id.configuratorBackground);
         clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
         // TODO: The rest...
@@ -121,6 +123,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
         configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBezel);
         updateSettings(_settings.getBezelSettings(), configurator);
+
+        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorTicks);
+        updateSettings(_settings.getTicksSettings(), configurator);
 
         configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBackground);
         updateSettings(_settings.getBackgroundSettings(), configurator);
