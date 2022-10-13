@@ -20,12 +20,12 @@ public class BatteryClockRenderer {
     public BatteryClockRenderer() {
 
         _arcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        _arcPaint.setARGB(255, 107, 99, 255);
+        _arcPaint.setARGB(255, 110, 100, 255);
         _arcPaint.setStyle(Paint.Style.STROKE);
         _arcPaint.setStrokeWidth(Constants.BezelIndicator);
 
         _circlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        _circlePaint.setARGB(64, 255, 255, 255);
+        _circlePaint.setARGB(65, 255, 255, 255);
         _circlePaint.setStyle(Paint.Style.STROKE);
         _circlePaint.setStrokeWidth(Constants.BezelOutline);
 
@@ -45,20 +45,20 @@ public class BatteryClockRenderer {
         _dotPaint.setStrokeWidth(Constants.TickThickness);
 
         _backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        _backgroundPaint.setARGB(192, 32, 32, 32);
+        _backgroundPaint.setARGB(190, 30, 30, 30);
 
         _minuteTrailPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        _minuteTrailPaint.setARGB(64, 255, 255, 255);
+        _minuteTrailPaint.setARGB(65, 255, 255, 255);
         _minuteTrailPaint.setStyle(Paint.Style.STROKE);
         _minuteTrailPaint.setStrokeWidth(Constants.BezelOutline);
 
         _hourTrailPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        _hourTrailPaint.setARGB(64, 255, 255, 255);
+        _hourTrailPaint.setARGB(65, 255, 255, 255);
         _hourTrailPaint.setStyle(Paint.Style.STROKE);
         _hourTrailPaint.setStrokeWidth(Constants.BezelOutline);
 
         _dayArcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        _dayArcPaint.setARGB(64, 255, 255, 255);
+        _dayArcPaint.setARGB(65, 255, 255, 255);
     }
 
     public Bitmap render(int level, int hour, int minute, int dayOfWeek) {

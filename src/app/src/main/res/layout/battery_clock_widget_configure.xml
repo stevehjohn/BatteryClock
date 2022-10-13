@@ -26,9 +26,10 @@
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="Battery Level Indicator"
                 app:elementThickness="20"
-                app:redComponent="107"
-                app:greenComponent="99"
-                app:blueComponent="255"
+                app:redComponent="22"
+                app:greenComponent="20"
+                app:blueComponent="51"
+                app:colourOpacity="51"
                 android:id="@+id/configuratorBattery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,6 +37,11 @@
 
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="Bezel"
+                app:elementThickness="4"
+                app:redComponent="51"
+                app:greenComponent="51"
+                app:blueComponent="51"
+                app:colourOpacity="13"
                 android:id="@+id/configuratorBezel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,6 +49,11 @@
 
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="Hour Markings"
+                app:elementThickness="4"
+                app:redComponent="51"
+                app:greenComponent="51"
+                app:blueComponent="51"
+                app:colourOpacity="51"
                 android:id="@+id/configuratorTicks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,6 +61,11 @@
 
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="Minute Hand"
+                app:elementThickness="4"
+                app:redComponent="51"
+                app:greenComponent="51"
+                app:blueComponent="51"
+                app:colourOpacity="51"
                 android:id="@+id/configuratorMinute"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,6 +73,11 @@
 
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="Minute Arc"
+                app:elementThickness="4"
+                app:redComponent="51"
+                app:greenComponent="51"
+                app:blueComponent="51"
+                app:colourOpacity="13"
                 android:id="@+id/configuratorMinuteArc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,6 +85,11 @@
 
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="Hour Hand"
+                app:elementThickness="4"
+                app:redComponent="51"
+                app:greenComponent="51"
+                app:blueComponent="51"
+                app:colourOpacity="51"
                 android:id="@+id/configuratorHour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,6 +97,11 @@
 
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="Hour Arc"
+                app:elementThickness="4"
+                app:redComponent="51"
+                app:greenComponent="51"
+                app:blueComponent="51"
+                app:colourOpacity="13"
                 android:id="@+id/configuratorHourArc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,10 +109,27 @@
 
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="Week Progress Indicator"
+                app:showElementThickness="false"
+                app:redComponent="51"
+                app:greenComponent="51"
+                app:blueComponent="51"
+                app:colourOpacity="13"
                 android:id="@+id/configuratorWeek"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/configuratorHourArc" />
+
+            <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:elementTitle="Clock Background"
+                app:showElementThickness="false"
+                app:redComponent="6"
+                app:greenComponent="6"
+                app:blueComponent="6"
+                app:colourOpacity="38"
+                android:id="@+id/configuratorBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/configuratorWeek" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

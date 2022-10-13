@@ -32,11 +32,29 @@ public class ClockElementConfigurator extends LinearLayout {
         TextView textView = findViewById(R.id.textElementTitle);
         textView.setText(properties.getString(R.styleable.ClockElementConfigurator_elementTitle));
 
-        int thickness = properties.getInt(R.styleable.ClockElementConfigurator_elementThickness, 0);
         textView = findViewById(R.id.textThickness);
+        SeekBar seekBar = findViewById(R.id.seekThickness);
+
+        if (! properties.getBoolean(R.styleable.ClockElementConfigurator_showElementThickness, true)) {
+            textView.setVisibility(INVISIBLE);
+            seekBar.setVisibility(INVISIBLE);
+        }
+
+        int thickness = properties.getInt(R.styleable.ClockElementConfigurator_elementThickness, 0);
         textView.setText(String.format(getResources().getString(R.string.thickness), thickness));
 
-        SeekBar seekBar = findViewById(R.id.seekThickness);
         seekBar.setProgress(thickness);
+
+        seekBar = findViewById(R.id.seekRed);
+        seekBar.setProgress(properties.getInt(R.styleable.ClockElementConfigurator_redComponent, 22));
+
+        seekBar = findViewById(R.id.seekGreen);
+        seekBar.setProgress(properties.getInt(R.styleable.ClockElementConfigurator_greenComponent, 22));
+
+        seekBar = findViewById(R.id.seekBlue);
+        seekBar.setProgress(properties.getInt(R.styleable.ClockElementConfigurator_blueComponent, 22));
+
+        seekBar = findViewById(R.id.colourOpacity);
+        seekBar.setProgress(properties.getInt(R.styleable.ClockElementConfigurator_colourOpacity, 22));
     }
 }
