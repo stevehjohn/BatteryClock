@@ -5,47 +5,45 @@ import android.app.ActivityManager;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RemoteViews;
 
 import com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding;
 
-/**
- * The configuration screen for the {@link BatteryClockWidget BatteryClockWidget} AppWidget.
- */
 public class BatteryClockWidgetConfigureActivity extends Activity {
 
-    private BatteryClockRenderer _batteryClockRenderer;
+    private final BatteryClockRenderer _batteryClockRenderer;
 
-    private static final String PREFS_NAME = "com.outsidecontextproblem.batteryclock.BatteryClockWidget";
-    private static final String PREF_PREFIX_KEY = "appwidget_";
-    int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
-    EditText mAppWidgetText;
-    View.OnClickListener mOnClickListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            final Context context = BatteryClockWidgetConfigureActivity.this;
+    int _appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
-            // When the button is clicked, store the string locally
-//            String widgetText = mAppWidgetText.getText().toString();
-//            saveTitlePref(context, mAppWidgetId, widgetText);
+    private Settings _settings;
 
-            // It is the responsibility of the configuration activity to update the app widget
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            //BatteryClockWidget.updateAppWidget(context, appWidgetManager, mAppWidgetId);
+    private final View.OnClickListener _addOnClickListener = view -> {
+        final Context context = BatteryClockWidgetConfigureActivity.this;
 
-            // Make sure we pass back the original appWidgetId
-            Intent resultValue = new Intent();
-            resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
-            setResult(RESULT_OK, resultValue);
-            finish();
-        }
+        savePreferences(context);
+
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.battery_clock_widget);
+        appWidgetManager.updateAppWidget(_appWidgetId, views);
+
+        Intent resultValue = new Intent();
+        resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, _appWidgetId);
+        setResult(RESULT_OK, resultValue);
+        finish();
     };
-    private BatteryClockWidgetConfigureBinding binding;
+
+    private final View.OnClickListener _cancelOnClickListener = view -> {
+        setResult(RESULT_CANCELED);
+        finish();
+    };
+
+    private BatteryClockWidgetConfigureBinding _binding;
 
     public BatteryClockWidgetConfigureActivity() {
         super();
@@ -53,81 +51,58 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         _batteryClockRenderer = new BatteryClockRenderer();
     }
 
-    // Write the prefix to the SharedPreferences object for this widget
-    static void saveTitlePref(Context context, int appWidgetId, String text) {
-        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
-        prefs.putString(PREF_PREFIX_KEY + appWidgetId, text);
-        prefs.apply();
-    }
-
-    // Read the prefix from the SharedPreferences object for this widget.
-    // If there is no preference saved, get the default from a resource
-    static String loadTitlePref(Context context, int appWidgetId) {
-        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
-        String titleValue = prefs.getString(PREF_PREFIX_KEY + appWidgetId, null);
-        if (titleValue != null) {
-            return titleValue;
-        } else {
-            return context.getString(R.string.appwidget_text);
-        }
-    }
-
-    static void deleteTitlePref(Context context, int appWidgetId) {
-        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
-        prefs.remove(PREF_PREFIX_KEY + appWidgetId);
-        prefs.apply();
+    private void savePreferences(Context context) {
+        _settings.saveSettings(context);
     }
 
     static void deleteWidgetPreferences(Context context, int appWidgetId) {
-
+        // TODO
     }
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        // Set the result to CANCELED.  This will cause the widget host to cancel
-        // out of the widget placement if the user presses the back button.
         setResult(RESULT_CANCELED);
 
-        binding = BatteryClockWidgetConfigureBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        _binding = BatteryClockWidgetConfigureBinding.inflate(getLayoutInflater());
+        setContentView(_binding.getRoot());
+        _binding.buttonAdd.setOnClickListener(_addOnClickListener);
+        _binding.buttonCancel.setOnClickListener(_cancelOnClickListener);
 
-//        mAppWidgetText = binding.appwidgetText;
-        binding.buttonAdd.setOnClickListener(mOnClickListener);
-
-        // Find the widget id from the intent.
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         if (extras != null) {
-            mAppWidgetId = extras.getInt(
-                    AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+            _appWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
         }
 
-        // If this activity was started with an intent without an app widget ID, finish with an error.
-        if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
+        if (_appWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
             finish();
             return;
         }
 
         Context context = getApplicationContext();
 
-        if (serviceIsRunning(context)) {
-            return;
+        _settings = new Settings(_appWidgetId);
+
+        applySettings(context);
+
+        if (! serviceIsRunning(context)) {
+            Log.i(BatteryClockWidget.class.getName(), "onCreate(): Starting service.");
+
+            Intent serviceIntent = new Intent(context, BatteryClockWidgetService.class);
+            context.startForegroundService(serviceIntent);
         }
-
-        Log.i(BatteryClockWidget.class.getName(), "onEnabled(): Starting service.");
-
-        Intent serviceIntent = new Intent(context, BatteryClockWidgetService.class);
-        context.startForegroundService(serviceIntent);
-
-//        mAppWidgetText.setText(loadTitlePref(BatteryClockWidgetConfigureActivity.this, mAppWidgetId));
 
         Bitmap bitmap = _batteryClockRenderer.render(75, 10, 10, 3);
 
         ImageView imageView = findViewById(R.id.imageClock);
 
         imageView.setImageBitmap(bitmap);
+    }
+
+    private void applySettings(Context context) {
+        _settings.loadSettings(context);
     }
 
     private boolean serviceIsRunning(Context context) {
