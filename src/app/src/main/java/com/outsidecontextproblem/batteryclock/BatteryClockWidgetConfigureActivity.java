@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RemoteViews;
 
 import com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding;
 
