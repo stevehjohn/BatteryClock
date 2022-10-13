@@ -26,12 +26,9 @@ public class ClockElementConfigurator extends LinearLayout {
     private void initialize(Context context, @Nullable AttributeSet attrs) {
         LayoutInflater.from(context).inflate(R.layout.clock_element_configurator_view, this);
 
-        TypedArray x = context.obtainStyledAttributes(attrs, R.styleable.ClockElementConfigurator);
+        TypedArray properties = context.obtainStyledAttributes(attrs, R.styleable.ClockElementConfigurator);
 
-        String elementTitle = x.getString(R.styleable.ClockElementConfigurator_elementTitle);
-
-        TextView textElementTitle = findViewById(R.id.textElementTitle);
-
-        textElementTitle.setText(elementTitle);
+        TextView textView = findViewById(R.id.textElementTitle);
+        textView.setText(properties.getString(R.styleable.ClockElementConfigurator_elementTitle));
     }
 }
