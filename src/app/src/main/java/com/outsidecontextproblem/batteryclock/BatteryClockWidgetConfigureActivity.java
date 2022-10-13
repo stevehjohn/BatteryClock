@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -107,13 +108,18 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
     private void onElementChanged() {
 
-        _batteryClockRenderer._arcPaint.setStrokeWidth(((ClockElementConfigurator) findViewById(R.id.configuratorBattery)).getElementThickness());
+        ClockElementConfigurator configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBattery);
+        updatePaint(_batteryClockRenderer.getArcPaint(), configurator);
 
         Bitmap bitmap = _batteryClockRenderer.render(75, 10, 10, 3);
 
         ImageView imageView = findViewById(R.id.imageClock);
 
         imageView.setImageBitmap(bitmap);
+    }
+
+    private void updatePaint(Paint paint, ClockElementConfigurator configurator) {
+        paint.setStrokeWidth(configurator.getElementThickness());
     }
 
     private void applySettings(Context context) {
