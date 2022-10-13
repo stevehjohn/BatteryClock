@@ -110,6 +110,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
         ClockElementConfigurator configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBattery);
         updatePaint(_batteryClockRenderer.getArcPaint(), configurator);
+        updateSettings(_settings.getBatteryLevelIndicatorSettings(), configurator);
 
         Bitmap bitmap = _batteryClockRenderer.render(75, 10, 10, 3);
 
@@ -121,6 +122,14 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
     private void updatePaint(Paint paint, ClockElementConfigurator configurator) {
         paint.setStrokeWidth(configurator.getElementThickness());
         paint.setARGB(configurator.getOpacity() * 5, configurator.getRed() * 5, configurator.getGreen() * 5, configurator.getBlue() * 5);
+    }
+
+    private void updateSettings(ElementSettings settings, ClockElementConfigurator configurator) {
+        settings.setThickness(configurator.getElementThickness());
+        settings.setOpacity(configurator.getOpacity());
+        settings.setRed(configurator.getRed());
+        settings.setGreen(configurator.getGreen());
+        settings.setBlue(configurator.getBlue());
     }
 
     private void applySettings(Context context) {
