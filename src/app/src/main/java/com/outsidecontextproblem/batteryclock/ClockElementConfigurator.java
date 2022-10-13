@@ -30,5 +30,9 @@ public class ClockElementConfigurator extends LinearLayout {
 
         TextView textView = findViewById(R.id.textElementTitle);
         textView.setText(properties.getString(R.styleable.ClockElementConfigurator_elementTitle));
+
+        int thickness = properties.getInt(R.styleable.ClockElementConfigurator_elementThickness, 0);
+        textView = findViewById(R.id.textThickness);
+        textView.setText(String.format(getResources().getString(R.string.thickness), thickness));
     }
 }
