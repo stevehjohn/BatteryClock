@@ -61,8 +61,12 @@ public class BatteryClockRenderer {
         _dayArcPaint.setARGB(65, 255, 255, 255);
     }
 
-    public Paint getArcPaint() {
+    public Paint getBatteryArcPaint() {
         return _arcPaint;
+    }
+
+    public Paint getBezelPaint() {
+        return _circlePaint;
     }
 
     public Bitmap render(int level, int hour, int minute, int dayOfWeek) {

@@ -78,9 +78,9 @@ public class ElementSettings {
 
         _thickness = prefs.getInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_THICKNESS), _thicknessDefault);
         _opacity = prefs.getInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_OPACITY), _opacityDefault);
-        _red = prefs.getInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_RED), _thicknessDefault);
-        _green = prefs.getInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_GREEN), _opacityDefault);
-        _blue = prefs.getInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_BLUE), _opacityDefault);
+        _red = prefs.getInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_RED), _redDefault);
+        _green = prefs.getInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_GREEN), _greenDefault);
+        _blue = prefs.getInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_BLUE), _blueDefault);
     }
 
     @SuppressLint("DefaultLocale")
