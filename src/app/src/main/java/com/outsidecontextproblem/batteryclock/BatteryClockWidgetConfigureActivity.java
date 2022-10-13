@@ -42,6 +42,8 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
     private BatteryClockWidgetConfigureBinding _binding;
 
+    private ClockElementConfigurator.OnClockElementConfiguratorChangeListener _elementListener;
+
     public BatteryClockWidgetConfigureActivity() {
         super();
 
@@ -84,6 +86,11 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
         applySettings(context);
 
+        _elementListener = () -> onElementChanged();
+
+        ClockElementConfigurator clockElementConfigurator = findViewById(R.id.configuratorBattery);
+        clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
+
         if (! serviceIsRunning(context)) {
             Log.i(BatteryClockWidget.class.getName(), "onCreate(): Starting service.");
 
@@ -98,10 +105,18 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         imageView.setImageBitmap(bitmap);
     }
 
+    private void onElementChanged() {
+        Log.i("BADGER", "Element changed!");
+    }
+
     private void applySettings(Context context) {
         _settings.loadSettings(context);
 
         // TODO: Pass settings to the controls on the activity.
+        configureElement(findViewById(R.id.configuratorBattery), _settings.getBatteryLevelIndicatorSettings());
+    }
+
+    private void configureElement(ClockElementConfigurator configurator, ElementSettings settings) {
     }
 
     private boolean serviceIsRunning(Context context) {

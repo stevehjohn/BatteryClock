@@ -3,7 +3,6 @@ package com.outsidecontextproblem.batteryclock;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -13,7 +12,8 @@ import androidx.annotation.Nullable;
 
 public class ClockElementConfigurator extends LinearLayout {
 
-    private SeekBar.OnSeekBarChangeListener _listener;
+    private SeekBar.OnSeekBarChangeListener _onSeekBarChangeListener;
+    private OnClockElementConfiguratorChangeListener _onClockElementConfiguratorChangeListener;
 
     public ClockElementConfigurator(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -32,7 +32,7 @@ public class ClockElementConfigurator extends LinearLayout {
     }
 
     private void initializeEvents() {
-        _listener = new SeekBar.OnSeekBarChangeListener() {
+        _onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 raiseChange();
@@ -48,23 +48,25 @@ public class ClockElementConfigurator extends LinearLayout {
         };
 
         SeekBar seekBar = findViewById(R.id.seekThickness);
-        seekBar.setOnSeekBarChangeListener(_listener);
+        seekBar.setOnSeekBarChangeListener(_onSeekBarChangeListener);
 
         seekBar = findViewById(R.id.seekRed);
-        seekBar.setOnSeekBarChangeListener(_listener);
+        seekBar.setOnSeekBarChangeListener(_onSeekBarChangeListener);
 
         seekBar = findViewById(R.id.seekGreen);
-        seekBar.setOnSeekBarChangeListener(_listener);
+        seekBar.setOnSeekBarChangeListener(_onSeekBarChangeListener);
 
         seekBar = findViewById(R.id.seekBlue);
-        seekBar.setOnSeekBarChangeListener(_listener);
+        seekBar.setOnSeekBarChangeListener(_onSeekBarChangeListener);
 
         seekBar = findViewById(R.id.colourOpacity);
-        seekBar.setOnSeekBarChangeListener(_listener);
+        seekBar.setOnSeekBarChangeListener(_onSeekBarChangeListener);
     }
 
     private void raiseChange() {
-        Log.i("BADGER", "Change!");
+        if (_onClockElementConfiguratorChangeListener != null) {
+            _onClockElementConfiguratorChangeListener.onDataChanged();
+        }
     }
 
     private void initialize(Context context, @Nullable AttributeSet attrs) {
@@ -96,5 +98,13 @@ public class ClockElementConfigurator extends LinearLayout {
 
         seekBar = findViewById(R.id.colourOpacity);
         seekBar.setProgress(properties.getInt(R.styleable.ClockElementConfigurator_colourOpacity, 22));
+    }
+
+    public void setOnClockElementConfiguratorChangeListener(OnClockElementConfiguratorChangeListener listener) {
+        _onClockElementConfiguratorChangeListener = listener;
+    }
+
+    public interface OnClockElementConfiguratorChangeListener {
+        void onDataChanged();
     }
 }
