@@ -8,5 +8,8 @@
     <declare-styleable name="ClockElementConfigurator">
         <attr name="elementTitle" format="string" />
         <attr name="elementThickness" format="integer" />
+        <attr name="redComponent" format="integer" />
+        <attr name="greenComponent" format="integer" />
+        <attr name="blueComponent" format="integer" />
     </declare-styleable>
 </resources>

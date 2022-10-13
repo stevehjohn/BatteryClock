@@ -26,6 +26,9 @@
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="Battery Level Indicator"
                 app:elementThickness="20"
+                app:redComponent="107"
+                app:greenComponent="99"
+                app:blueComponent="255"
                 android:id="@+id/configuratorBattery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
