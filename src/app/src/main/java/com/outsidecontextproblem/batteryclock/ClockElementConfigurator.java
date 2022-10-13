@@ -36,8 +36,8 @@ public class ClockElementConfigurator extends LinearLayout {
         SeekBar seekBar = findViewById(R.id.seekThickness);
 
         if (! properties.getBoolean(R.styleable.ClockElementConfigurator_showElementThickness, true)) {
-            textView.setVisibility(INVISIBLE);
-            seekBar.setVisibility(INVISIBLE);
+            textView.setVisibility(GONE);
+            seekBar.setVisibility(GONE);
         }
 
         int thickness = properties.getInt(R.styleable.ClockElementConfigurator_elementThickness, 0);
