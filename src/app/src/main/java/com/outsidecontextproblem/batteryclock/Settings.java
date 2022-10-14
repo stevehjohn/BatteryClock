@@ -22,6 +22,7 @@ public class Settings {
     private static final String BACKGROUND = "Background";
 
     private static final String TIMEZONE = "Timezone";
+    private static final String LABEL = "Label";
 
     private final ElementSettings _batteryLevelIndicatorSettings;
     private final ElementSettings _bezelSettings;
@@ -81,6 +82,16 @@ public class Settings {
         _timeZone = timeZone;
     }
 
+    private String _label;
+
+    public String getLabel() {
+        return _label;
+    }
+
+    public void setLabel(String label) {
+        _label = label;
+    }
+
     private final int _appWidgetId;
 
     public Settings(int appWidgetId) {
@@ -103,6 +114,7 @@ public class Settings {
     public void loadSettings(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREFERENCES_NAME, 0);
         _timeZone = prefs.getString(String.format("%s.%d", TIMEZONE, _appWidgetId), TimeZone.getDefault().getID());
+        _label = prefs.getString(String.format("%s.%d", LABEL, _appWidgetId), "");
 
         _batteryLevelIndicatorSettings.loadSettings(context, BATTERY_INDICATOR);
         _bezelSettings.loadSettings(context, BEZEL);
@@ -119,6 +131,7 @@ public class Settings {
     public void saveSettings(Context context) {
         SharedPreferences.Editor prefs = context.getSharedPreferences(PREFERENCES_NAME, 0).edit();
         prefs.putString(String.format("%s.%d", TIMEZONE, _appWidgetId), _timeZone);
+        prefs.putString(String.format("%s.%d", LABEL, _appWidgetId), _label);
         prefs.apply();
 
         _batteryLevelIndicatorSettings.saveSettings(context, BATTERY_INDICATOR);
@@ -136,6 +149,7 @@ public class Settings {
     public void deleteSettings(Context context) {
         SharedPreferences.Editor prefs = context.getSharedPreferences(PREFERENCES_NAME, 0).edit();
         prefs.remove(String.format("%s.%d", TIMEZONE, _appWidgetId));
+        prefs.remove(String.format("%s.%d", LABEL, _appWidgetId));
         prefs.apply();
 
         _batteryLevelIndicatorSettings.deleteSettings(context, BATTERY_INDICATOR);
