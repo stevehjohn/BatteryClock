@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 
 import com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding;
@@ -112,6 +113,26 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
             }
         });
 
+        SeekBar seekBar = findViewById(R.id.seekLabelSize);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                _settings.setLabelSize(i);
+
+                _batteryClockRenderer.updateFromSettings(_settings);
+
+                updatePreview();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+
         context.getAssets();
 
         configureTimezones(context);
@@ -145,6 +166,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
 
         clockElementConfigurator = findViewById(R.id.configuratorBackground);
+        clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
+
+        clockElementConfigurator = findViewById(R.id.configuratorLabel);
         clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
 
         if (! serviceIsRunning(context)) {
@@ -317,6 +341,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
         configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBackground);
         updateSettings(_settings.getBackgroundSettings(), configurator);
+
+        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorLabel);
+        updateSettings(_settings.getLabelSettings(), configurator);
     }
 
     private void updateSettings(ElementSettings settings, ClockElementConfigurator configurator) {
@@ -339,6 +366,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         configureElement(findViewById(R.id.configuratorHourArc), _settings.getHourArcSettings());
         configureElement(findViewById(R.id.configuratorWeek), _settings.getWeekSettings());
         configureElement(findViewById(R.id.configuratorBackground), _settings.getBackgroundSettings());
+        configureElement(findViewById(R.id.configuratorLabel), _settings.getLabelSettings());
 
         updatePaints();
 
@@ -359,6 +387,12 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
             index = locationAdapter.getPosition(timezone[0]);
             locationSpinner.setSelection(index);
         }
+
+        EditText editText = findViewById(R.id.inputLabel);
+        editText.setText(_settings.getLabel());
+
+        SeekBar seekBar = findViewById(R.id.seekLabelSize);
+        seekBar.setProgress(_settings.getLabelSize());
     }
 
     private void configureElement(ClockElementConfigurator configurator, ElementSettings settings) {

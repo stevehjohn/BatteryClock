@@ -20,9 +20,11 @@ public class Settings {
     private static final String HOUR_ARC = "HourArc";
     private static final String WEEK = "Week";
     private static final String BACKGROUND = "Background";
+    private static final String LABEL_COLOUR = "LabelColour";
 
     private static final String TIMEZONE = "Timezone";
     private static final String LABEL = "Label";
+    private static final String LABEL_SIZE = "LabelSize";
 
     private final ElementSettings _batteryLevelIndicatorSettings;
     private final ElementSettings _bezelSettings;
@@ -33,6 +35,7 @@ public class Settings {
     private final ElementSettings _hourArcSettings;
     private final ElementSettings _weekSettings;
     private final ElementSettings _backgroundSettings;
+    private final ElementSettings _labelSettings;
 
     public ElementSettings getBatteryLevelIndicatorSettings() {
         return _batteryLevelIndicatorSettings;
@@ -70,6 +73,10 @@ public class Settings {
         return _backgroundSettings;
     }
 
+    public ElementSettings getLabelSettings() {
+        return _labelSettings;
+    }
+
     private String _timeZone;
 
     public String getTimeZone() {
@@ -92,6 +99,16 @@ public class Settings {
         _label = label;
     }
 
+    private int _labelSize;
+
+    public int getLabelSize() {
+        return _labelSize;
+    }
+
+    public void setLabelSize(int labelSize) {
+        _labelSize = labelSize;
+    }
+
     private final int _appWidgetId;
 
     public Settings(int appWidgetId) {
@@ -106,8 +123,11 @@ public class Settings {
         _hourArcSettings =  new ElementSettings(appWidgetId, Constants.BezelOutline, 13, 51, 51, 51);
         _weekSettings = new ElementSettings(appWidgetId, 0, 13, 51, 51, 51);
         _backgroundSettings = new ElementSettings(appWidgetId, 0,38, 6, 6, 6);
+        _labelSettings = new ElementSettings(appWidgetId, 0,51, 51, 51, 51);
 
         _timeZone = TimeZone.getDefault().getID();
+        _label = "";
+        _labelSize = 1;
     }
 
     @SuppressLint("DefaultLocale")
@@ -115,6 +135,7 @@ public class Settings {
         SharedPreferences prefs = context.getSharedPreferences(PREFERENCES_NAME, 0);
         _timeZone = prefs.getString(String.format("%s.%d", TIMEZONE, _appWidgetId), TimeZone.getDefault().getID());
         _label = prefs.getString(String.format("%s.%d", LABEL, _appWidgetId), "");
+        _labelSize = prefs.getInt(String.format("%s.%d", LABEL_SIZE, _appWidgetId), 1);
 
         _batteryLevelIndicatorSettings.loadSettings(context, BATTERY_INDICATOR);
         _bezelSettings.loadSettings(context, BEZEL);
@@ -125,6 +146,7 @@ public class Settings {
         _hourArcSettings.loadSettings(context, HOUR_ARC);
         _weekSettings.loadSettings(context, WEEK);
         _backgroundSettings.loadSettings(context, BACKGROUND);
+        _labelSettings.loadSettings(context, LABEL_COLOUR);
     }
 
     @SuppressLint("DefaultLocale")
@@ -132,6 +154,7 @@ public class Settings {
         SharedPreferences.Editor prefs = context.getSharedPreferences(PREFERENCES_NAME, 0).edit();
         prefs.putString(String.format("%s.%d", TIMEZONE, _appWidgetId), _timeZone);
         prefs.putString(String.format("%s.%d", LABEL, _appWidgetId), _label);
+        prefs.putInt(String.format("%s.%d", LABEL_SIZE, _appWidgetId), _labelSize);
         prefs.apply();
 
         _batteryLevelIndicatorSettings.saveSettings(context, BATTERY_INDICATOR);
@@ -143,6 +166,7 @@ public class Settings {
         _hourArcSettings.saveSettings(context, HOUR_ARC);
         _weekSettings.saveSettings(context, WEEK);
         _backgroundSettings.saveSettings(context, BACKGROUND);
+        _labelSettings.saveSettings(context, LABEL_COLOUR);
     }
 
     @SuppressLint("DefaultLocale")
@@ -150,6 +174,7 @@ public class Settings {
         SharedPreferences.Editor prefs = context.getSharedPreferences(PREFERENCES_NAME, 0).edit();
         prefs.remove(String.format("%s.%d", TIMEZONE, _appWidgetId));
         prefs.remove(String.format("%s.%d", LABEL, _appWidgetId));
+        prefs.remove(String.format("%s.%d", LABEL_SIZE, _appWidgetId));
         prefs.apply();
 
         _batteryLevelIndicatorSettings.deleteSettings(context, BATTERY_INDICATOR);
@@ -161,5 +186,6 @@ public class Settings {
         _hourArcSettings.deleteSettings(context, HOUR_ARC);
         _weekSettings.deleteSettings(context, WEEK);
         _backgroundSettings.deleteSettings(context, BACKGROUND);
+        _labelSettings.deleteSettings(context, LABEL_COLOUR);
     }
 }

@@ -11,4 +11,5 @@
     <string name="an_analogue_clock">An analogue clock</string>
     <string name="timezone">Timezone</string>
     <string name="label_optional">Label (optional)</string>
+    <string name="font_size">Font Size</string>
 </resources>

@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.util.Log;
 
 public class BatteryClockRenderer {
 
@@ -67,7 +66,7 @@ public class BatteryClockRenderer {
 
         _labelPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _labelPaint.setARGB(255, 255, 255, 255);
-        _labelPaint.setTextSize(Constants.LabelSize);
+        _labelPaint.setTextSize(Constants.LabelSizeDefault);
         _labelPaint.setTextAlign(Paint.Align.CENTER);
         if (_typeface != null) {
             _labelPaint.setTypeface(_typeface);
@@ -84,6 +83,21 @@ public class BatteryClockRenderer {
         updatePaint(_hourTrailPaint, settings.getHourArcSettings());
         updatePaint(_dayArcPaint, settings.getWeekSettings());
         updatePaint(_backgroundPaint, settings.getBackgroundSettings());
+        updatePaint(_labelPaint, settings.getLabelSettings());
+        switch (settings.getLabelSize()) {
+            case 0:
+                _labelPaint.setTextSize(Constants.LabelSizeSmall);
+                break;
+            case 1:
+                _labelPaint.setTextSize(Constants.LabelSizeDefault);
+                break;
+            case 2:
+                _labelPaint.setTextSize(Constants.LabelSizeMedium);
+                break;
+            case 3:
+                _labelPaint.setTextSize(Constants.LabelSizeLarge);
+                break;
+        }
     }
 
     private void updatePaint(Paint paint, ElementSettings settings) {
@@ -113,7 +127,7 @@ public class BatteryClockRenderer {
         }
 
         if (label != null && label.length() > 0) {
-            canvas.drawText(label, Constants.BitmapCenter, Constants.LabelY, _labelPaint);
+            canvas.drawText(label, Constants.BitmapCenter, Constants.LabelY + _labelPaint.getTextSize() / 2, _labelPaint);
         }
 
         int dayArcOffset = Constants.BitmapCenter - Constants.DayArcRadius;
