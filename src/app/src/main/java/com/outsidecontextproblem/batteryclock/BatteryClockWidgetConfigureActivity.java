@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -17,6 +18,7 @@ import com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConf
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 
 public class BatteryClockWidgetConfigureActivity extends Activity {
 
@@ -125,18 +127,101 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
     }
 
     private void configureTimezones(Context context) {
-        Spinner spinner = findViewById(R.id.spinTimezone);
+        Spinner spinner = findViewById(R.id.spinContinent);
 
-        List<String> timezones = new ArrayList<>();
+        List<String> continents = new ArrayList<>();
 
-        timezones.add("France");
-        timezones.add("Germany");
-        timezones.add("Ukraine");
-        timezones.add("United Kingdom");
-        timezones.add("United States");
+        continents.add("Africa");
+        continents.add("America");
+        continents.add("Antarctica");
+        continents.add("Arctic");
+        continents.add("Asia");
+        continents.add("Atlantic");
+        continents.add("Australia");
+        continents.add("Brazil");
+        continents.add("Canada");
+        continents.add("Chile");
+        continents.add("Cuba");
+        continents.add("Egypt");
+        continents.add("Eire");
+        continents.add("Europe");
+        continents.add("Iceland");
+        continents.add("Indian");
+        continents.add("Iran");
+        continents.add("Israel");
+        continents.add("Jamaica");
+        continents.add("Japan");
+        continents.add("Kwajalein");
+        continents.add("Libya");
+        continents.add("Mexico");
+        continents.add("Navajo");
+        continents.add("Pacific");
+        continents.add("Poland");
+        continents.add("Portugal");
+        continents.add("Singapore");
+        continents.add("Turkey");
+        continents.add("US");
+        continents.add("UTC");
+        continents.add("Zulu");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.spinner_item, timezones);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.spinner_item, continents);
         spinner.setAdapter(adapter);
+
+        String[] timezone = TimeZone.getDefault().getID().split("/");
+
+        int index = continents.indexOf(timezone[0]);
+
+        if (index > -1) {
+            spinner.setSelection(index);
+        }
+
+        continentSelected();
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                continentSelected();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+    }
+
+    private void continentSelected() {
+        Spinner continentSpinner = findViewById(R.id.spinContinent);
+
+        String selection = (String) continentSpinner.getSelectedItem();
+
+        List<String> locations = new ArrayList<>();
+
+        for (String id : TimeZone.getAvailableIDs()) {
+            String[] split = id.split("/");
+
+            if (split.length > 1 && split[0].equals(selection)) {
+                locations.add(split[1]);
+            }
+        }
+
+        if (locations.size() == 0) {
+            locations.add(" - ");
+        }
+
+        Spinner locationSpinner = findViewById(R.id.spinLocation);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, locations);
+        locationSpinner.setAdapter(adapter);
+
+        String[] timezone = TimeZone.getDefault().getID().split("/");
+
+        if (timezone.length > 1) {
+            int index = locations.indexOf(timezone[1]);
+
+            if (index > -1) {
+                locationSpinner.setSelection(index);
+            }
+        }
     }
 
     private void onElementChanged() {
