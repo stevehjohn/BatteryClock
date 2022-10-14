@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 
 public class ClockElementConfigurator extends LinearLayout {
 
+    @SuppressWarnings("FieldCanBeLocal")
     private SeekBar.OnSeekBarChangeListener _onSeekBarChangeListener;
     private OnClockElementConfiguratorChangeListener _onClockElementConfiguratorChangeListener;
 

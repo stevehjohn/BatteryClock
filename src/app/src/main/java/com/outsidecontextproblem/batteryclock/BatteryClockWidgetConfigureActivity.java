@@ -47,8 +47,10 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         finish();
     };
 
+    @SuppressWarnings("FieldCanBeLocal")
     private BatteryClockWidgetConfigureBinding _binding;
 
+    @SuppressWarnings("FieldCanBeLocal")
     private ClockElementConfigurator.OnClockElementConfiguratorChangeListener _elementListener;
 
     public BatteryClockWidgetConfigureActivity() {

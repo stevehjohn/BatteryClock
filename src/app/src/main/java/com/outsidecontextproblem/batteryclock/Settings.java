@@ -81,7 +81,7 @@ public class Settings {
         _timeZone = timeZone;
     }
 
-    private int _appWidgetId;
+    private final int _appWidgetId;
 
     public Settings(int appWidgetId) {
         _appWidgetId = appWidgetId;
