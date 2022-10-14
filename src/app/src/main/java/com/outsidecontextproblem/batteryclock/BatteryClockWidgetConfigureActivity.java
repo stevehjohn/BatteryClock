@@ -7,10 +7,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -83,7 +86,33 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
         Context context = getApplicationContext();
 
+        if (BatteryClockRenderer._typeface == null) {
+            BatteryClockRenderer._typeface = context.getResources().getFont(R.font.roboto);
+        }
+
         _settings = new Settings(_appWidgetId);
+
+        EditText editText = findViewById(R.id.inputLabel);
+        editText.setText(_settings.getLabel());
+
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                _settings.setLabel(editable.toString());
+
+                updatePreview();
+            }
+        });
+
+        context.getAssets();
 
         configureTimezones(context);
 
@@ -343,7 +372,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
     }
 
     private void updatePreview() {
-        Bitmap bitmap = _batteryClockRenderer.render(75, 10, 10, 3);
+        Bitmap bitmap = _batteryClockRenderer.render(75, 10, 10, 3, _settings.getLabel());
 
         ImageView imageView = findViewById(R.id.imageClock);
 
