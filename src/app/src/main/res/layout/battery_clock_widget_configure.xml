@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -39,7 +40,8 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
-                app:layout_constraintTop_toBottomOf="@id/textTimezone" />
+                app:layout_constraintTop_toBottomOf="@id/textTimezone"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <Spinner
                 android:id="@+id/spinLocation"
@@ -47,7 +49,8 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
-                app:layout_constraintTop_toBottomOf="@id/spinContinent" />
+                app:layout_constraintTop_toBottomOf="@id/spinContinent"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/textLabel"
@@ -61,13 +64,51 @@
 
             <EditText
                 android:id="@+id/inputLabel"
-                android:importantForAutofill="no"
-                android:inputType="text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:importantForAutofill="no"
+                android:inputType="text"
                 android:maxLength="15"
                 android:textSize="24sp"
-                app:layout_constraintTop_toBottomOf="@id/textLabel"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textLabel" />
+
+            <TextView
+                android:id="@+id/textLabelSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/font_size"
+                android:textSize="24sp"
+                app:layout_constraintTop_toBottomOf="@id/inputLabel"/>
+
+            <SeekBar
+                android:id="@+id/seekLabelSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="3"
+                android:paddingStart="50dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:progress="1"
+                android:theme="@style/greySliderColour"
+                app:layout_constraintTop_toBottomOf="@id/textLabelSize"/>
+
+            <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
+                app:showElementThickness="false"
+                app:showControlTitle="false"
+                app:elementThickness="20"
+                app:redComponent="22"
+                app:greenComponent="20"
+                app:blueComponent="51"
+                app:colourOpacity="51"
+                android:id="@+id/configuratorLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/seekLabelSize" />
 
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="Battery Level Indicator"
@@ -79,7 +120,7 @@
                 android:id="@+id/configuratorBattery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/inputLabel" />
+                app:layout_constraintTop_toBottomOf="@id/configuratorLabel" />
 
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="Bezel"
