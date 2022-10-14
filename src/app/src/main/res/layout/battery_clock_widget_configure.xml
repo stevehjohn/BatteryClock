@@ -24,6 +24,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/textTimezone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/timezone"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/spinContinent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                app:layout_constraintTop_toBottomOf="@id/textTimezone" />
+
+            <Spinner
+                android:id="@+id/spinLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                app:layout_constraintTop_toBottomOf="@id/spinContinent" />
+
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="Battery Level Indicator"
                 app:elementThickness="20"
@@ -34,7 +59,7 @@
                 android:id="@+id/configuratorBattery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/spinLocation" />
 
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="Bezel"

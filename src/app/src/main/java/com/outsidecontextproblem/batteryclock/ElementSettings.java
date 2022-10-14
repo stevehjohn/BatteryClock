@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 
 public class ElementSettings {
 
-    private static final String PREFERENCES_NAME = "com.outsidecontextproblem.batteryclock.BatteryClockWidget";
 
     private static final String SETTING_THICKNESS = "thickness";
     private static final String SETTING_OPACITY = "opacity";
@@ -74,7 +73,7 @@ public class ElementSettings {
 
     @SuppressLint("DefaultLocale")
     public void loadSettings(Context context, String elementName) {
-        SharedPreferences prefs = context.getSharedPreferences(PREFERENCES_NAME, 0);
+        SharedPreferences prefs = context.getSharedPreferences(Settings.PREFERENCES_NAME, 0);
 
         _thickness = prefs.getInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_THICKNESS), _thicknessDefault);
         _opacity = prefs.getInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_OPACITY), _opacityDefault);
@@ -85,7 +84,7 @@ public class ElementSettings {
 
     @SuppressLint("DefaultLocale")
     public void saveSettings(Context context, String elementName) {
-        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFERENCES_NAME, 0).edit();
+        SharedPreferences.Editor prefs = context.getSharedPreferences(Settings.PREFERENCES_NAME, 0).edit();
 
         prefs.putInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_THICKNESS), _thickness);
         prefs.putInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_OPACITY), _opacity);
@@ -98,7 +97,7 @@ public class ElementSettings {
 
     @SuppressLint("DefaultLocale")
     public void deleteSettings(Context context, String elementName) {
-        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFERENCES_NAME, 0).edit();
+        SharedPreferences.Editor prefs = context.getSharedPreferences(Settings.PREFERENCES_NAME, 0).edit();
 
         prefs.remove(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_THICKNESS));
         prefs.remove(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_OPACITY));
