@@ -30,6 +30,17 @@ public class BatteryClockWidget extends AppWidgetProvider {
             BatteryClockRenderer renderer = new BatteryClockRenderer();
             renderer.updateFromSettings(settings);
             _batteryClockRenderers.put(appWidgetId, renderer);
+        } else {
+            if (! _batteryClockRenderers.containsKey(appWidgetId)) {
+                Log.i(BatteryClockWidget.class.getName(), String.format("Attempting load of settings for widget %d.", appWidgetId));
+
+                settings = new Settings(appWidgetId);
+                settings.loadSettings(context);
+
+                BatteryClockRenderer renderer = new BatteryClockRenderer();
+                renderer.updateFromSettings(settings);
+                _batteryClockRenderers.put(appWidgetId, renderer);
+            }
         }
 
         draw(views, appWidgetManager, appWidgetId, context);
