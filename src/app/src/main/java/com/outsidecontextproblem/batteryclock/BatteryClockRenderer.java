@@ -71,7 +71,6 @@ public class BatteryClockRenderer {
         _labelPaint.setTextAlign(Paint.Align.CENTER);
         if (_typeface != null) {
             _labelPaint.setTypeface(_typeface);
-            Log.i("BADGER", "FONT SET!");
         }
     }
 
