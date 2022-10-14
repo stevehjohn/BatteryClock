@@ -51,6 +51,7 @@
 
             <TextView
                 android:id="@+id/textLabel"
+                android:labelFor="@+id/inputLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/label_optional"
@@ -60,6 +61,8 @@
 
             <EditText
                 android:id="@+id/inputLabel"
+                android:importantForAutofill="no"
+                android:inputType="text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLength="15"
