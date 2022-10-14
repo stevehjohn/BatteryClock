@@ -127,7 +127,7 @@ public class BatteryClockRenderer {
         }
 
         if (label != null && label.length() > 0) {
-            canvas.drawText(label, Constants.BitmapCenter, Constants.LabelY, _labelPaint);
+            canvas.drawText(label, Constants.BitmapCenter, Constants.LabelY + _labelPaint.getTextSize() / 2, _labelPaint);
         }
 
         int dayArcOffset = Constants.BitmapCenter - Constants.DayArcRadius;
