@@ -14,7 +14,7 @@ public class ElementSettings {
     private static final String SETTING_GREEN = "green";
     private static final String SETTING_BLUE = "blue";
 
-    private int _appWidgetId;
+    private final int _appWidgetId;
 
     private int _thickness;
     private final int _thicknessDefault;
