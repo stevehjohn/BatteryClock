@@ -12,7 +12,10 @@ public class Constants {
     public static int TickStart = 200;
     public static int TickEnd = 210;
     public static int LabelY = 123;
-    public static int LabelSize = 36;
+    public static int LabelSizeSmall = 24;
+    public static int LabelSizeDefault = 36;
+    public static int LabelSizeMedium = 48;
+    public static int LabelSizeLarge = 60;
 
     public static int BezelIndicator = 20;
     public static int BezelOutline = 4;
