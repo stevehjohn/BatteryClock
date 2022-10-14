@@ -24,6 +24,7 @@ public class Settings {
 
     private static final String TIMEZONE = "Timezone";
     private static final String LABEL = "Label";
+    private static final String LABEL_SIZE = "LabelSize";
 
     private final ElementSettings _batteryLevelIndicatorSettings;
     private final ElementSettings _bezelSettings;
@@ -98,6 +99,16 @@ public class Settings {
         _label = label;
     }
 
+    private int _labelSize;
+
+    public int getLabelSize() {
+        return _labelSize;
+    }
+
+    public void setLabelSize(int labelSize) {
+        _labelSize = labelSize;
+    }
+
     private final int _appWidgetId;
 
     public Settings(int appWidgetId) {
@@ -115,6 +126,8 @@ public class Settings {
         _labelSettings = new ElementSettings(appWidgetId, 0,51, 51, 51, 51);
 
         _timeZone = TimeZone.getDefault().getID();
+        _label = "";
+        _labelSize = 1;
     }
 
     @SuppressLint("DefaultLocale")
@@ -122,6 +135,7 @@ public class Settings {
         SharedPreferences prefs = context.getSharedPreferences(PREFERENCES_NAME, 0);
         _timeZone = prefs.getString(String.format("%s.%d", TIMEZONE, _appWidgetId), TimeZone.getDefault().getID());
         _label = prefs.getString(String.format("%s.%d", LABEL, _appWidgetId), "");
+        _labelSize = prefs.getInt(String.format("%s.%d", LABEL_SIZE, _appWidgetId), 1);
 
         _batteryLevelIndicatorSettings.loadSettings(context, BATTERY_INDICATOR);
         _bezelSettings.loadSettings(context, BEZEL);
@@ -140,6 +154,7 @@ public class Settings {
         SharedPreferences.Editor prefs = context.getSharedPreferences(PREFERENCES_NAME, 0).edit();
         prefs.putString(String.format("%s.%d", TIMEZONE, _appWidgetId), _timeZone);
         prefs.putString(String.format("%s.%d", LABEL, _appWidgetId), _label);
+        prefs.putInt(String.format("%s.%d", LABEL_SIZE, _appWidgetId), _labelSize);
         prefs.apply();
 
         _batteryLevelIndicatorSettings.saveSettings(context, BATTERY_INDICATOR);
@@ -159,6 +174,7 @@ public class Settings {
         SharedPreferences.Editor prefs = context.getSharedPreferences(PREFERENCES_NAME, 0).edit();
         prefs.remove(String.format("%s.%d", TIMEZONE, _appWidgetId));
         prefs.remove(String.format("%s.%d", LABEL, _appWidgetId));
+        prefs.remove(String.format("%s.%d", LABEL_SIZE, _appWidgetId));
         prefs.apply();
 
         _batteryLevelIndicatorSettings.deleteSettings(context, BATTERY_INDICATOR);
