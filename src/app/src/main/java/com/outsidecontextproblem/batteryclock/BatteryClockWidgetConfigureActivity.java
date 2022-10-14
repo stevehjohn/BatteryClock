@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 
 import com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding;
@@ -109,6 +110,26 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
                 _settings.setLabel(editable.toString());
 
                 updatePreview();
+            }
+        });
+
+        SeekBar seekBar = findViewById(R.id.seekLabelSize);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                _settings.setLabelSize(i);
+
+                _batteryClockRenderer.updateFromSettings(_settings);
+
+                updatePreview();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
 
@@ -369,6 +390,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
         EditText editText = findViewById(R.id.inputLabel);
         editText.setText(_settings.getLabel());
+
+        SeekBar seekBar = findViewById(R.id.seekLabelSize);
+        seekBar.setProgress(_settings.getLabelSize());
     }
 
     private void configureElement(ClockElementConfigurator configurator, ElementSettings settings) {
