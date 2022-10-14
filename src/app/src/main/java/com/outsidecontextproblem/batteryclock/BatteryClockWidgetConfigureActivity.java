@@ -313,7 +313,21 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
         updatePreview();
 
-        // TODO: Timezone
+        String[] timezone = _settings.getTimeZone().split("/");
+
+        Spinner continentSpinner = findViewById(R.id.spinContinent);
+        @SuppressWarnings("unchecked")
+        ArrayAdapter<String> continentAdapter = (ArrayAdapter<String>) continentSpinner.getAdapter();
+        int index = continentAdapter.getPosition(timezone[0]);
+        continentSpinner.setSelection(index);
+
+        if (timezone.length > 1) {
+            Spinner locationSpinner = findViewById(R.id.spinLocation);
+            @SuppressWarnings("unchecked")
+            ArrayAdapter<String> locationAdapter = (ArrayAdapter<String>) locationSpinner.getAdapter();
+            index = locationAdapter.getPosition(timezone[0]);
+            locationSpinner.setSelection(index);
+        }
     }
 
     private void configureElement(ClockElementConfigurator configurator, ElementSettings settings) {
