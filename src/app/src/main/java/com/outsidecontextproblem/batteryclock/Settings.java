@@ -20,6 +20,7 @@ public class Settings {
     private static final String HOUR_ARC = "HourArc";
     private static final String WEEK = "Week";
     private static final String BACKGROUND = "Background";
+    private static final String LABEL_COLOUR = "LabelColour";
 
     private static final String TIMEZONE = "Timezone";
     private static final String LABEL = "Label";
@@ -33,6 +34,7 @@ public class Settings {
     private final ElementSettings _hourArcSettings;
     private final ElementSettings _weekSettings;
     private final ElementSettings _backgroundSettings;
+    private final ElementSettings _labelSettings;
 
     public ElementSettings getBatteryLevelIndicatorSettings() {
         return _batteryLevelIndicatorSettings;
@@ -68,6 +70,10 @@ public class Settings {
 
     public ElementSettings getBackgroundSettings() {
         return _backgroundSettings;
+    }
+
+    public ElementSettings getLabelSettings() {
+        return _labelSettings;
     }
 
     private String _timeZone;
@@ -106,6 +112,7 @@ public class Settings {
         _hourArcSettings =  new ElementSettings(appWidgetId, Constants.BezelOutline, 13, 51, 51, 51);
         _weekSettings = new ElementSettings(appWidgetId, 0, 13, 51, 51, 51);
         _backgroundSettings = new ElementSettings(appWidgetId, 0,38, 6, 6, 6);
+        _labelSettings = new ElementSettings(appWidgetId, 0,51, 51, 51, 51);
 
         _timeZone = TimeZone.getDefault().getID();
     }
@@ -125,6 +132,7 @@ public class Settings {
         _hourArcSettings.loadSettings(context, HOUR_ARC);
         _weekSettings.loadSettings(context, WEEK);
         _backgroundSettings.loadSettings(context, BACKGROUND);
+        _labelSettings.loadSettings(context, LABEL_COLOUR);
     }
 
     @SuppressLint("DefaultLocale")
@@ -143,6 +151,7 @@ public class Settings {
         _hourArcSettings.saveSettings(context, HOUR_ARC);
         _weekSettings.saveSettings(context, WEEK);
         _backgroundSettings.saveSettings(context, BACKGROUND);
+        _labelSettings.saveSettings(context, LABEL_COLOUR);
     }
 
     @SuppressLint("DefaultLocale")
@@ -161,5 +170,6 @@ public class Settings {
         _hourArcSettings.deleteSettings(context, HOUR_ARC);
         _weekSettings.deleteSettings(context, WEEK);
         _backgroundSettings.deleteSettings(context, BACKGROUND);
+        _labelSettings.deleteSettings(context, LABEL_COLOUR);
     }
 }

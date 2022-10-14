@@ -147,6 +147,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         clockElementConfigurator = findViewById(R.id.configuratorBackground);
         clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
 
+        clockElementConfigurator = findViewById(R.id.configuratorLabel);
+        clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
+
         if (! serviceIsRunning(context)) {
             Log.i(BatteryClockWidget.class.getName(), "onCreate(): Starting service.");
 
@@ -317,6 +320,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
         configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBackground);
         updateSettings(_settings.getBackgroundSettings(), configurator);
+
+        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorLabel);
+        updateSettings(_settings.getLabelSettings(), configurator);
     }
 
     private void updateSettings(ElementSettings settings, ClockElementConfigurator configurator) {
@@ -339,6 +345,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         configureElement(findViewById(R.id.configuratorHourArc), _settings.getHourArcSettings());
         configureElement(findViewById(R.id.configuratorWeek), _settings.getWeekSettings());
         configureElement(findViewById(R.id.configuratorBackground), _settings.getBackgroundSettings());
+        configureElement(findViewById(R.id.configuratorLabel), _settings.getLabelSettings());
 
         updatePaints();
 
