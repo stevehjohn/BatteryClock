@@ -1,8 +1,15 @@
 package com.outsidecontextproblem.batteryclock;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
+
+import java.util.TimeZone;
 
 public class Settings {
+
+    public static final String PREFERENCES_NAME = "com.outsidecontextproblem.batteryclock.BatteryClockWidget";
 
     private static final String BATTERY_INDICATOR = "BatteryIndicator";
     private static final String BEZEL = "Bezel";
@@ -13,6 +20,8 @@ public class Settings {
     private static final String HOUR_ARC = "HourArc";
     private static final String WEEK = "Week";
     private static final String BACKGROUND = "Background";
+
+    private static final String TIMEZONE = "Timezone";
 
     private final ElementSettings _batteryLevelIndicatorSettings;
     private final ElementSettings _bezelSettings;
@@ -60,7 +69,23 @@ public class Settings {
         return _backgroundSettings;
     }
 
+    private String _timeZone;
+
+    public String getTimeZone() {
+        return _timeZone;
+    }
+
+    public void setTimeZone(String timeZone) {
+        Log.i("BADGER", timeZone);
+
+        _timeZone = timeZone;
+    }
+
+    private int _appWidgetId;
+
     public Settings(int appWidgetId) {
+        _appWidgetId = appWidgetId;
+
         _batteryLevelIndicatorSettings = new ElementSettings(appWidgetId, Constants.BezelIndicator, 51, 22, 20, 51);
         _bezelSettings = new ElementSettings(appWidgetId, Constants.BezelOutline,51, 51, 51, 51);
         _ticksSettings = new ElementSettings(appWidgetId, Constants.TickThickness,13, 51, 51, 51);
@@ -70,9 +95,15 @@ public class Settings {
         _hourArcSettings =  new ElementSettings(appWidgetId, Constants.BezelOutline, 13, 51, 51, 51);
         _weekSettings = new ElementSettings(appWidgetId, 0, 13, 51, 51, 51);
         _backgroundSettings = new ElementSettings(appWidgetId, 0,38, 6, 6, 6);
+
+        _timeZone = TimeZone.getDefault().getID();
     }
 
+    @SuppressLint("DefaultLocale")
     public void loadSettings(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(PREFERENCES_NAME, 0);
+        _timeZone = prefs.getString(String.format("%s.%d", TIMEZONE, _appWidgetId), TimeZone.getDefault().getID());
+
         _batteryLevelIndicatorSettings.loadSettings(context, BATTERY_INDICATOR);
         _bezelSettings.loadSettings(context, BEZEL);
         _ticksSettings.loadSettings(context, TICKS);
@@ -84,7 +115,12 @@ public class Settings {
         _backgroundSettings.loadSettings(context, BACKGROUND);
     }
 
+    @SuppressLint("DefaultLocale")
     public void saveSettings(Context context) {
+        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFERENCES_NAME, 0).edit();
+        prefs.putString(String.format("%s.%d", TIMEZONE, _appWidgetId), _timeZone);
+        prefs.apply();
+
         _batteryLevelIndicatorSettings.saveSettings(context, BATTERY_INDICATOR);
         _bezelSettings.saveSettings(context, BEZEL);
         _ticksSettings.saveSettings(context, TICKS);
@@ -96,7 +132,12 @@ public class Settings {
         _backgroundSettings.saveSettings(context, BACKGROUND);
     }
 
+    @SuppressLint("DefaultLocale")
     public void deleteSettings(Context context) {
+        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFERENCES_NAME, 0).edit();
+        prefs.remove(String.format("%s.%d", TIMEZONE, _appWidgetId));
+        prefs.apply();
+
         _batteryLevelIndicatorSettings.deleteSettings(context, BATTERY_INDICATOR);
         _bezelSettings.deleteSettings(context, BEZEL);
         _ticksSettings.deleteSettings(context, TICKS);
