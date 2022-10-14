@@ -138,7 +138,7 @@ public class ClockElementConfigurator extends LinearLayout {
 
         textView = findViewById(R.id.textElementTitle);
 
-        if (! properties.getBoolean(R.styleable.ClockElementConfigurator_showElementThickness, true)) {
+        if (! properties.getBoolean(R.styleable.ClockElementConfigurator_showControlTitle, true)) {
             textView.setVisibility(GONE);
         }
 
