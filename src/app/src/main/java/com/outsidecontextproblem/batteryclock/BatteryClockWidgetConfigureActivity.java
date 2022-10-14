@@ -9,9 +9,14 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BatteryClockWidgetConfigureActivity extends Activity {
 
@@ -120,6 +125,18 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
     }
 
     private void configureTimezones(Context context) {
+        Spinner spinner = findViewById(R.id.spinTimezone);
+
+        List<String> timezones = new ArrayList<>();
+
+        timezones.add("France");
+        timezones.add("Germany");
+        timezones.add("Ukraine");
+        timezones.add("United Kingdom");
+        timezones.add("United States");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.spinner_item, timezones);
+        spinner.setAdapter(adapter);
     }
 
     private void onElementChanged() {
