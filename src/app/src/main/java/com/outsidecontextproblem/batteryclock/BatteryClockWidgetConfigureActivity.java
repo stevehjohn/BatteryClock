@@ -80,17 +80,34 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
         applySettingsToView(context);
 
-        _elementListener = () -> onElementChanged();
+        _elementListener = this::onElementChanged;
 
         ClockElementConfigurator clockElementConfigurator = findViewById(R.id.configuratorBattery);
         clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
+
         clockElementConfigurator = findViewById(R.id.configuratorBezel);
         clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
+
         clockElementConfigurator = findViewById(R.id.configuratorTicks);
         clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
+
+        clockElementConfigurator = findViewById(R.id.configuratorMinute);
+        clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
+
+        clockElementConfigurator = findViewById(R.id.configuratorMinuteArc);
+        clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
+
+        clockElementConfigurator = findViewById(R.id.configuratorHour);
+        clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
+
+        clockElementConfigurator = findViewById(R.id.configuratorHourArc);
+        clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
+
+        clockElementConfigurator = findViewById(R.id.configuratorWeek);
+        clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
+
         clockElementConfigurator = findViewById(R.id.configuratorBackground);
         clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
-        // TODO: The rest...
 
         if (! serviceIsRunning(context)) {
             Log.i(BatteryClockWidget.class.getName(), "onCreate(): Starting service.");
@@ -123,6 +140,21 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         configurator = (ClockElementConfigurator) findViewById(R.id.configuratorTicks);
         updateSettings(_settings.getTicksSettings(), configurator);
 
+        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorMinute);
+        updateSettings(_settings.getMinuteSettings(), configurator);
+
+        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorMinuteArc);
+        updateSettings(_settings.getMinuteArcSettings(), configurator);
+
+        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorHour);
+        updateSettings(_settings.getHourSettings(), configurator);
+
+        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorHourArc);
+        updateSettings(_settings.getHourArcSettings(), configurator);
+
+        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorWeek);
+        updateSettings(_settings.getWeekSettings(), configurator);
+
         configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBackground);
         updateSettings(_settings.getBackgroundSettings(), configurator);
     }
@@ -140,12 +172,12 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
         configureElement(findViewById(R.id.configuratorBattery), _settings.getBatteryLevelIndicatorSettings());
         configureElement(findViewById(R.id.configuratorBezel), _settings.getBezelSettings());
-//        configureElement(findViewById(R.id.configuratorTicks), _settings.getBatteryLevelIndicatorSettings());
-//        configureElement(findViewById(R.id.configuratorMinute), _settings.getBatteryLevelIndicatorSettings());
-//        configureElement(findViewById(R.id.configuratorMinuteArc), _settings.getBatteryLevelIndicatorSettings());
-//        configureElement(findViewById(R.id.configuratorHour), _settings.getBatteryLevelIndicatorSettings());
-//        configureElement(findViewById(R.id.configuratorHourArc), _settings.getBatteryLevelIndicatorSettings());
-//        configureElement(findViewById(R.id.configuratorWeek), _settings.getBatteryLevelIndicatorSettings());
+        configureElement(findViewById(R.id.configuratorTicks), _settings.getTicksSettings());
+        configureElement(findViewById(R.id.configuratorMinute), _settings.getMinuteSettings());
+        configureElement(findViewById(R.id.configuratorMinuteArc), _settings.getMinuteArcSettings());
+        configureElement(findViewById(R.id.configuratorHour), _settings.getHourSettings());
+        configureElement(findViewById(R.id.configuratorHourArc), _settings.getHourArcSettings());
+        configureElement(findViewById(R.id.configuratorWeek), _settings.getWeekSettings());
         configureElement(findViewById(R.id.configuratorBackground), _settings.getBackgroundSettings());
 
         updatePaints();
