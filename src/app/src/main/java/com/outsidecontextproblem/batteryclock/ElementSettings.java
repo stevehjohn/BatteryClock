@@ -14,7 +14,7 @@ public class ElementSettings {
     private static final String SETTING_GREEN = "green";
     private static final String SETTING_BLUE = "blue";
 
-    private int _appWidgetId;
+    private final int _appWidgetId;
 
     private int _thickness;
     private final int _thicknessDefault;
@@ -92,6 +92,19 @@ public class ElementSettings {
         prefs.putInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_RED), _red);
         prefs.putInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_GREEN), _green);
         prefs.putInt(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_BLUE), _blue);
+
+        prefs.apply();
+    }
+
+    @SuppressLint("DefaultLocale")
+    public void deleteSettings(Context context, String elementName) {
+        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFERENCES_NAME, 0).edit();
+
+        prefs.remove(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_THICKNESS));
+        prefs.remove(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_OPACITY));
+        prefs.remove(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_RED));
+        prefs.remove(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_GREEN));
+        prefs.remove(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_BLUE));
 
         prefs.apply();
     }

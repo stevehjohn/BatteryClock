@@ -12,16 +12,36 @@ import android.view.Display;
 import android.widget.RemoteViews;
 
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class BatteryClockWidget extends AppWidgetProvider {
 
-    private static final BatteryClockRenderer _batteryClockRenderer = new BatteryClockRenderer();
+    private static final HashMap<Integer, BatteryClockRenderer> _batteryClockRenderers = new HashMap<>();
 
-    public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
+    public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Settings settings) {
 
         Log.i(BatteryClockWidget.class.getName(), "updateAppWidget()");
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.battery_clock_widget);
+
+        if (settings != null) {
+            Log.i(BatteryClockWidget.class.getName(), String.format("Applying settings to widget %d.", appWidgetId));
+
+            BatteryClockRenderer renderer = new BatteryClockRenderer();
+            renderer.updateFromSettings(settings);
+            _batteryClockRenderers.put(appWidgetId, renderer);
+        } else {
+            if (! _batteryClockRenderers.containsKey(appWidgetId)) {
+                Log.i(BatteryClockWidget.class.getName(), String.format("Attempting load of settings for widget %d.", appWidgetId));
+
+                settings = new Settings(appWidgetId);
+                settings.loadSettings(context);
+
+                BatteryClockRenderer renderer = new BatteryClockRenderer();
+                renderer.updateFromSettings(settings);
+                _batteryClockRenderers.put(appWidgetId, renderer);
+            }
+        }
 
         draw(views, appWidgetManager, appWidgetId, context);
     }
@@ -31,7 +51,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
         Log.i(BatteryClockWidget.class.getName(), "onUpdate()");
 
         for (int appWidgetId : appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId);
+            updateAppWidget(context, appWidgetManager, appWidgetId, null);
         }
     }
 
@@ -40,7 +60,10 @@ public class BatteryClockWidget extends AppWidgetProvider {
         Log.i(BatteryClockWidget.class.getName(), "onDelete()");
 
         for (int appWidgetId : appWidgetIds) {
-            BatteryClockWidgetConfigureActivity.deleteWidgetPreferences(context, appWidgetId);
+            Log.i(BatteryClockWidget.class.getName(), String.format("Deleting settings for widget %d.", appWidgetId));
+
+            Settings settings = new Settings(appWidgetId);
+            settings.deleteSettings(context);
         }
     }
 
@@ -90,7 +113,15 @@ public class BatteryClockWidget extends AppWidgetProvider {
         BatteryManager batteryManager = (BatteryManager) context.getSystemService(Context.BATTERY_SERVICE);
         int level = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
 
-        Bitmap bitmap = _batteryClockRenderer.render(level, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), (((Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 2) + 7) % 7));
+        BatteryClockRenderer renderer = _batteryClockRenderers.get(appWidgetId);
+
+        if (renderer == null) {
+            Log.w(BatteryClockWidget.class.getName(), String.format("Renderer not found in HashMap for widget %d, using a default.", appWidgetId));
+
+            renderer = new BatteryClockRenderer();
+        }
+
+        Bitmap bitmap = renderer.render(level, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), (((Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 2) + 7) % 7));
 
         views.setImageViewBitmap(R.id.imageView, bitmap);
 

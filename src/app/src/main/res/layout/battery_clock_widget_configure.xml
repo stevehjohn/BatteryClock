@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".3"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:contentDescription="@string/an_analogue_clock" />
 
     <ScrollView
         android:layout_width="match_parent"
