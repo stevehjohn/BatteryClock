@@ -95,4 +95,17 @@ public class ElementSettings {
 
         prefs.apply();
     }
+
+    @SuppressLint("DefaultLocale")
+    public void deleteSettings(Context context, String elementName) {
+        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFERENCES_NAME, 0).edit();
+
+        prefs.remove(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_THICKNESS));
+        prefs.remove(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_OPACITY));
+        prefs.remove(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_RED));
+        prefs.remove(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_GREEN));
+        prefs.remove(String.format("%s.%d.%s", elementName, _appWidgetId, SETTING_BLUE));
+
+        prefs.apply();
+    }
 }
