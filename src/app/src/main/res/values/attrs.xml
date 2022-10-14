@@ -13,5 +13,6 @@
         <attr name="blueComponent" format="integer" />
         <attr name="colourOpacity" format="integer" />
         <attr name="showElementThickness" format="boolean" />
+        <attr name="showControlTitle" format="boolean" />
     </declare-styleable>
 </resources>

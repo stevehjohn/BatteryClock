@@ -359,6 +359,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
             index = locationAdapter.getPosition(timezone[0]);
             locationSpinner.setSelection(index);
         }
+
+        EditText editText = findViewById(R.id.inputLabel);
+        editText.setText(_settings.getLabel());
     }
 
     private void configureElement(ClockElementConfigurator configurator, ElementSettings settings) {
