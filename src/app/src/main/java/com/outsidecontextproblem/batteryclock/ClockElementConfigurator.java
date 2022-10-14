@@ -148,6 +148,8 @@ public class ClockElementConfigurator extends LinearLayout {
 
         seekBar = findViewById(R.id.colourOpacity);
         seekBar.setProgress(properties.getInt(R.styleable.ClockElementConfigurator_colourOpacity, 22));
+
+        properties.recycle();
     }
 
     public void setOnClockElementConfiguratorChangeListener(OnClockElementConfiguratorChangeListener listener) {
