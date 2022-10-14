@@ -84,6 +84,7 @@ public class BatteryClockRenderer {
         updatePaint(_hourTrailPaint, settings.getHourArcSettings());
         updatePaint(_dayArcPaint, settings.getWeekSettings());
         updatePaint(_backgroundPaint, settings.getBackgroundSettings());
+        updatePaint(_labelPaint, settings.getLabelSettings());
     }
 
     private void updatePaint(Paint paint, ElementSettings settings) {
