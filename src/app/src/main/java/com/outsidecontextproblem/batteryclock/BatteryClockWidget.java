@@ -75,6 +75,10 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
     @Override
     public void onEnabled(Context context) {
+        if (BatteryClockRenderer._typeface == null) {
+            BatteryClockRenderer._typeface = context.getResources().getFont(R.font.roboto);
+        }
+
         Log.i(BatteryClockWidget.class.getName(), "onEnabled()");
     }
 

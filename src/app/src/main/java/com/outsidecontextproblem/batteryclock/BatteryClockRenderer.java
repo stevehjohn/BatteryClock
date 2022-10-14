@@ -5,8 +5,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.util.Log;
 
 public class BatteryClockRenderer {
+
+    public static Typeface _typeface;
 
     private final Paint _arcPaint;
     private final Paint _circlePaint;
@@ -66,6 +69,10 @@ public class BatteryClockRenderer {
         _labelPaint.setARGB(255, 255, 255, 255);
         _labelPaint.setTextSize(Constants.LabelSize);
         _labelPaint.setTextAlign(Paint.Align.CENTER);
+        if (_typeface != null) {
+            _labelPaint.setTypeface(_typeface);
+            Log.i("BADGER", "FONT SET!");
+        }
     }
 
     public void updateFromSettings(Settings settings) {
