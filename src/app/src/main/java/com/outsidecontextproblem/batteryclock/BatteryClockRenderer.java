@@ -16,6 +16,7 @@ public class BatteryClockRenderer {
     private final Paint _minuteTrailPaint;
     private final Paint _hourTrailPaint;
     private final Paint _dayArcPaint;
+    private final Paint _labelPaint;
 
     public BatteryClockRenderer() {
 
@@ -59,6 +60,13 @@ public class BatteryClockRenderer {
 
         _dayArcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _dayArcPaint.setARGB(65, 255, 255, 255);
+
+        _labelPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        _labelPaint.setARGB(255, 255, 255, 255);
+//        _labelPaint.setStyle(Paint.Style.STROKE);
+//        _labelPaint.setStrokeWidth(Constants.BezelOutline);
+        _labelPaint.setTextSize(Constants.LabelSize);
+        _labelPaint.setTextAlign(Paint.Align.CENTER);
     }
 
     public void updateFromSettings(Settings settings) {
@@ -78,7 +86,7 @@ public class BatteryClockRenderer {
         paint.setARGB(settings.getOpacity() * 5, settings.getRed() * 5, settings.getGreen() * 5, settings.getBlue() * 5);
     }
 
-    public Bitmap render(int level, int hour, int minute, int dayOfWeek) {
+    public Bitmap render(int level, int hour, int minute, int dayOfWeek, String label) {
 
         Bitmap bitmap = Bitmap.createBitmap(Constants.BitmapDimensions, Constants.BitmapDimensions, Bitmap.Config.ARGB_8888);
         bitmap.eraseColor(Color.TRANSPARENT);
@@ -97,6 +105,10 @@ public class BatteryClockRenderer {
 
             canvas.drawLine((float) (Constants.BitmapCenter + Math.cos(dotRadians) * Constants.TickStart), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * Constants.TickStart),
                     (float) (Constants.BitmapCenter + Math.cos(dotRadians) * Constants.TickEnd), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * Constants.TickEnd), _dotPaint);
+        }
+
+        if (label != null && label.length() > 0) {
+            canvas.drawText(label, Constants.BitmapCenter, Constants.LabelY, _labelPaint);
         }
 
         int dayArcOffset = Constants.BitmapCenter - Constants.DayArcRadius;

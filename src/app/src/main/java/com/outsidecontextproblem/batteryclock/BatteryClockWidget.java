@@ -128,9 +128,11 @@ public class BatteryClockWidget extends AppWidgetProvider {
         }
 
         Settings settings = _settings.get(appWidgetId);
+        String label = "";
         TimeZone timeZone;
         if (settings != null) {
             timeZone = TimeZone.getTimeZone(settings.getTimeZone());
+            label = settings.getLabel();
         } else {
             Log.w(BatteryClockWidget.class.getName(), String.format("Settings not found in HashMap for widget %d, using default.", appWidgetId));
 
@@ -138,7 +140,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
         }
         Calendar calendar = Calendar.getInstance(timeZone);
 
-        Bitmap bitmap = renderer.render(level, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), (((calendar.get(Calendar.DAY_OF_WEEK) - 2) + 7) % 7));
+        Bitmap bitmap = renderer.render(level, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), (((calendar.get(Calendar.DAY_OF_WEEK) - 2) + 7) % 7), label);
 
         views.setImageViewBitmap(R.id.imageView, bitmap);
 
