@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 
 public class BatteryClockRenderer {
 
@@ -63,8 +64,6 @@ public class BatteryClockRenderer {
 
         _labelPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _labelPaint.setARGB(255, 255, 255, 255);
-//        _labelPaint.setStyle(Paint.Style.STROKE);
-//        _labelPaint.setStrokeWidth(Constants.BezelOutline);
         _labelPaint.setTextSize(Constants.LabelSize);
         _labelPaint.setTextAlign(Paint.Align.CENTER);
     }
