@@ -134,7 +134,7 @@ public class BatteryClockRenderer {
 
         float minuteRadians = (float) ((float) ((minute * 6) * (Math.PI / 180)) - Math.PI / 2);
 
-        float hourDegrees = hour * 30 + (minute / 2F);
+        float hourDegrees = (hour % 12) * 30 + (minute / 2F);
 
         int hourArcOffset = Constants.BitmapCenter - Constants.HourHandLength;
 
