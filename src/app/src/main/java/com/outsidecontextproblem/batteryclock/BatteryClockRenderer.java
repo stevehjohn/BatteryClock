@@ -65,6 +65,11 @@ public class BatteryClockRenderer {
         updatePaint(_arcPaint, settings.getBatteryLevelIndicatorSettings());
         updatePaint(_circlePaint, settings.getBezelSettings());
         updatePaint(_dotPaint, settings.getTicksSettings());
+        updatePaint(_minutePaint, settings.getMinuteSettings());
+        updatePaint(_minuteTrailPaint, settings.getMinuteArcSettings());
+        updatePaint(_hourPaint, settings.getHourSettings());
+        updatePaint(_hourTrailPaint, settings.getHourArcSettings());
+        updatePaint(_dayArcPaint, settings.getWeekSettings());
         updatePaint(_backgroundPaint, settings.getBackgroundSettings());
     }
 
