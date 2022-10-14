@@ -50,10 +50,6 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         _batteryClockRenderer = new BatteryClockRenderer();
     }
 
-    static void deleteWidgetPreferences(Context context, int appWidgetId) {
-        // TODO
-    }
-
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);

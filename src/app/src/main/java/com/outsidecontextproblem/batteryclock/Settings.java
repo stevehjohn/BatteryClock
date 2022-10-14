@@ -59,4 +59,11 @@ public class Settings {
         _ticksSettings.saveSettings(context, TICKS);
         _backgroundSettings.saveSettings(context, BACKGROUND);
     }
+
+    public void deleteSettings(Context context) {
+        _batteryLevelIndicatorSettings.deleteSettings(context, BATTERY_INDICATOR);
+        _bezelSettings.deleteSettings(context, BEZEL);
+        _ticksSettings.deleteSettings(context, TICKS);
+        _backgroundSettings.deleteSettings(context, BACKGROUND);
+    }
 }

@@ -60,7 +60,10 @@ public class BatteryClockWidget extends AppWidgetProvider {
         Log.i(BatteryClockWidget.class.getName(), "onDelete()");
 
         for (int appWidgetId : appWidgetIds) {
-            BatteryClockWidgetConfigureActivity.deleteWidgetPreferences(context, appWidgetId);
+            Log.i(BatteryClockWidget.class.getName(), String.format("Deleting settings for widget %d.", appWidgetId));
+
+            Settings settings = new Settings(appWidgetId);
+            settings.deleteSettings(context);
         }
     }
 
