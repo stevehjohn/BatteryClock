@@ -13,10 +13,12 @@ import android.widget.RemoteViews;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.TimeZone;
 
 public class BatteryClockWidget extends AppWidgetProvider {
 
     private static final HashMap<Integer, BatteryClockRenderer> _batteryClockRenderers = new HashMap<>();
+    private static final HashMap<Integer, Settings> _settings = new HashMap<>();
 
     public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Settings settings) {
 
@@ -30,6 +32,8 @@ public class BatteryClockWidget extends AppWidgetProvider {
             BatteryClockRenderer renderer = new BatteryClockRenderer();
             renderer.updateFromSettings(settings);
             _batteryClockRenderers.put(appWidgetId, renderer);
+
+            _settings.put(appWidgetId, settings);
         } else {
             if (! _batteryClockRenderers.containsKey(appWidgetId)) {
                 Log.i(BatteryClockWidget.class.getName(), String.format("Attempting load of settings for widget %d.", appWidgetId));
@@ -40,6 +44,8 @@ public class BatteryClockWidget extends AppWidgetProvider {
                 BatteryClockRenderer renderer = new BatteryClockRenderer();
                 renderer.updateFromSettings(settings);
                 _batteryClockRenderers.put(appWidgetId, renderer);
+
+                _settings.put(appWidgetId, settings);
             }
         }
 
@@ -121,7 +127,18 @@ public class BatteryClockWidget extends AppWidgetProvider {
             renderer = new BatteryClockRenderer();
         }
 
-        Bitmap bitmap = renderer.render(level, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), (((Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 2) + 7) % 7));
+        Settings settings = _settings.get(appWidgetId);
+        TimeZone timeZone;
+        if (settings != null) {
+            timeZone = TimeZone.getTimeZone(settings.getTimeZone());
+        } else {
+            Log.w(BatteryClockWidget.class.getName(), String.format("Settings not found in HashMap for widget %d, using default.", appWidgetId));
+
+            timeZone = TimeZone.getDefault();
+        }
+        Calendar calendar = Calendar.getInstance(timeZone);
+
+        Bitmap bitmap = renderer.render(level, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), (((calendar.get(Calendar.DAY_OF_WEEK) - 2) + 7) % 7));
 
         views.setImageViewBitmap(R.id.imageView, bitmap);
 
