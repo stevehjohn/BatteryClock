@@ -11,7 +11,7 @@ public class Constants {
     public static int DayArcRadius = 90;
     public static int TickStart = 200;
     public static int TickEnd = 210;
-    public static int LabelY = 123;
+    public static int LabelY = 105;
     public static int LabelSizeSmall = 24;
     public static int LabelSizeDefault = 36;
     public static int LabelSizeMedium = 48;
