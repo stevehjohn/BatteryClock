@@ -86,6 +86,10 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
         Context context = getApplicationContext();
 
+        if (BatteryClockRenderer._typeface == null) {
+            BatteryClockRenderer._typeface = context.getResources().getFont(R.font.roboto);
+        }
+
         _settings = new Settings(_appWidgetId);
 
         EditText editText = findViewById(R.id.inputLabel);
@@ -107,6 +111,8 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
                 updatePreview();
             }
         });
+
+        context.getAssets();
 
         configureTimezones(context);
 
