@@ -6,8 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
-import java.util.Calendar;
-
 public class BatteryClockRenderer {
 
     public static Typeface _typeface;
