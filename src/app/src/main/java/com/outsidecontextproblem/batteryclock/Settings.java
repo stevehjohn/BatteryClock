@@ -142,6 +142,7 @@ public class Settings {
         _timeZone = TimeZone.getDefault().getID();
         _label = "";
         _labelSize = 1;
+        _updateSeconds = false;
     }
 
     @SuppressLint("DefaultLocale")
