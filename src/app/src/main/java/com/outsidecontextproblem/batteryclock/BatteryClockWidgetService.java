@@ -50,7 +50,8 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
             _handler = new Handler();
 
             _handler.removeCallbacks(this);
-            _handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
+            //_handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
+            _handler.postDelayed(this, 1_000);
         }
 
         DisplayManager displayManager = (DisplayManager) getApplicationContext().getSystemService(Context.DISPLAY_SERVICE);
@@ -84,7 +85,8 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
         context.sendBroadcast(intent);
 
         _handler.removeCallbacks(this);
-        _handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
+        //_handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
+        _handler.postDelayed(this, 1_000);
     }
 
     @Override
