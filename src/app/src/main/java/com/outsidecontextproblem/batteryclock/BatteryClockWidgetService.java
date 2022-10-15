@@ -18,12 +18,6 @@ import androidx.annotation.Nullable;
 
 public class BatteryClockWidgetService extends Service implements Runnable, DisplayManager.DisplayListener {
 
-    private static boolean _updateSeconds = false;
-
-    public static void setUpdateSeconds(boolean updateSeconds) {
-        _updateSeconds = updateSeconds;
-    }
-
     private static final String NOTIFICATION_CHANNEL_ID = "com.outsidecontextproblem.batteryclock";
 
     private static final int NOTIFICATION_ID = 824954302;
@@ -108,7 +102,7 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
 
     private void setNextCallback() {
         _handler.removeCallbacks(this);
-        if (_updateSeconds) {
+        if (Settings.getUpdateSeconds()) {
             _handler.postDelayed(this, 1_000);
         } else {
             _handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
