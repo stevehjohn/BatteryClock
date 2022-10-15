@@ -11,11 +11,18 @@ import android.content.Intent;
 import android.hardware.display.DisplayManager;
 import android.os.Handler;
 import android.os.IBinder;
+import android.text.format.DateUtils;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 public class BatteryClockWidgetService extends Service implements Runnable, DisplayManager.DisplayListener {
+
+    private static boolean _updateSeconds = false;
+
+    public static void setUpdateSeconds(boolean updateSeconds) {
+        _updateSeconds = updateSeconds;
+    }
 
     private static final String NOTIFICATION_CHANNEL_ID = "com.outsidecontextproblem.batteryclock";
 
@@ -48,9 +55,7 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
         if (_handler == null) {
             _handler = new Handler();
 
-            _handler.removeCallbacks(this);
-            //_handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
-            _handler.postDelayed(this, 1_000);
+            setNextCallback();
         }
 
         DisplayManager displayManager = (DisplayManager) getApplicationContext().getSystemService(Context.DISPLAY_SERVICE);
@@ -82,10 +87,8 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 
         context.sendBroadcast(intent);
-
-        _handler.removeCallbacks(this);
-        //_handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
-        _handler.postDelayed(this, 1_000);
+        
+        setNextCallback();
     }
 
     @Override
@@ -101,5 +104,14 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
         Log.i(BatteryClockWidgetService.class.getName(), "onDisplayChanged()");
 
         run();
+    }
+
+    private void setNextCallback() {
+        _handler.removeCallbacks(this);
+        if (_updateSeconds) {
+            _handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
+        } else {
+            _handler.postDelayed(this, 1_000);
+        }
     }
 }
