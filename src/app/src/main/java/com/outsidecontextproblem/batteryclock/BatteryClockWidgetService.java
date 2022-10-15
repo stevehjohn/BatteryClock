@@ -87,7 +87,7 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 
         context.sendBroadcast(intent);
-        
+
         setNextCallback();
     }
 
