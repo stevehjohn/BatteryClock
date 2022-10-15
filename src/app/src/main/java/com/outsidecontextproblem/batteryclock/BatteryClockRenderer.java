@@ -129,16 +129,19 @@ public class BatteryClockRenderer {
 
         canvas.drawArc(batteryArcOffset, batteryArcOffset, Constants.BitmapDimensions - batteryArcOffset, Constants.BitmapDimensions - batteryArcOffset, 270, (int) -(level * 3.6), false, _arcPaint);
 
-        float secondsRadians = (float) ((float) ((Calendar.getInstance().get(Calendar.SECOND) * 6) * (Math.PI / 180)) - Math.PI / 2);
-
         for (int i = 0; i < 12; i++) {
             float dotRadians = (float) ((float) ((i * 30) * (Math.PI / 180)) - Math.PI / 2);
 
             canvas.drawLine((float) (Constants.BitmapCenter + Math.cos(dotRadians) * Constants.TickStart), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * Constants.TickStart),
                     (float) (Constants.BitmapCenter + Math.cos(dotRadians) * Constants.TickEnd), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * Constants.TickEnd), _dotPaint);
         }
-        canvas.drawLine((float) (Constants.BitmapCenter + Math.cos(secondsRadians) * Constants.TickStart), (float) (Constants.BitmapCenter + Math.sin(secondsRadians) * Constants.TickStart),
-                (float) (Constants.BitmapCenter + Math.cos(secondsRadians) * Constants.TickEnd), (float) (Constants.BitmapCenter + Math.sin(secondsRadians) * Constants.TickEnd), _secondsPaint);
+
+        if (second > -1) {
+            float secondsRadians = (float) ((float) ((second * 6) * (Math.PI / 180)) - Math.PI / 2);
+
+            canvas.drawLine((float) (Constants.BitmapCenter + Math.cos(secondsRadians) * Constants.TickStart), (float) (Constants.BitmapCenter + Math.sin(secondsRadians) * Constants.TickStart),
+                    (float) (Constants.BitmapCenter + Math.cos(secondsRadians) * Constants.TickEnd), (float) (Constants.BitmapCenter + Math.sin(secondsRadians) * Constants.TickEnd), _secondsPaint);
+        }
 
         if (label != null && label.length() > 0) {
             canvas.drawText(label, Constants.BitmapCenter, Constants.LabelY + _labelPaint.getTextSize() / 2, _labelPaint);
