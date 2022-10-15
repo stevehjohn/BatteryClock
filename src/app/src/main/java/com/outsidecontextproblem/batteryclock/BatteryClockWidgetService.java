@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.hardware.display.DisplayManager;
 import android.os.Handler;
 import android.os.IBinder;
-import android.text.format.DateUtils;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
