@@ -23,4 +23,5 @@
     <string name="hour_arc">Hour Arc</string>
     <string name="week_progress">Week Progress Indicator</string>
     <string name="clock_background">Clock Background</string>
+    <string name="battery_drain">Warning: This could increase drain on your battery</string>
 </resources>
