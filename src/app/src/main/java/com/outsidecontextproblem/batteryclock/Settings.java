@@ -14,6 +14,7 @@ public class Settings {
     private static final String BATTERY_INDICATOR = "BatteryIndicator";
     private static final String BEZEL = "Bezel";
     private static final String TICKS = "Ticks";
+    private static final String SECONDS = "Seconds";
     private static final String MINUTE = "Minute";
     private static final String MINUTE_ARC = "MinuteArc";
     private static final String HOUR = "Hour";
@@ -29,6 +30,7 @@ public class Settings {
     private final ElementSettings _batteryLevelIndicatorSettings;
     private final ElementSettings _bezelSettings;
     private final ElementSettings _ticksSettings;
+    private final ElementSettings _secondsSettings;
     private final ElementSettings _minuteSettings;
     private final ElementSettings _minuteArcSettings;
     private final ElementSettings _hourSettings;
@@ -47,6 +49,10 @@ public class Settings {
 
     public ElementSettings getTicksSettings() {
         return _ticksSettings;
+    }
+
+    public ElementSettings getSecondsSettings() {
+        return _secondsSettings;
     }
 
     public ElementSettings getMinuteSettings() {
@@ -84,8 +90,6 @@ public class Settings {
     }
 
     public void setTimeZone(String timeZone) {
-        Log.i("BADGER", timeZone);
-
         _timeZone = timeZone;
     }
 
@@ -111,12 +115,23 @@ public class Settings {
 
     private final int _appWidgetId;
 
+    private boolean _updateSeconds;
+
+    public boolean getUpdateSeconds() {
+        return _updateSeconds;
+    }
+
+    public void setUpdateSeconds(boolean updateSeconds) {
+        _updateSeconds = updateSeconds;
+    }
+
     public Settings(int appWidgetId) {
         _appWidgetId = appWidgetId;
 
         _batteryLevelIndicatorSettings = new ElementSettings(appWidgetId, Constants.BezelIndicator, 51, 22, 20, 51);
         _bezelSettings = new ElementSettings(appWidgetId, Constants.BezelOutline,51, 51, 51, 51);
         _ticksSettings = new ElementSettings(appWidgetId, Constants.TickThickness,13, 51, 51, 51);
+        _secondsSettings = new ElementSettings(appWidgetId, Constants.TickThickness,51, 51, 51, 51);
         _minuteSettings = new ElementSettings(appWidgetId, Constants.MinuteHandThickness, 51, 51, 51, 51);
         _minuteArcSettings = new ElementSettings(appWidgetId, Constants.BezelOutline, 13, 51, 51, 51);
         _hourSettings = new ElementSettings(appWidgetId, Constants.HourHandThickness, 51, 51, 51, 51);
@@ -140,6 +155,7 @@ public class Settings {
         _batteryLevelIndicatorSettings.loadSettings(context, BATTERY_INDICATOR);
         _bezelSettings.loadSettings(context, BEZEL);
         _ticksSettings.loadSettings(context, TICKS);
+        _secondsSettings.loadSettings(context, SECONDS);
         _minuteSettings.loadSettings(context, MINUTE);
         _minuteArcSettings.loadSettings(context, MINUTE_ARC);
         _hourSettings.loadSettings(context, HOUR);
@@ -160,6 +176,7 @@ public class Settings {
         _batteryLevelIndicatorSettings.saveSettings(context, BATTERY_INDICATOR);
         _bezelSettings.saveSettings(context, BEZEL);
         _ticksSettings.saveSettings(context, TICKS);
+        _secondsSettings.saveSettings(context, SECONDS);
         _minuteSettings.saveSettings(context, MINUTE);
         _minuteArcSettings.saveSettings(context, MINUTE_ARC);
         _hourSettings.saveSettings(context, HOUR);
@@ -180,6 +197,7 @@ public class Settings {
         _batteryLevelIndicatorSettings.deleteSettings(context, BATTERY_INDICATOR);
         _bezelSettings.deleteSettings(context, BEZEL);
         _ticksSettings.deleteSettings(context, TICKS);
+        _secondsSettings.deleteSettings(context, SECONDS);
         _minuteSettings.deleteSettings(context, MINUTE);
         _minuteArcSettings.deleteSettings(context, MINUTE_ARC);
         _hourSettings.deleteSettings(context, HOUR);
