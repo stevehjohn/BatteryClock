@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -28,9 +29,11 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
-public class BatteryClockWidgetConfigureActivity extends Activity {
+public class BatteryClockWidgetConfigureActivity extends Activity implements Runnable {
 
     private final BatteryClockRenderer _batteryClockRenderer;
+
+    private final Handler _handler = new Handler();
 
     int _appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
@@ -198,6 +201,15 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         }
 
         updatePreview();
+
+        _handler.postDelayed(this, 1_000);
+    }
+
+    @Override
+    public void run() {
+        updatePreview();
+
+        _handler.postDelayed(this, 1_000);
     }
 
     private void configureTimezones(Context context) {
