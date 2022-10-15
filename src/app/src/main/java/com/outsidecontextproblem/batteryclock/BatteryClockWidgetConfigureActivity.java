@@ -150,6 +150,11 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
             warning.setVisibility(b ? View.VISIBLE : View.GONE);
 
             Settings.setUpdateSeconds(b);
+
+            BatteryClockWidgetService serviceInstance = BatteryClockWidgetService.getInstance();
+            if (serviceInstance != null) {
+                BatteryClockWidgetService.getInstance().setNextCallback();
+            }
         });
 
         context.getAssets();

@@ -24,6 +24,16 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
 
     private Handler _handler;
 
+    private static BatteryClockWidgetService _instance;
+
+    public static BatteryClockWidgetService getInstance() {
+        return _instance;
+    }
+
+    public BatteryClockWidgetService() {
+        _instance = this;
+    }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
@@ -100,7 +110,7 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
         run();
     }
 
-    private void setNextCallback() {
+    public void setNextCallback() {
         _handler.removeCallbacks(this);
         if (Settings.getUpdateSeconds()) {
             _handler.postDelayed(this, 1_000);
