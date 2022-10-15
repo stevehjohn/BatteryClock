@@ -66,6 +66,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         _batteryClockRenderer = new BatteryClockRenderer();
     }
 
+    @SuppressLint("CutPasteId")
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -138,7 +139,6 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
         SwitchMaterial secondsSwitch = findViewById(R.id.switchSeconds);
         secondsSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
-            @SuppressLint("CutPasteId")
             ClockElementConfigurator secondConfigurator = findViewById(R.id.configuratorSeconds);
             secondConfigurator.setVisibility(b ? View.VISIBLE : View.GONE);
 
