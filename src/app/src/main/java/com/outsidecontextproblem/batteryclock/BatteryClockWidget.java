@@ -138,7 +138,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
         if (settings != null) {
             timeZone = TimeZone.getTimeZone(settings.getTimeZone());
             label = settings.getLabel();
-            showSeconds = settings.getUpdateSeconds();
+            showSeconds = Settings.getUpdateSeconds();
         } else {
             Log.w(BatteryClockWidget.class.getName(), String.format("Settings not found in HashMap for widget %d, using default.", appWidgetId));
 

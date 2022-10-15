@@ -149,7 +149,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
             TextView warning = findViewById(R.id.textWarning);
             warning.setVisibility(b ? View.VISIBLE : View.GONE);
 
-            _settings.setUpdateSeconds(b);
+            Settings.setUpdateSeconds(b);
         });
 
         context.getAssets();
@@ -430,13 +430,13 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
         seekBar.setProgress(_settings.getLabelSize());
 
         SwitchMaterial switchSeconds = findViewById(R.id.switchSeconds);
-        switchSeconds.setChecked(_settings.getUpdateSeconds());
+        switchSeconds.setChecked(Settings.getUpdateSeconds());
 
         TextView textWarning = findViewById(R.id.textWarning);
-        textWarning.setVisibility(_settings.getUpdateSeconds() ? View.VISIBLE : View.GONE);
+        textWarning.setVisibility(Settings.getUpdateSeconds() ? View.VISIBLE : View.GONE);
 
         ClockElementConfigurator secondsConfigurator = findViewById(R.id.configuratorSeconds);
-        secondsConfigurator.setVisibility(_settings.getUpdateSeconds() ? View.VISIBLE : View.GONE);
+        secondsConfigurator.setVisibility(Settings.getUpdateSeconds() ? View.VISIBLE : View.GONE);
     }
 
     private void configureElement(ClockElementConfigurator configurator, ElementSettings settings) {
@@ -452,7 +452,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
     private void updatePreview() {
 
         int seconds = -1;
-        if (_settings.getUpdateSeconds()) {
+        if (Settings.getUpdateSeconds()) {
             seconds = Calendar.getInstance().get(Calendar.SECOND);
         }
 
