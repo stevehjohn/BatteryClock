@@ -24,6 +24,7 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -144,6 +145,8 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
             TextView warning = findViewById(R.id.textWarning);
             warning.setVisibility(b ? View.VISIBLE : View.GONE);
+
+            _settings.setUpdateSeconds(b);
         });
 
         context.getAssets();
@@ -413,6 +416,15 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
         SeekBar seekBar = findViewById(R.id.seekLabelSize);
         seekBar.setProgress(_settings.getLabelSize());
+
+        SwitchMaterial switchSeconds = findViewById(R.id.switchSeconds);
+        switchSeconds.setChecked(_settings.getUpdateSeconds());
+
+        TextView textWarning = findViewById(R.id.textWarning);
+        textWarning.setVisibility(_settings.getUpdateSeconds() ? View.VISIBLE : View.GONE);
+
+        ClockElementConfigurator secondsConfigurator = findViewById(R.id.configuratorSeconds);
+        secondsConfigurator.setVisibility(_settings.getUpdateSeconds() ? View.VISIBLE : View.GONE);
     }
 
     private void configureElement(ClockElementConfigurator configurator, ElementSettings settings) {
@@ -426,7 +438,8 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
     }
 
     private void updatePreview() {
-        Bitmap bitmap = _batteryClockRenderer.render(75, 10, 10, 3, _settings.getLabel());
+
+        Bitmap bitmap = _batteryClockRenderer.render(75, 10, 10, Calendar.getInstance().get(Calendar.SECOND), 3, _settings.getLabel());
 
         ImageView imageView = findViewById(R.id.imageClock);
 
