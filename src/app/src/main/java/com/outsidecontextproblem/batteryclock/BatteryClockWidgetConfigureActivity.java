@@ -13,11 +13,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.Switch;
+import android.widget.TextView;
 
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding;
 
 import java.util.ArrayList;
@@ -131,6 +135,15 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
+        });
+
+        SwitchMaterial secondsSwitch = findViewById(R.id.switchSeconds);
+        secondsSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
+            ClockElementConfigurator secondConfigurator = findViewById(R.id.configuratorSeconds);
+            secondConfigurator.setVisibility(b ? View.VISIBLE : View.GONE);
+
+            TextView warning = findViewById(R.id.textWarning);
+            warning.setVisibility(b ? View.VISIBLE : View.GONE);
         });
 
         context.getAssets();

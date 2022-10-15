@@ -22,6 +22,7 @@
         android:paddingTop="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:animateLayoutChanges="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -162,7 +163,7 @@
                     android:textStyle="bold" />
 
                 <Space
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>
 
@@ -175,6 +176,16 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/textWarning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:text="@string/battery_drain"
+                android:textSize="24sp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/layoutSeconds"/>
+
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="@string/second_indicator"
                 app:elementThickness="4"
@@ -186,7 +197,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/layoutSeconds" />
+                app:layout_constraintTop_toBottomOf="@id/textWarning" />
 
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="@string/minute_hand"
