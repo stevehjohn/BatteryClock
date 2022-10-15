@@ -151,6 +151,7 @@ public class Settings {
         _timeZone = prefs.getString(String.format("%s.%d", TIMEZONE, _appWidgetId), TimeZone.getDefault().getID());
         _label = prefs.getString(String.format("%s.%d", LABEL, _appWidgetId), "");
         _labelSize = prefs.getInt(String.format("%s.%d", LABEL_SIZE, _appWidgetId), 1);
+        _updateSeconds = prefs.getBoolean(String.format("%s.%d", SECONDS, _appWidgetId), false);
 
         _batteryLevelIndicatorSettings.loadSettings(context, BATTERY_INDICATOR);
         _bezelSettings.loadSettings(context, BEZEL);
@@ -171,6 +172,7 @@ public class Settings {
         prefs.putString(String.format("%s.%d", TIMEZONE, _appWidgetId), _timeZone);
         prefs.putString(String.format("%s.%d", LABEL, _appWidgetId), _label);
         prefs.putInt(String.format("%s.%d", LABEL_SIZE, _appWidgetId), _labelSize);
+        prefs.putBoolean(String.format("%s.%d", SECONDS, _appWidgetId), _updateSeconds);
         prefs.apply();
 
         _batteryLevelIndicatorSettings.saveSettings(context, BATTERY_INDICATOR);
@@ -192,6 +194,7 @@ public class Settings {
         prefs.remove(String.format("%s.%d", TIMEZONE, _appWidgetId));
         prefs.remove(String.format("%s.%d", LABEL, _appWidgetId));
         prefs.remove(String.format("%s.%d", LABEL_SIZE, _appWidgetId));
+        prefs.remove(String.format("%s.%d", SECONDS, _appWidgetId));
         prefs.apply();
 
         _batteryLevelIndicatorSettings.deleteSettings(context, BATTERY_INDICATOR);
