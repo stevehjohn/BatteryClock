@@ -439,7 +439,12 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
     private void updatePreview() {
 
-        Bitmap bitmap = _batteryClockRenderer.render(75, 10, 10, Calendar.getInstance().get(Calendar.SECOND), 3, _settings.getLabel());
+        int seconds = -1;
+        if (_settings.getUpdateSeconds()) {
+            seconds = Calendar.getInstance().get(Calendar.SECOND);
+        }
+
+        Bitmap bitmap = _batteryClockRenderer.render(75, 10, 10, seconds, 3, _settings.getLabel());
 
         ImageView imageView = findViewById(R.id.imageClock);
 
