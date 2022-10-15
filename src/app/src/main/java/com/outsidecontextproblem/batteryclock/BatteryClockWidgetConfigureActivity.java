@@ -1,5 +1,6 @@
 package com.outsidecontextproblem.batteryclock;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.appwidget.AppWidgetManager;
@@ -137,6 +138,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
         SwitchMaterial secondsSwitch = findViewById(R.id.switchSeconds);
         secondsSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
+            @SuppressLint("CutPasteId")
             ClockElementConfigurator secondConfigurator = findViewById(R.id.configuratorSeconds);
             secondConfigurator.setVisibility(b ? View.VISIBLE : View.GONE);
 
