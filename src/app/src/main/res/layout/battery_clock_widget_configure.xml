@@ -146,17 +146,37 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/configuratorBezel" />
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/switchSeconds"
+            <LinearLayout
+                android:id="@+id/layoutSeconds"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/update_every_second"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/configuratorTicks" />
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/configuratorTicks">
+
+                <TextView
+                    android:id="@+id/textSeconds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/update_every_second"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchSeconds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
-                app:elementTitle="@string/string_indicator"
+                app:elementTitle="@string/second_indicator"
                 app:elementThickness="4"
                 app:redComponent="51"
                 app:greenComponent="51"
@@ -166,7 +186,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/switchSeconds" />
+                app:layout_constraintTop_toBottomOf="@id/layoutSeconds" />
 
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="@string/minute_hand"

@@ -16,7 +16,7 @@
     <string name="battery_level">Battery Level Indicator</string>
     <string name="bezel">Bezel</string>
     <string name="hour_markings">Hour Markings</string>
-    <string name="string_indicator">Second Indicator</string>
+    <string name="second_indicator">Second Indicator</string>
     <string name="minute_hand">Minute Hand</string>
     <string name="minute_arc">Minute Arc</string>
     <string name="hour_hand">Hour Hand</string>
