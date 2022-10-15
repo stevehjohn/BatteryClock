@@ -13,12 +13,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
@@ -161,6 +159,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
 
         clockElementConfigurator = findViewById(R.id.configuratorTicks);
+        clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
+
+        clockElementConfigurator = findViewById(R.id.configuratorSeconds);
         clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
 
         clockElementConfigurator = findViewById(R.id.configuratorMinute);
@@ -337,6 +338,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         configurator = (ClockElementConfigurator) findViewById(R.id.configuratorTicks);
         updateSettings(_settings.getTicksSettings(), configurator);
 
+        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorSeconds);
+        updateSettings(_settings.getSecondsSettings(), configurator);
+
         configurator = (ClockElementConfigurator) findViewById(R.id.configuratorMinute);
         updateSettings(_settings.getMinuteSettings(), configurator);
 
@@ -373,6 +377,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         configureElement(findViewById(R.id.configuratorBattery), _settings.getBatteryLevelIndicatorSettings());
         configureElement(findViewById(R.id.configuratorBezel), _settings.getBezelSettings());
         configureElement(findViewById(R.id.configuratorTicks), _settings.getTicksSettings());
+        configureElement(findViewById(R.id.configuratorSeconds), _settings.getSecondsSettings());
         configureElement(findViewById(R.id.configuratorMinute), _settings.getMinuteSettings());
         configureElement(findViewById(R.id.configuratorMinuteArc), _settings.getMinuteArcSettings());
         configureElement(findViewById(R.id.configuratorHour), _settings.getHourSettings());
