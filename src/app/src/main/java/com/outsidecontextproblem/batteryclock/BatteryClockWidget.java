@@ -20,13 +20,11 @@ public class BatteryClockWidget extends AppWidgetProvider {
     private static final HashMap<Integer, BatteryClockRenderer> _batteryClockRenderers = new HashMap<>();
     private static final HashMap<Integer, Settings> _settings = new HashMap<>();
 
-    public static boolean updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Settings settings) {
+    public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Settings settings) {
 
         Log.i(BatteryClockWidget.class.getName(), "updateAppWidget()");
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.battery_clock_widget);
-
-        boolean updateSeconds = false;
 
         if (settings != null) {
             Log.i(BatteryClockWidget.class.getName(), String.format("Applying settings to widget %d.", appWidgetId));
@@ -36,8 +34,6 @@ public class BatteryClockWidget extends AppWidgetProvider {
             _batteryClockRenderers.put(appWidgetId, renderer);
 
             _settings.put(appWidgetId, settings);
-
-            updateSeconds = settings.getUpdateSeconds();
         } else {
             if (! _batteryClockRenderers.containsKey(appWidgetId)) {
                 Log.i(BatteryClockWidget.class.getName(), String.format("Attempting load of settings for widget %d.", appWidgetId));
@@ -50,27 +46,19 @@ public class BatteryClockWidget extends AppWidgetProvider {
                 _batteryClockRenderers.put(appWidgetId, renderer);
 
                 _settings.put(appWidgetId, settings);
-
-                updateSeconds = settings.getUpdateSeconds();
             }
         }
 
         draw(views, appWidgetManager, appWidgetId, context);
-
-        return updateSeconds;
     }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         Log.i(BatteryClockWidget.class.getName(), "onUpdate()");
 
-        boolean updateSeconds = false;
-
         for (int appWidgetId : appWidgetIds) {
-            updateSeconds = updateSeconds || updateAppWidget(context, appWidgetManager, appWidgetId, null);
+            updateAppWidget(context, appWidgetManager, appWidgetId, null);
         }
-
-        BatteryClockWidgetService.setUpdateSeconds(updateSeconds);
     }
 
     @Override
