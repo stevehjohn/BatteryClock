@@ -24,6 +24,16 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
 
     private Handler _handler;
 
+    private static BatteryClockWidgetService _instance;
+
+    public static BatteryClockWidgetService getInstance() {
+        return _instance;
+    }
+
+    public BatteryClockWidgetService() {
+        _instance = this;
+    }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
@@ -49,8 +59,7 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
         if (_handler == null) {
             _handler = new Handler();
 
-            _handler.removeCallbacks(this);
-            _handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
+            setNextCallback();
         }
 
         DisplayManager displayManager = (DisplayManager) getApplicationContext().getSystemService(Context.DISPLAY_SERVICE);
@@ -83,8 +92,7 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
 
         context.sendBroadcast(intent);
 
-        _handler.removeCallbacks(this);
-        _handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
+        setNextCallback();
     }
 
     @Override
@@ -100,5 +108,14 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
         Log.i(BatteryClockWidgetService.class.getName(), "onDisplayChanged()");
 
         run();
+    }
+
+    public void setNextCallback() {
+        _handler.removeCallbacks(this);
+        if (Settings.getUpdateSeconds()) {
+            _handler.postDelayed(this, 1_000);
+        } else {
+            _handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
+        }
     }
 }

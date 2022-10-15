@@ -1,5 +1,6 @@
 package com.outsidecontextproblem.batteryclock;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.appwidget.AppWidgetManager;
@@ -7,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -17,16 +19,21 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
-public class BatteryClockWidgetConfigureActivity extends Activity {
+public class BatteryClockWidgetConfigureActivity extends Activity implements Runnable {
 
     private final BatteryClockRenderer _batteryClockRenderer;
+
+    private final Handler _handler = new Handler();
 
     int _appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
@@ -63,6 +70,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         _batteryClockRenderer = new BatteryClockRenderer();
     }
 
+    @SuppressLint("CutPasteId")
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -133,6 +141,22 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
             }
         });
 
+        SwitchMaterial secondsSwitch = findViewById(R.id.switchSeconds);
+        secondsSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
+            ClockElementConfigurator secondConfigurator = findViewById(R.id.configuratorSeconds);
+            secondConfigurator.setVisibility(b ? View.VISIBLE : View.GONE);
+
+            TextView warning = findViewById(R.id.textWarning);
+            warning.setVisibility(b ? View.VISIBLE : View.GONE);
+
+            Settings.setUpdateSeconds(b);
+
+            BatteryClockWidgetService serviceInstance = BatteryClockWidgetService.getInstance();
+            if (serviceInstance != null) {
+                BatteryClockWidgetService.getInstance().setNextCallback();
+            }
+        });
+
         context.getAssets();
 
         configureTimezones(context);
@@ -148,6 +172,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
 
         clockElementConfigurator = findViewById(R.id.configuratorTicks);
+        clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
+
+        clockElementConfigurator = findViewById(R.id.configuratorSeconds);
         clockElementConfigurator.setOnClockElementConfiguratorChangeListener(_elementListener);
 
         clockElementConfigurator = findViewById(R.id.configuratorMinute);
@@ -179,6 +206,15 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         }
 
         updatePreview();
+
+        _handler.postDelayed(this, 1_000);
+    }
+
+    @Override
+    public void run() {
+        updatePreview();
+
+        _handler.postDelayed(this, 1_000);
     }
 
     private void configureTimezones(Context context) {
@@ -324,6 +360,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         configurator = (ClockElementConfigurator) findViewById(R.id.configuratorTicks);
         updateSettings(_settings.getTicksSettings(), configurator);
 
+        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorSeconds);
+        updateSettings(_settings.getSecondsSettings(), configurator);
+
         configurator = (ClockElementConfigurator) findViewById(R.id.configuratorMinute);
         updateSettings(_settings.getMinuteSettings(), configurator);
 
@@ -360,6 +399,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
         configureElement(findViewById(R.id.configuratorBattery), _settings.getBatteryLevelIndicatorSettings());
         configureElement(findViewById(R.id.configuratorBezel), _settings.getBezelSettings());
         configureElement(findViewById(R.id.configuratorTicks), _settings.getTicksSettings());
+        configureElement(findViewById(R.id.configuratorSeconds), _settings.getSecondsSettings());
         configureElement(findViewById(R.id.configuratorMinute), _settings.getMinuteSettings());
         configureElement(findViewById(R.id.configuratorMinuteArc), _settings.getMinuteArcSettings());
         configureElement(findViewById(R.id.configuratorHour), _settings.getHourSettings());
@@ -393,6 +433,15 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
 
         SeekBar seekBar = findViewById(R.id.seekLabelSize);
         seekBar.setProgress(_settings.getLabelSize());
+
+        SwitchMaterial switchSeconds = findViewById(R.id.switchSeconds);
+        switchSeconds.setChecked(Settings.getUpdateSeconds());
+
+        TextView textWarning = findViewById(R.id.textWarning);
+        textWarning.setVisibility(Settings.getUpdateSeconds() ? View.VISIBLE : View.GONE);
+
+        ClockElementConfigurator secondsConfigurator = findViewById(R.id.configuratorSeconds);
+        secondsConfigurator.setVisibility(Settings.getUpdateSeconds() ? View.VISIBLE : View.GONE);
     }
 
     private void configureElement(ClockElementConfigurator configurator, ElementSettings settings) {
@@ -406,7 +455,13 @@ public class BatteryClockWidgetConfigureActivity extends Activity {
     }
 
     private void updatePreview() {
-        Bitmap bitmap = _batteryClockRenderer.render(75, 10, 10, 3, _settings.getLabel());
+
+        int seconds = -1;
+        if (Settings.getUpdateSeconds()) {
+            seconds = Calendar.getInstance().get(Calendar.SECOND);
+        }
+
+        Bitmap bitmap = _batteryClockRenderer.render(75, 10, 10, seconds, 3, _settings.getLabel());
 
         ImageView imageView = findViewById(R.id.imageClock);
 

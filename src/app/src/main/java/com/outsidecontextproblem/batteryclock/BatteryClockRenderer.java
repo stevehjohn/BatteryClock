@@ -14,6 +14,7 @@ public class BatteryClockRenderer {
     private final Paint _circlePaint;
     private final Paint _minutePaint;
     private final Paint _hourPaint;
+    private final Paint _secondsPaint;
     private final Paint _dotPaint;
     private final Paint _backgroundPaint;
     private final Paint _minuteTrailPaint;
@@ -42,6 +43,11 @@ public class BatteryClockRenderer {
         _hourPaint.setARGB(255, 255, 255, 255);
         _hourPaint.setStyle(Paint.Style.STROKE);
         _hourPaint.setStrokeWidth(Constants.HourHandThickness);
+
+        _secondsPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        _secondsPaint.setARGB(255, 255, 255, 255);
+        _secondsPaint.setStyle(Paint.Style.STROKE);
+        _secondsPaint.setStrokeWidth(Constants.TickThickness);
 
         _dotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _dotPaint.setARGB(255, 255, 255, 255);
@@ -77,6 +83,7 @@ public class BatteryClockRenderer {
         updatePaint(_arcPaint, settings.getBatteryLevelIndicatorSettings());
         updatePaint(_circlePaint, settings.getBezelSettings());
         updatePaint(_dotPaint, settings.getTicksSettings());
+        updatePaint(_secondsPaint, settings.getSecondsSettings());
         updatePaint(_minutePaint, settings.getMinuteSettings());
         updatePaint(_minuteTrailPaint, settings.getMinuteArcSettings());
         updatePaint(_hourPaint, settings.getHourSettings());
@@ -84,6 +91,7 @@ public class BatteryClockRenderer {
         updatePaint(_dayArcPaint, settings.getWeekSettings());
         updatePaint(_backgroundPaint, settings.getBackgroundSettings());
         updatePaint(_labelPaint, settings.getLabelSettings());
+
         switch (settings.getLabelSize()) {
             case 0:
                 _labelPaint.setTextSize(Constants.LabelSizeSmall);
@@ -105,7 +113,7 @@ public class BatteryClockRenderer {
         paint.setARGB(settings.getOpacity() * 5, settings.getRed() * 5, settings.getGreen() * 5, settings.getBlue() * 5);
     }
 
-    public Bitmap render(int level, int hour, int minute, int dayOfWeek, String label) {
+    public Bitmap render(int level, int hour, int minute, int second, int dayOfWeek, String label) {
 
         Bitmap bitmap = Bitmap.createBitmap(Constants.BitmapDimensions, Constants.BitmapDimensions, Bitmap.Config.ARGB_8888);
         bitmap.eraseColor(Color.TRANSPARENT);
@@ -124,6 +132,13 @@ public class BatteryClockRenderer {
 
             canvas.drawLine((float) (Constants.BitmapCenter + Math.cos(dotRadians) * Constants.TickStart), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * Constants.TickStart),
                     (float) (Constants.BitmapCenter + Math.cos(dotRadians) * Constants.TickEnd), (float) (Constants.BitmapCenter + Math.sin(dotRadians) * Constants.TickEnd), _dotPaint);
+        }
+
+        if (second > -1) {
+            float secondsRadians = (float) ((float) ((second * 6) * (Math.PI / 180)) - Math.PI / 2);
+
+            canvas.drawLine((float) (Constants.BitmapCenter + Math.cos(secondsRadians) * Constants.TickStart), (float) (Constants.BitmapCenter + Math.sin(secondsRadians) * Constants.TickStart),
+                    (float) (Constants.BitmapCenter + Math.cos(secondsRadians) * Constants.TickEnd), (float) (Constants.BitmapCenter + Math.sin(secondsRadians) * Constants.TickEnd), _secondsPaint);
         }
 
         if (label != null && label.length() > 0) {

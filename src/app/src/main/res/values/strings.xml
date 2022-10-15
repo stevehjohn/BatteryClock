@@ -12,4 +12,16 @@
     <string name="timezone">Timezone</string>
     <string name="label_optional">Label (optional)</string>
     <string name="font_size">Font Size</string>
+    <string name="update_every_second">Update every second</string>
+    <string name="battery_level">Battery Level Indicator</string>
+    <string name="bezel">Bezel</string>
+    <string name="hour_markings">Hour Markings</string>
+    <string name="second_indicator">Second Indicator</string>
+    <string name="minute_hand">Minute Hand</string>
+    <string name="minute_arc">Minute Arc</string>
+    <string name="hour_hand">Hour Hand</string>
+    <string name="hour_arc">Hour Arc</string>
+    <string name="week_progress">Week Progress Indicator</string>
+    <string name="clock_background">Clock Background</string>
+    <string name="battery_drain">Warning: This may increase drain on your battery</string>
 </resources>
