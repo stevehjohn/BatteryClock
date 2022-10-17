@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BatteryClock</string>
+    <string name="configure">BatteryClock налаштування</string>
+    <string name="done_button">Зберігти</string>
+    <string name="app_widget_description">Рівень заряду батареї та годинниковий віджет</string>
+    <string name="thickness">Товщина</string>
+    <string name="colour">Колір</string>
+    <string name="opacity">Непрозорість</string>
+    <string name="cancel">Відмінити</string>
+    <string name="an_analogue_clock">Аналоговий годинник</string>
+    <string name="timezone">Часова зона</string>
+    <string name="label_optional">Мітка (опційно)</string>
+    <string name="font_size">Розмір шрифту</string>
+    <string name="update_every_second">Оновлюється щосекунди</string>
+    <string name="battery_level">Індикатор рівню батареї</string>
+    <string name="bezel">Безель</string>
+    <string name="hour_markings">Позначення годин</string>
+    <string name="second_indicator">Позначення секунд</string>
+    <string name="minute_hand">Хвилинна стрілка</string>
+    <string name="minute_arc">Хвилинна дуга</string>
+    <string name="hour_hand">Годинна стрілка</string>
+    <string name="hour_arc">Годинна дуга</string>
+    <string name="week_progress">Індикатор тижневого прогресу</string>
+    <string name="clock_background">Фон годинника</string>
+    <string name="battery_drain">Увага: Це може пришвидшити розряджання вашого акумулятора</string>
+</resources>
