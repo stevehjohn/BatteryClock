@@ -351,37 +351,37 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
     private void updatePaints() {
         _batteryClockRenderer.updateFromSettings(_settings);
 
-        ClockElementConfigurator configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBattery);
+        ClockElementConfigurator configurator = findViewById(R.id.configuratorBattery);
         updateSettings(_settings.getBatteryLevelIndicatorSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBezel);
+        configurator = findViewById(R.id.configuratorBezel);
         updateSettings(_settings.getBezelSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorTicks);
+        configurator = findViewById(R.id.configuratorTicks);
         updateSettings(_settings.getTicksSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorSeconds);
+        configurator = findViewById(R.id.configuratorSeconds);
         updateSettings(_settings.getSecondsSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorMinute);
+        configurator = findViewById(R.id.configuratorMinute);
         updateSettings(_settings.getMinuteSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorMinuteArc);
+        configurator = findViewById(R.id.configuratorMinuteArc);
         updateSettings(_settings.getMinuteArcSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorHour);
+        configurator = findViewById(R.id.configuratorHour);
         updateSettings(_settings.getHourSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorHourArc);
+        configurator = findViewById(R.id.configuratorHourArc);
         updateSettings(_settings.getHourArcSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorWeek);
+        configurator = findViewById(R.id.configuratorWeek);
         updateSettings(_settings.getWeekSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBackground);
+        configurator = findViewById(R.id.configuratorBackground);
         updateSettings(_settings.getBackgroundSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorLabel);
+        configurator = findViewById(R.id.configuratorLabel);
         updateSettings(_settings.getLabelSettings(), configurator);
     }
 
