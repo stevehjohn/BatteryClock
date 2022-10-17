@@ -7,6 +7,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -456,12 +457,21 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
     private void updatePreview() {
 
-        int seconds = -1;
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(_settings.getTimeZone()));
+
+        int second = -1;
         if (Settings.getUpdateSeconds()) {
-            seconds = Calendar.getInstance().get(Calendar.SECOND);
+            second = calendar.get(Calendar.SECOND);
         }
 
-        Bitmap bitmap = _batteryClockRenderer.render(75, 10, 10, seconds, 3, _settings.getLabel());
+        int minute = calendar.get(Calendar.MINUTE);
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int dayOfWeek = (((calendar.get(Calendar.DAY_OF_WEEK) - 2) + 7) % 7);
+
+        BatteryManager batteryManager = (BatteryManager) getApplicationContext().getSystemService(Context.BATTERY_SERVICE);
+        int level = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
+
+        Bitmap bitmap = _batteryClockRenderer.render(level, hour, minute, second, dayOfWeek, _settings.getLabel());
 
         ImageView imageView = findViewById(R.id.imageClock);
 
