@@ -7,6 +7,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -351,37 +352,37 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
     private void updatePaints() {
         _batteryClockRenderer.updateFromSettings(_settings);
 
-        ClockElementConfigurator configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBattery);
+        ClockElementConfigurator configurator = findViewById(R.id.configuratorBattery);
         updateSettings(_settings.getBatteryLevelIndicatorSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBezel);
+        configurator = findViewById(R.id.configuratorBezel);
         updateSettings(_settings.getBezelSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorTicks);
+        configurator = findViewById(R.id.configuratorTicks);
         updateSettings(_settings.getTicksSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorSeconds);
+        configurator = findViewById(R.id.configuratorSeconds);
         updateSettings(_settings.getSecondsSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorMinute);
+        configurator = findViewById(R.id.configuratorMinute);
         updateSettings(_settings.getMinuteSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorMinuteArc);
+        configurator = findViewById(R.id.configuratorMinuteArc);
         updateSettings(_settings.getMinuteArcSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorHour);
+        configurator = findViewById(R.id.configuratorHour);
         updateSettings(_settings.getHourSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorHourArc);
+        configurator = findViewById(R.id.configuratorHourArc);
         updateSettings(_settings.getHourArcSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorWeek);
+        configurator = findViewById(R.id.configuratorWeek);
         updateSettings(_settings.getWeekSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorBackground);
+        configurator = findViewById(R.id.configuratorBackground);
         updateSettings(_settings.getBackgroundSettings(), configurator);
 
-        configurator = (ClockElementConfigurator) findViewById(R.id.configuratorLabel);
+        configurator = findViewById(R.id.configuratorLabel);
         updateSettings(_settings.getLabelSettings(), configurator);
     }
 
@@ -456,12 +457,21 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
     private void updatePreview() {
 
-        int seconds = -1;
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(_settings.getTimeZone()));
+
+        int second = -1;
         if (Settings.getUpdateSeconds()) {
-            seconds = Calendar.getInstance().get(Calendar.SECOND);
+            second = calendar.get(Calendar.SECOND);
         }
 
-        Bitmap bitmap = _batteryClockRenderer.render(75, 10, 10, seconds, 3, _settings.getLabel());
+        int minute = calendar.get(Calendar.MINUTE);
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int dayOfWeek = (((calendar.get(Calendar.DAY_OF_WEEK) - 2) + 7) % 7);
+
+        BatteryManager batteryManager = (BatteryManager) getApplicationContext().getSystemService(Context.BATTERY_SERVICE);
+        int level = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
+
+        Bitmap bitmap = _batteryClockRenderer.render(level, hour, minute, second, dayOfWeek, _settings.getLabel());
 
         ImageView imageView = findViewById(R.id.imageClock);
 
