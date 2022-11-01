@@ -51,7 +51,7 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
         notificationManager.createNotificationChannel(notificationChannel);
 
         Notification.Builder notificationBuilder = new Notification.Builder(this, NOTIFICATION_CHANNEL_ID)
-                .setContentText("Nothing to see here... just updating your clock widget.")
+                .setContentText(getString(R.string.notification_text))
                 .setSmallIcon(R.drawable.notification);
 
         startForeground(NOTIFICATION_ID, notificationBuilder.build());
