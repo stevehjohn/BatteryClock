@@ -32,7 +32,7 @@ import java.util.TimeZone;
 
 public class BatteryClockWidgetConfigureActivity extends Activity implements Runnable {
 
-    private final BatteryClockRenderer _batteryClockRenderer;
+    private BatteryClockRenderer _batteryClockRenderer;
 
     private final Handler _handler = new Handler();
 
@@ -41,6 +41,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
     private Settings _settings;
 
     private final View.OnClickListener _addOnClickListener = view -> {
+        //_handler.removeCallbacks(this);
         final Context context = BatteryClockWidgetConfigureActivity.this;
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
@@ -55,9 +56,22 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
     };
 
     private final View.OnClickListener _cancelOnClickListener = view -> {
+        _handler.removeCallbacks(this);
         setResult(RESULT_CANCELED);
         finish();
     };
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        _handler.removeCallbacks(this);
+    }
+
+    @Override
+    protected void onStop() {
+        _handler.removeCallbacks(this);
+        super.onStop();
+    }
 
     @SuppressWarnings("FieldCanBeLocal")
     private BatteryClockWidgetConfigureBinding _binding;
@@ -67,8 +81,6 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
     public BatteryClockWidgetConfigureActivity() {
         super();
-
-        _batteryClockRenderer = new BatteryClockRenderer();
     }
 
     @SuppressLint("CutPasteId")
@@ -99,6 +111,8 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
         if (BatteryClockRenderer._typeface == null) {
             BatteryClockRenderer._typeface = context.getResources().getFont(R.font.roboto);
         }
+
+        _batteryClockRenderer = new BatteryClockRenderer();
 
         _settings = new Settings(_appWidgetId);
 
@@ -213,6 +227,8 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
     @Override
     public void run() {
+        Log.i(this.getClass().getName(), "Runnable.run()");
+
         updatePreview();
 
         _handler.postDelayed(this, 1_000);
