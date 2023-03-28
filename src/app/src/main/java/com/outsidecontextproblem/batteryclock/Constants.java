@@ -16,6 +16,7 @@ public class Constants {
     public static int LabelSizeDefault = 36;
     public static int LabelSizeMedium = 48;
     public static int LabelSizeLarge = 60;
+    public static int DaysY = 305;
 
     public static int BezelIndicator = 20;
     public static int BezelOutline = 4;

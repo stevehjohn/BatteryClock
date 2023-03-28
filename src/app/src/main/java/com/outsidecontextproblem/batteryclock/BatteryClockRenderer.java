@@ -6,6 +6,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
 public class BatteryClockRenderer {
 
     public static Typeface _typeface;
@@ -113,7 +120,7 @@ public class BatteryClockRenderer {
         paint.setARGB(settings.getOpacity() * 5, settings.getRed() * 5, settings.getGreen() * 5, settings.getBlue() * 5);
     }
 
-    public Bitmap render(int level, int hour, int minute, int second, int dayOfWeek, String label) {
+    public Bitmap render(int level, int hour, int minute, int second, int dayOfWeek, String label, Calendar calendar) {
 
         Bitmap bitmap = Bitmap.createBitmap(Constants.BitmapDimensions, Constants.BitmapDimensions, Bitmap.Config.ARGB_8888);
         bitmap.eraseColor(Color.TRANSPARENT);
@@ -144,6 +151,25 @@ public class BatteryClockRenderer {
         if (label != null && label.length() > 0) {
             canvas.drawText(label, Constants.BitmapCenter, Constants.LabelY + _labelPaint.getTextSize() / 2, _labelPaint);
         }
+
+        // <Steve alcohol quit specific>
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        Date quitDate = calendar.getTime();
+
+        try {
+            quitDate = simpleDateFormat.parse("23/03/2023");
+        }
+        catch (ParseException e) { }
+
+        long difference = calendar.getTime().getTime() - quitDate.getTime();
+
+        long days = TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS);
+
+        String daysString = days + " days";
+        canvas.drawText(daysString, Constants.BitmapCenter, Constants.DaysY + _labelPaint.getTextSize() / 2, _labelPaint);
+        String moneyString = "£" + (days * 20);
+        canvas.drawText(moneyString, Constants.BitmapCenter, Constants.DaysY + _labelPaint.getTextSize() * 2, _labelPaint);
+        // </Steve alcohol quit specific>
 
         int dayArcOffset = Constants.BitmapCenter - Constants.DayArcRadius;
 
