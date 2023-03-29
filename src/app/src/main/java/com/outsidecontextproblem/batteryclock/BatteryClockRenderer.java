@@ -171,9 +171,8 @@ public class BatteryClockRenderer {
 
         String daysString = days + " days";
         canvas.drawText(daysString, Constants.BitmapCenter, Constants.DaysY + _labelPaint.getTextSize() / 2, _labelPaint);
-        float saved = days;
         float daySeconds = hour * 3600 + minute * 60 + second;
-        saved += (days * beerMoneyPerDay) + (daySeconds / 86400) * beerMoneyPerDay;
+        float saved = (days * beerMoneyPerDay) + (daySeconds / 86400) * beerMoneyPerDay;
         DecimalFormat formatter = new DecimalFormat("#,###,##0.00");
         String moneyString = "£" + formatter.format(saved);
         canvas.drawText(moneyString, Constants.BitmapCenter, Constants.DaysY + _labelPaint.getTextSize() * 2, _labelPaint);
