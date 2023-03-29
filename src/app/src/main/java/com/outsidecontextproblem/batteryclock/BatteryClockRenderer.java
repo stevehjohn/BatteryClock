@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.icu.number.NumberFormatter;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
