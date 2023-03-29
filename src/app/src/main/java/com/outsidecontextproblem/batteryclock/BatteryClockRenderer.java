@@ -5,7 +5,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.icu.number.NumberFormatter;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -165,9 +167,15 @@ public class BatteryClockRenderer {
 
         long days = TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS);
 
+        int beerMoneyPerDay = 20;
+
         String daysString = days + " days";
         canvas.drawText(daysString, Constants.BitmapCenter, Constants.DaysY + _labelPaint.getTextSize() / 2, _labelPaint);
-        String moneyString = "£" + (days * 20);
+        float saved = days;
+        float daySeconds = hour * 3600 + minute * 60 + second;
+        saved += (days * beerMoneyPerDay) + (daySeconds / 86400) * beerMoneyPerDay;
+        DecimalFormat formatter = new DecimalFormat("#,###,##0.00");
+        String moneyString = "£" + formatter.format(saved);
         canvas.drawText(moneyString, Constants.BitmapCenter, Constants.DaysY + _labelPaint.getTextSize() * 2, _labelPaint);
         // </Steve alcohol quit specific>
 
