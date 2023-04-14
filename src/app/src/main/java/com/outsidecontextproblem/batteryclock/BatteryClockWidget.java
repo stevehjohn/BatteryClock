@@ -159,7 +159,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
         }
         Calendar calendar = Calendar.getInstance(timeZone);
 
-        Bitmap bitmap = renderer.render(level, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), showSeconds ? calendar.get(Calendar.SECOND) : -1, (((calendar.get(Calendar.DAY_OF_WEEK) - 2) + 7) % 7), label, calendar);
+        Bitmap bitmap = renderer.render(level, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), showSeconds ? calendar.get(Calendar.SECOND) : -1, (((calendar.get(Calendar.DAY_OF_WEEK) - 2) + 7) % 7), label, calendar, settings);
 
         views.setImageViewBitmap(R.id.imageView, bitmap);
 

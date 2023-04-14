@@ -4,6 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.TimeZone;
 
 public class Settings {
@@ -26,6 +32,7 @@ public class Settings {
     private static final String TIMEZONE = "Timezone";
     private static final String LABEL = "Label";
     private static final String LABEL_SIZE = "LabelSize";
+    private static final String LAST_SMOKE = "LastSmoke";
 
     private final ElementSettings _batteryLevelIndicatorSettings;
     private final ElementSettings _bezelSettings;
@@ -113,6 +120,16 @@ public class Settings {
         _labelSize = labelSize;
     }
 
+    private Date _lastSmoke;
+
+    public Date getLastSmoke() {
+        return _lastSmoke;
+    }
+
+    public void setLastSmoke(Date lastSmoke) {
+        _lastSmoke = lastSmoke;
+    }
+
     private final int _appWidgetId;
 
     private static boolean _updateSeconds;
@@ -144,6 +161,16 @@ public class Settings {
         _label = "";
         _labelSize = 1;
         _updateSeconds = false;
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        Date lastSmoke = Calendar.getInstance(TimeZone.getTimeZone(_timeZone)).getTime();
+
+        try {
+            lastSmoke = simpleDateFormat.parse("01/01/2023");
+        }
+        catch (ParseException e) { }
+
+        _lastSmoke = lastSmoke;
     }
 
     @SuppressLint("DefaultLocale")
@@ -153,6 +180,7 @@ public class Settings {
         _label = prefs.getString(String.format("%s.%d", LABEL, _appWidgetId), "");
         _labelSize = prefs.getInt(String.format("%s.%d", LABEL_SIZE, _appWidgetId), 1);
         _updateSeconds = prefs.getBoolean(String.format("%s", SHOW_SECONDS), false);
+        _lastSmoke = new Date(prefs.getLong(String.format("%s", LAST_SMOKE), 0));
 
         _batteryLevelIndicatorSettings.loadSettings(context, BATTERY_INDICATOR);
         _bezelSettings.loadSettings(context, BEZEL);
@@ -174,6 +202,7 @@ public class Settings {
         prefs.putString(String.format("%s.%d", LABEL, _appWidgetId), _label);
         prefs.putInt(String.format("%s.%d", LABEL_SIZE, _appWidgetId), _labelSize);
         prefs.putBoolean(String.format("%s", SHOW_SECONDS), _updateSeconds);
+        prefs.putLong(String.format("%s", LAST_SMOKE), _lastSmoke.getTime());
         prefs.apply();
 
         _batteryLevelIndicatorSettings.saveSettings(context, BATTERY_INDICATOR);
@@ -196,6 +225,7 @@ public class Settings {
         prefs.remove(String.format("%s.%d", LABEL, _appWidgetId));
         prefs.remove(String.format("%s.%d", LABEL_SIZE, _appWidgetId));
         prefs.remove(String.format("%s", SHOW_SECONDS));
+        prefs.remove(String.format("%s", LAST_SMOKE));
         prefs.apply();
 
         _batteryLevelIndicatorSettings.deleteSettings(context, BATTERY_INDICATOR);

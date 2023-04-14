@@ -121,13 +121,20 @@ public class BatteryClockRenderer {
         paint.setARGB(settings.getOpacity() * 5, settings.getRed() * 5, settings.getGreen() * 5, settings.getBlue() * 5);
     }
 
-    public Bitmap render(int level, int hour, int minute, int second, int dayOfWeek, String label, Calendar calendar) {
+    public Bitmap render(int level, int hour, int minute, int second, int dayOfWeek, String label, Calendar calendar, Settings settings) {
 
         Bitmap bitmap = Bitmap.createBitmap(Constants.BitmapDimensions, Constants.BitmapDimensions, Bitmap.Config.ARGB_8888);
         bitmap.eraseColor(Color.TRANSPARENT);
         Canvas canvas = new Canvas(bitmap);
 
         canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.BackgroundRadius, _backgroundPaint);
+
+        // <Steve smoking cut down specific>
+        long now = calendar.getTime().getTime();
+
+        long difference = now - settings.getLastSmoke().getTime();
+
+        // </Steve smoking cut down specific>
 
         canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.FrameRadius, _circlePaint);
 
@@ -162,7 +169,7 @@ public class BatteryClockRenderer {
         }
         catch (ParseException e) { }
 
-        long difference = calendar.getTime().getTime() - quitDate.getTime();
+        difference = calendar.getTime().getTime() - quitDate.getTime();
 
         long days = TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS);
 
