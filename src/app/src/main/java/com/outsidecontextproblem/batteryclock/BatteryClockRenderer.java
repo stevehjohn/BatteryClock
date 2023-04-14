@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.util.Log;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -130,10 +131,21 @@ public class BatteryClockRenderer {
         canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.BackgroundRadius, _backgroundPaint);
 
         // <Steve smoking cut down specific>
-        long now = calendar.getTime().getTime();
+        long difference;
 
-        long difference = now - settings.getLastSmoke().getTime();
+        long days;
 
+        if (settings != null) {
+            long now = calendar.getTime().getTime();
+
+            difference = now - settings.getLastSmoke().getTime();
+
+            days = TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS);
+
+            long timer = 45 + (days);
+
+            Log.i(BatteryClockRenderer.class.getName(), String.format("Timer: %d mins.", timer));
+        }
         // </Steve smoking cut down specific>
 
         canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.FrameRadius, _circlePaint);
@@ -171,7 +183,7 @@ public class BatteryClockRenderer {
 
         difference = calendar.getTime().getTime() - quitDate.getTime();
 
-        long days = TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS);
+        days = TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS);
 
         int beerMoneyPerDay = 20;
 

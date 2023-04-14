@@ -487,7 +487,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
         BatteryManager batteryManager = (BatteryManager) getApplicationContext().getSystemService(Context.BATTERY_SERVICE);
         int level = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
 
-        Bitmap bitmap = _batteryClockRenderer.render(level, hour, minute, second, dayOfWeek, _settings.getLabel(), calendar);
+        Bitmap bitmap = _batteryClockRenderer.render(level, hour, minute, second, dayOfWeek, _settings.getLabel(), calendar, null);
 
         ImageView imageView = findViewById(R.id.imageClock);
 
