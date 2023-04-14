@@ -172,6 +172,7 @@ public class BatteryClockRenderer {
             canvas.drawArc(smokeArcOffset, smokeArcOffset, Constants.BitmapDimensions - smokeArcOffset, Constants.BitmapDimensions - smokeArcOffset, 270, smokeDegrees, true, _smokeArcPaint);
         }
 
+
         // </Steve smoking cut down specific>
 
         canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.FrameRadius, _circlePaint);
