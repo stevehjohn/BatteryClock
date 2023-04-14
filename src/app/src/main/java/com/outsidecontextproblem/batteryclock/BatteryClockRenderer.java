@@ -132,6 +132,9 @@ public class BatteryClockRenderer {
         canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.BackgroundRadius, _backgroundPaint);
 
         // <Steve smoking cut down specific>
+        // TODO: Calculate countdown minutes from 45 + (days) (now - 05/04/23).
+        // Calculate minutes since last smoke now - Settings.getLastSmoke.
+        // Draw arc accordingly.
         long now = Calendar.getInstance(TimeZone.getDefault()).getTime().getTime();
 
         long difference = now - Settings.getLastSmoke().getTime();
