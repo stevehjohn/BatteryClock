@@ -190,6 +190,9 @@ public class BatteryClockRenderer {
 
         fags += (40F - (86400F / (float) timer)) * ((float) sinceMidnight / 86400F);
 
+        // Price per fag.
+        fags *= 0.75F;
+
         DecimalFormat formatter = new DecimalFormat("#,###,##0.00");
         String moneyString = "£" + formatter.format(fags);
 
