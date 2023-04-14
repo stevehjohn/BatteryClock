@@ -196,7 +196,7 @@ public class BatteryClockRenderer {
         DecimalFormat formatter = new DecimalFormat("#,###,##0.00");
         String moneyString = "£" + formatter.format(fags);
 
-        canvas.drawText(moneyString, Constants.BitmapCenter, Constants.LabelY + _labelPaint.getTextSize() / 2, _labelPaint);
+        canvas.drawText(moneyString, Constants.BitmapCenter, Constants.LabelY + _labelPaint.getTextSize(), _labelPaint);
 
         // </Steve smoking cut down specific>
 
