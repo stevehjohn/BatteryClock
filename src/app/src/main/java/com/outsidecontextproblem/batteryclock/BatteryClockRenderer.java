@@ -30,6 +30,7 @@ public class BatteryClockRenderer {
     private final Paint _minuteTrailPaint;
     private final Paint _hourTrailPaint;
     private final Paint _dayArcPaint;
+    private final Paint _smokeArcPaint;
     private final Paint _labelPaint;
 
     public BatteryClockRenderer() {
@@ -79,6 +80,9 @@ public class BatteryClockRenderer {
 
         _dayArcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _dayArcPaint.setARGB(65, 255, 255, 255);
+
+        _smokeArcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        _smokeArcPaint.setARGB(128, 128, 0, 0);
 
         _labelPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _labelPaint.setARGB(255, 255, 255, 255);
@@ -132,18 +136,42 @@ public class BatteryClockRenderer {
         canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.BackgroundRadius, _backgroundPaint);
 
         // <Steve smoking cut down specific>
-        // TODO: Calculate countdown minutes from 45 + (days) (now - 05/04/23).
-        // Calculate minutes since last smoke now - Settings.getLastSmoke.
-        // Draw arc accordingly.
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        Date smokingEpoch = calendar.getTime();
+
+        try {
+            smokingEpoch = simpleDateFormat.parse("14/04/2023");
+        }
+        catch (ParseException e) { }
+
         long now = Calendar.getInstance(TimeZone.getDefault()).getTime().getTime();
 
-        long difference = now - Settings.getLastSmoke().getTime();
+        long difference = now - smokingEpoch.getTime();
 
         long days = TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS);
 
-        long timer = 45 + (days);
+        long timer = (45 + (days)) * 60;
 
-        Log.i(BatteryClockRenderer.class.getName(), String.format("Timer: %d mins.", timer));
+        Log.i(BatteryClockRenderer.class.getName(), String.format("Timer: %d secs.", timer));
+
+        difference = now - Settings.getLastSmoke().getTime();
+
+        long seconds = TimeUnit.SECONDS.convert(difference, TimeUnit.MILLISECONDS);
+
+        Log.i(BatteryClockRenderer.class.getName(), String.format("Diff: %d secs.", seconds));
+
+        if (seconds < timer) {
+            long remain = timer - seconds;
+
+            int smokeArcOffset = Constants.BitmapCenter - Constants.BackgroundRadius;
+
+            float smokeDegrees = (360F / (float) timer) * (float) remain;
+
+            Log.i(BatteryClockRenderer.class.getName(), String.format("Smoke arc: %f degrees.", smokeDegrees));
+
+            canvas.drawArc(smokeArcOffset, smokeArcOffset, Constants.BitmapDimensions - smokeArcOffset, Constants.BitmapDimensions - smokeArcOffset, 270, smokeDegrees, true, _smokeArcPaint);
+        }
+
         // </Steve smoking cut down specific>
 
         canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.FrameRadius, _circlePaint);
@@ -171,7 +199,7 @@ public class BatteryClockRenderer {
         }
 
         // <Steve alcohol quit specific>
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         Date quitDate = calendar.getTime();
 
         try {
