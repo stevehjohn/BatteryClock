@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 public class BatteryClockRenderer {
@@ -122,7 +123,7 @@ public class BatteryClockRenderer {
         paint.setARGB(settings.getOpacity() * 5, settings.getRed() * 5, settings.getGreen() * 5, settings.getBlue() * 5);
     }
 
-    public Bitmap render(int level, int hour, int minute, int second, int dayOfWeek, String label, Calendar calendar, Settings settings) {
+    public Bitmap render(int level, int hour, int minute, int second, int dayOfWeek, String label, Calendar calendar) {
 
         Bitmap bitmap = Bitmap.createBitmap(Constants.BitmapDimensions, Constants.BitmapDimensions, Bitmap.Config.ARGB_8888);
         bitmap.eraseColor(Color.TRANSPARENT);
@@ -131,21 +132,15 @@ public class BatteryClockRenderer {
         canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.BackgroundRadius, _backgroundPaint);
 
         // <Steve smoking cut down specific>
-        long difference;
+        long now = Calendar.getInstance(TimeZone.getDefault()).getTime().getTime();
 
-        long days;
+        long difference = now - Settings.getLastSmoke().getTime();
 
-        if (settings != null) {
-            long now = calendar.getTime().getTime();
+        long days = TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS);
 
-            difference = now - settings.getLastSmoke().getTime();
+        long timer = 45 + (days);
 
-            days = TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS);
-
-            long timer = 45 + (days);
-
-            Log.i(BatteryClockRenderer.class.getName(), String.format("Timer: %d mins.", timer));
-        }
+        Log.i(BatteryClockRenderer.class.getName(), String.format("Timer: %d mins.", timer));
         // </Steve smoking cut down specific>
 
         canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.FrameRadius, _circlePaint);

@@ -120,13 +120,13 @@ public class Settings {
         _labelSize = labelSize;
     }
 
-    private Date _lastSmoke;
+    private static Date _lastSmoke;
 
-    public Date getLastSmoke() {
+    public static Date getLastSmoke() {
         return _lastSmoke;
     }
 
-    public void setLastSmoke(Date lastSmoke) {
+    public static void setLastSmoke(Date lastSmoke) {
         _lastSmoke = lastSmoke;
     }
 
@@ -163,7 +163,7 @@ public class Settings {
         _updateSeconds = false;
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-        Date lastSmoke = Calendar.getInstance(TimeZone.getTimeZone(_timeZone)).getTime();
+        Date lastSmoke = Calendar.getInstance(TimeZone.getDefault()).getTime();
 
         try {
             lastSmoke = simpleDateFormat.parse("01/01/2023");

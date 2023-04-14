@@ -14,6 +14,7 @@ import android.widget.RemoteViews;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.TimeZone;
 
 public class BatteryClockWidget extends AppWidgetProvider {
@@ -102,6 +103,8 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
         if (intent.getAction().equals(WidgetOnClick)) {
             Log.i(BatteryClockWidget.class.getName(), "Widget OnClick();");
+
+            Settings.setLastSmoke(Calendar.getInstance(TimeZone.getDefault()).getTime());
         }
 
         super.onReceive(context, intent);
@@ -159,7 +162,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
         }
         Calendar calendar = Calendar.getInstance(timeZone);
 
-        Bitmap bitmap = renderer.render(level, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), showSeconds ? calendar.get(Calendar.SECOND) : -1, (((calendar.get(Calendar.DAY_OF_WEEK) - 2) + 7) % 7), label, calendar, settings);
+        Bitmap bitmap = renderer.render(level, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), showSeconds ? calendar.get(Calendar.SECOND) : -1, (((calendar.get(Calendar.DAY_OF_WEEK) - 2) + 7) % 7), label, calendar);
 
         views.setImageViewBitmap(R.id.imageView, bitmap);
 
