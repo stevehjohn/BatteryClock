@@ -10,6 +10,9 @@ import android.util.Log;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -150,7 +153,7 @@ public class BatteryClockRenderer {
 
         long days = TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS);
 
-        long timer = (45 + (days)) * 60;
+        long timer = (45 + days) * 60;
 
         Log.i(BatteryClockRenderer.class.getName(), String.format("Timer: %d secs.", timer));
 
@@ -172,6 +175,25 @@ public class BatteryClockRenderer {
             canvas.drawArc(smokeArcOffset, smokeArcOffset, Constants.BitmapDimensions - smokeArcOffset, Constants.BitmapDimensions - smokeArcOffset, 270, smokeDegrees, true, _smokeArcPaint);
         }
 
+        float fags = 0;
+
+        for (int d = 0; d < days; d++) {
+            fags += 40F - (86400F / (float) timer);
+
+            timer += 60;
+        }
+
+        ZonedDateTime nowZoned = ZonedDateTime.now();
+        Instant midnight = nowZoned.toLocalDate().atStartOfDay(nowZoned.getZone()).toInstant();
+        Duration duration = Duration.between(midnight, Instant.now());
+        long sinceMidnight = duration.getSeconds();
+
+        fags += (40F - (86400F / (float) timer)) * ((float) sinceMidnight / 86400F);
+
+        DecimalFormat formatter = new DecimalFormat("#,###,##0.00");
+        String moneyString = "£" + formatter.format(fags);
+
+        canvas.drawText(moneyString, Constants.BitmapCenter, Constants.LabelY + _labelPaint.getTextSize() / 2, _labelPaint);
 
         // </Steve smoking cut down specific>
 
@@ -218,8 +240,7 @@ public class BatteryClockRenderer {
         canvas.drawText(daysString, Constants.BitmapCenter, Constants.DaysY + _labelPaint.getTextSize() / 2, _labelPaint);
         float daySeconds = hour * 3600 + minute * 60 + second;
         float saved = (days * beerMoneyPerDay) + (daySeconds / 86400) * beerMoneyPerDay;
-        DecimalFormat formatter = new DecimalFormat("#,###,##0.00");
-        String moneyString = "£" + formatter.format(saved);
+        moneyString = "£" + formatter.format(saved);
         canvas.drawText(moneyString, Constants.BitmapCenter, Constants.DaysY + _labelPaint.getTextSize() * 2, _labelPaint);
         // </Steve alcohol quit specific>
 
