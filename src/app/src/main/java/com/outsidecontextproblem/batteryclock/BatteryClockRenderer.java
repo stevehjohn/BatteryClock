@@ -183,10 +183,7 @@ public class BatteryClockRenderer {
             timer += 60;
         }
 
-        ZonedDateTime nowZoned = ZonedDateTime.now();
-        Instant midnight = nowZoned.toLocalDate().atStartOfDay(nowZoned.getZone()).toInstant();
-        Duration duration = Duration.between(midnight, Instant.now());
-        long sinceMidnight = duration.getSeconds();
+        long sinceMidnight = (now / 1000) % 86400;
 
         fags += (40F - (86400F / (float) timer)) * ((float) sinceMidnight / 86400F);
 
