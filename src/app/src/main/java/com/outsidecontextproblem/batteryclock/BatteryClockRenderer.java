@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.util.Log;
 
+import java.sql.Time;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -139,10 +140,10 @@ public class BatteryClockRenderer {
         canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.BackgroundRadius, _backgroundPaint);
 
         // <Steve smoking cut down specific>
-        Date smokingEpoch = calendar.getTime();
+        Date smokingEpoch = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTime();
         smokingEpoch.setTime(1681426800000L);
 
-        long now = Calendar.getInstance(TimeZone.getDefault()).getTime().getTime();
+        long now = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTime().getTime();
 
         long difference = now - smokingEpoch.getTime();
 
@@ -220,7 +221,7 @@ public class BatteryClockRenderer {
         Date quitDate = calendar.getTime();
         quitDate.setTime(1679529600000L);
 
-        difference = calendar.getTime().getTime() - quitDate.getTime();
+        difference = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTime().getTime() - quitDate.getTime();
 
         days = TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS);
 
