@@ -139,13 +139,8 @@ public class BatteryClockRenderer {
         canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.BackgroundRadius, _backgroundPaint);
 
         // <Steve smoking cut down specific>
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         Date smokingEpoch = calendar.getTime();
-
-        try {
-            smokingEpoch = simpleDateFormat.parse("14/04/2023");
-        }
-        catch (ParseException e) { }
+        smokingEpoch.setTime(1681426800000L);
 
         long now = Calendar.getInstance(TimeZone.getDefault()).getTime().getTime();
 
@@ -222,13 +217,8 @@ public class BatteryClockRenderer {
         }
 
         // <Steve alcohol quit specific>
-        simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         Date quitDate = calendar.getTime();
-
-        try {
-            quitDate = simpleDateFormat.parse("23/03/2023");
-        }
-        catch (ParseException e) { }
+        quitDate.setTime(1679529600000L);
 
         difference = calendar.getTime().getTime() - quitDate.getTime();
 
