@@ -218,7 +218,7 @@ public class BatteryClockRenderer {
         }
 
         // <Steve alcohol quit specific>
-        Date quitDate = calendar.getTime();
+        Date quitDate = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTime();
         quitDate.setTime(1679529600000L);
 
         difference = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTime().getTime() - quitDate.getTime();
