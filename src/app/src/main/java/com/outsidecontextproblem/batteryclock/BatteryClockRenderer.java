@@ -149,6 +149,8 @@ public class BatteryClockRenderer {
 
         long days = TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS);
 
+        Log.i(BatteryClockRenderer.class.getName(), String.format("Diff: %d days.", days));
+
         long timer = (45 + days) * 60;
 
         Log.i(BatteryClockRenderer.class.getName(), String.format("Timer: %d secs.", timer));
@@ -180,6 +182,8 @@ public class BatteryClockRenderer {
         }
 
         long sinceMidnight = (now / 1000) % 86400;
+
+        Log.i(BatteryClockRenderer.class.getName(), String.format("Since midnight: %d seconds.", sinceMidnight));
 
         fags += (40F - (86400F / (float) timer)) * ((float) sinceMidnight / 86400F);
 
