@@ -141,7 +141,7 @@ public class BatteryClockRenderer {
 
         // <Steve smoking cut down specific>
         Date smokingEpoch = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTime();
-        smokingEpoch.setTime(1681426800000L);
+        smokingEpoch.setTime(1692798121000L);
 
         long now = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTime().getTime();
 
@@ -223,7 +223,7 @@ public class BatteryClockRenderer {
 
         // <Steve alcohol quit specific>
         Date quitDate = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTime();
-        quitDate.setTime(1679529600000L);
+        quitDate.setTime(1692798121000L);
 
         difference = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTime().getTime() - quitDate.getTime();
 
