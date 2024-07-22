@@ -12,7 +12,7 @@
     <string name="timezone">Часова зона</string>
     <string name="label_optional">Мітка (опційно)</string>
     <string name="font_size">Розмір шрифту</string>
-    <string name="update_every_second">Оновлюється щосекунди</string>
+    <string name="update_every_second">Показати секунди</string>
     <string name="battery_level">Індикатор рівню батареї</string>
     <string name="bezel">Безель</string>
     <string name="hour_markings">Позначення годин</string>
