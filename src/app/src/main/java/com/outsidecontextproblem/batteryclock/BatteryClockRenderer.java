@@ -113,7 +113,7 @@ public class BatteryClockRenderer {
         paint.setARGB(settings.getOpacity() * 5, settings.getRed() * 5, settings.getGreen() * 5, settings.getBlue() * 5);
     }
 
-    public Bitmap render(int level, int hour, int minute, int second, int dayOfWeek, String label) {
+    public Bitmap render(int level, int hour, int minute, int second, int dayOfWeek, int millisecond, String label) {
 
         Bitmap bitmap = Bitmap.createBitmap(Constants.BitmapDimensions, Constants.BitmapDimensions, Bitmap.Config.ARGB_8888);
         bitmap.eraseColor(Color.TRANSPARENT);
@@ -135,7 +135,7 @@ public class BatteryClockRenderer {
         }
 
         if (second > -1) {
-            float secondsRadians = (float) ((float) ((second * 6) * (Math.PI / 180)) - Math.PI / 2);
+            float secondsRadians = (float) ((float) ((second * 6 + (double) millisecond / 166) * (Math.PI / 180)) - Math.PI / 2);
 
             canvas.drawLine((float) (Constants.BitmapCenter + Math.cos(secondsRadians) * Constants.TickStart), (float) (Constants.BitmapCenter + Math.sin(secondsRadians) * Constants.TickStart),
                     (float) (Constants.BitmapCenter + Math.cos(secondsRadians) * Constants.TickEnd), (float) (Constants.BitmapCenter + Math.sin(secondsRadians) * Constants.TickEnd), _secondsPaint);

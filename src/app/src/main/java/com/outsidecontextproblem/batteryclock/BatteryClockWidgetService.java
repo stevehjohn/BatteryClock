@@ -113,7 +113,7 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
     public void setNextCallback() {
         _handler.removeCallbacks(this);
         if (Settings.getUpdateSeconds()) {
-            _handler.postDelayed(this, 1_000);
+            _handler.postDelayed(this, 166);
         } else {
             _handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
         }
