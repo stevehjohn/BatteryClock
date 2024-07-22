@@ -125,6 +125,16 @@ public class Settings {
         _updateSeconds = updateSeconds;
     }
 
+    private static boolean _smoothSeconds;
+
+    public static boolean getSmoothSeconds() {
+        return _smoothSeconds;
+    }
+
+    public static void setSmoothSeconds(boolean smoothSeconds) {
+        _smoothSeconds = smoothSeconds;
+    }
+
     public Settings(int appWidgetId) {
         _appWidgetId = appWidgetId;
 
