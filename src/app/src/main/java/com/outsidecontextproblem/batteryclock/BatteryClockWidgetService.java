@@ -8,6 +8,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ServiceInfo;
 import android.hardware.display.DisplayManager;
 import android.os.Handler;
 import android.os.IBinder;
@@ -54,7 +55,7 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
                 .setContentText(getString(R.string.notification_text))
                 .setSmallIcon(R.drawable.notification);
 
-        startForeground(NOTIFICATION_ID, notificationBuilder.build());
+        startForeground(NOTIFICATION_ID, notificationBuilder.build(), ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
 
         if (_handler == null) {
             _handler = new Handler();
