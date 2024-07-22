@@ -155,13 +155,13 @@ public class BatteryClockRenderer {
 
         canvas.drawArc(dayArcOffset, dayArcOffset, Constants.BitmapDimensions - dayArcOffset, Constants.BitmapDimensions - dayArcOffset, 270, dayDegrees, true, _dayArcPaint);
 
-        float minuteDegrees = minute * 6;
+        float minuteDegrees = minute * 6 + (float) second / 10;
 
         int minuteArcOffset = Constants.BitmapCenter - Constants.MinuteHandLength;
 
         canvas.drawArc(minuteArcOffset, minuteArcOffset, Constants.BitmapDimensions - minuteArcOffset, Constants.BitmapDimensions - minuteArcOffset, 270, minuteDegrees, false, _minuteTrailPaint);
 
-        float minuteRadians = (float) ((float) ((minute * 6) * (Math.PI / 180)) - Math.PI / 2);
+        float minuteRadians = (float) ((float) ((minute * 6 + (double) second / 10) * (Math.PI / 180)) - Math.PI / 2);
 
         float hourDegrees = (hour % 12) * 30 + (minute / 2F);
 
