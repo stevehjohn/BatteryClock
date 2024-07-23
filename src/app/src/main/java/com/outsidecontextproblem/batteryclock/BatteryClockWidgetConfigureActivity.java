@@ -222,7 +222,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
         updatePreview();
 
-        _handler.postDelayed(this, 166);
+        _handler.postDelayed(this, 83);
     }
 
     @Override
@@ -231,7 +231,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
         updatePreview();
 
-        _handler.postDelayed(this, 166);
+        _handler.postDelayed(this, 83);
     }
 
     private void configureTimezones(Context context) {
