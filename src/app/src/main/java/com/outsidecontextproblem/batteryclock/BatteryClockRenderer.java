@@ -113,7 +113,7 @@ public class BatteryClockRenderer {
         paint.setARGB(settings.getOpacity() * 5, settings.getRed() * 5, settings.getGreen() * 5, settings.getBlue() * 5);
     }
 
-    public Bitmap render(int level, int hour, int minute, int second, int dayOfWeek, String label) {
+    public Bitmap render(int level, int hour, int minute, int second, int dayOfWeek, int millisecond, String label) {
 
         Bitmap bitmap = Bitmap.createBitmap(Constants.BitmapDimensions, Constants.BitmapDimensions, Bitmap.Config.ARGB_8888);
         bitmap.eraseColor(Color.TRANSPARENT);
@@ -135,7 +135,7 @@ public class BatteryClockRenderer {
         }
 
         if (second > -1) {
-            float secondsRadians = (float) ((float) ((second * 6) * (Math.PI / 180)) - Math.PI / 2);
+            float secondsRadians = (float) ((float) ((second * 12 + (double) millisecond / 83) * (Math.PI / 180)) - Math.PI / 2);
 
             canvas.drawLine((float) (Constants.BitmapCenter + Math.cos(secondsRadians) * Constants.TickStart), (float) (Constants.BitmapCenter + Math.sin(secondsRadians) * Constants.TickStart),
                     (float) (Constants.BitmapCenter + Math.cos(secondsRadians) * Constants.TickEnd), (float) (Constants.BitmapCenter + Math.sin(secondsRadians) * Constants.TickEnd), _secondsPaint);
@@ -155,13 +155,13 @@ public class BatteryClockRenderer {
 
         canvas.drawArc(dayArcOffset, dayArcOffset, Constants.BitmapDimensions - dayArcOffset, Constants.BitmapDimensions - dayArcOffset, 270, dayDegrees, true, _dayArcPaint);
 
-        float minuteDegrees = minute * 6;
+        float minuteDegrees = minute * 6 + (float) second / 10;
 
         int minuteArcOffset = Constants.BitmapCenter - Constants.MinuteHandLength;
 
         canvas.drawArc(minuteArcOffset, minuteArcOffset, Constants.BitmapDimensions - minuteArcOffset, Constants.BitmapDimensions - minuteArcOffset, 270, minuteDegrees, false, _minuteTrailPaint);
 
-        float minuteRadians = (float) ((float) ((minute * 6) * (Math.PI / 180)) - Math.PI / 2);
+        float minuteRadians = (float) ((float) ((minute * 6 + (double) second / 10) * (Math.PI / 180)) - Math.PI / 2);
 
         float hourDegrees = (hour % 12) * 30 + (minute / 2F);
 

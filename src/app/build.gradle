@@ -4,14 +4,14 @@ plugins {
 
 android {
     namespace 'com.outsidecontextproblem.batteryclock'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.outsidecontextproblem.batteryclock"
-        minSdk 33
-        targetSdk 33
-        versionCode 10
-        versionName '1.0.10'
+        minSdk 34
+        targetSdk 34
+        versionCode 14
+        versionName '1.0.14'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

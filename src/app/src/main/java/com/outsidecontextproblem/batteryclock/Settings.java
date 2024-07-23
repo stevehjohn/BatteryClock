@@ -125,13 +125,23 @@ public class Settings {
         _updateSeconds = updateSeconds;
     }
 
+    private static boolean _smoothSeconds;
+
+    public static boolean getSmoothSeconds() {
+        return _smoothSeconds;
+    }
+
+    public static void setSmoothSeconds(boolean smoothSeconds) {
+        _smoothSeconds = smoothSeconds;
+    }
+
     public Settings(int appWidgetId) {
         _appWidgetId = appWidgetId;
 
         _batteryLevelIndicatorSettings = new ElementSettings(appWidgetId, Constants.BezelIndicator, 51, 22, 20, 51);
         _bezelSettings = new ElementSettings(appWidgetId, Constants.BezelOutline,51, 51, 51, 51);
         _ticksSettings = new ElementSettings(appWidgetId, Constants.TickThickness,13, 51, 51, 51);
-        _secondsSettings = new ElementSettings(appWidgetId, Constants.TickThickness,51, 51, 51, 51);
+        _secondsSettings = new ElementSettings(appWidgetId, Constants.TickThickness,51, 22, 20, 51);
         _minuteSettings = new ElementSettings(appWidgetId, Constants.MinuteHandThickness, 51, 51, 51, 51);
         _minuteArcSettings = new ElementSettings(appWidgetId, Constants.BezelOutline, 13, 51, 51, 51);
         _hourSettings = new ElementSettings(appWidgetId, Constants.HourHandThickness, 51, 51, 51, 51);

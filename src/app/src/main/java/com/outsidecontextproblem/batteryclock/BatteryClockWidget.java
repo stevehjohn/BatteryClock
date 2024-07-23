@@ -109,14 +109,10 @@ public class BatteryClockWidget extends AppWidgetProvider {
         }
 
         if (!displayOn) {
-            Log.i(BatteryClockWidget.class.getName(), "Display is off, skipping update.");
-
             return;
         }
 
         if (views == null) {
-            Log.i(BatteryClockWidget.class.getName(), "Views is null.");
-
             return;
         }
 
@@ -146,7 +142,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
         }
         Calendar calendar = Calendar.getInstance(timeZone);
 
-        Bitmap bitmap = renderer.render(level, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), showSeconds ? calendar.get(Calendar.SECOND) : -1, (((calendar.get(Calendar.DAY_OF_WEEK) - 2) + 7) % 7), label);
+        Bitmap bitmap = renderer.render(level, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), showSeconds ? calendar.get(Calendar.SECOND) : -1, (((calendar.get(Calendar.DAY_OF_WEEK) - 2) + 7) % 7), calendar.get(Calendar.MILLISECOND), label);
 
         views.setImageViewBitmap(R.id.imageView, bitmap);
 

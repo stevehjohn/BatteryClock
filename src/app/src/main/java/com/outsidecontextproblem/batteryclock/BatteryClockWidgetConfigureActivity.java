@@ -222,7 +222,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
         updatePreview();
 
-        _handler.postDelayed(this, 1_000);
+        _handler.postDelayed(this, 83);
     }
 
     @Override
@@ -231,7 +231,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
         updatePreview();
 
-        _handler.postDelayed(this, 1_000);
+        _handler.postDelayed(this, 83);
     }
 
     private void configureTimezones(Context context) {
@@ -483,11 +483,12 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
         int minute = calendar.get(Calendar.MINUTE);
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int dayOfWeek = (((calendar.get(Calendar.DAY_OF_WEEK) - 2) + 7) % 7);
+        int millisecond = calendar.get(Calendar.MILLISECOND);
 
         BatteryManager batteryManager = (BatteryManager) getApplicationContext().getSystemService(Context.BATTERY_SERVICE);
         int level = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
 
-        Bitmap bitmap = _batteryClockRenderer.render(level, hour, minute, second, dayOfWeek, _settings.getLabel());
+        Bitmap bitmap = _batteryClockRenderer.render(level, hour, minute, second, dayOfWeek, millisecond, _settings.getLabel());
 
         ImageView imageView = findViewById(R.id.imageClock);
 
