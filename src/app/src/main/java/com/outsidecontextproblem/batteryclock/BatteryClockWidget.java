@@ -109,14 +109,10 @@ public class BatteryClockWidget extends AppWidgetProvider {
         }
 
         if (!displayOn) {
-            Log.i(BatteryClockWidget.class.getName(), "Display is off, skipping update.");
-
             return;
         }
 
         if (views == null) {
-            Log.i(BatteryClockWidget.class.getName(), "Views is null.");
-
             return;
         }
 

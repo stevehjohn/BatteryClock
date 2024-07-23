@@ -106,8 +106,6 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
 
     @Override
     public void onDisplayChanged(int i) {
-        Log.i(BatteryClockWidgetService.class.getName(), "onDisplayChanged()");
-
         run();
     }
 
