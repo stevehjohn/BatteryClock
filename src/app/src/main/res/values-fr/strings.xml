@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+      
+  <string name="app_name">BatterieHorloge</string>
+      
+  <string name="configure">Configuration de l\'horloge de la batterie</string>
+      
+  <string name="done_button">Sauvegarder</string>
+      
+  <string name="app_widget_description">Indicateur de niveau de batterie et widget horloge</string>
+      
+  <string name="thickness">Épaisseur</string>
+      
+  <string name="colour">Couleur</string>
+      
+  <string name="opacity">Opacité</string>
+      
+  <string name="cancel">Annuler</string>
+      
+  <string name="an_analogue_clock">Une horloge analogique</string>
+      
+  <string name="timezone">Fuseau horaire</string>
+      
+  <string name="label_optional">Étiquette (facultatif)</string>
+      
+  <string name="font_size">Taille de police</string>
+      
+  <string name="update_every_second">Afficher les secondes</string>
+      
+  <string name="battery_level">Indicateur de niveau de batterie</string>
+      
+  <string name="bezel">Facette</string>
+      
+  <string name="hour_markings">Marquages ​​horaires</string>
+      
+  <string name="second_indicator">Deuxième indicateur</string>
+      
+  <string name="minute_hand">Grande aiguille</string>
+      
+  <string name="minute_arc">Arc minute</string>
+      
+  <string name="hour_hand">Petite aiguille</string>
+      
+  <string name="hour_arc">Arc horaire</string>
+      
+  <string name="week_progress">Indicateur de progression de la semaine</string>
+      
+  <string name="clock_background">Fond d\'horloge</string>
+      
+  <string name="battery_drain">Attention: cela peut augmenter la consommation de votre batterie</string>
+      
+  <string name="notification_text">Rien à voir ici... juste mettre à jour votre widget horloge</string>
+  
+</resources>
