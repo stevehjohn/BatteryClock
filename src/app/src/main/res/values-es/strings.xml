@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+      
+  <string name="app_name">BateríaReloj</string>
+      
+  <string name="configure">Configuración del reloj de batería</string>
+      
+  <string name="done_button">Ahorrar</string>
+      
+  <string name="app_widget_description">Indicador de nivel de batería y widget de reloj</string>
+      
+  <string name="thickness">Espesor</string>
+      
+  <string name="colour">Color</string>
+      
+  <string name="opacity">Opacidad</string>
+      
+  <string name="cancel">Cancelar</string>
+      
+  <string name="an_analogue_clock">Un reloj analógico</string>
+      
+  <string name="timezone">Zona horaria</string>
+      
+  <string name="label_optional">Etiqueta (opcional)</string>
+      
+  <string name="font_size">Tamaño de fuente</string>
+      
+  <string name="update_every_second">Mostrar segundos</string>
+      
+  <string name="battery_level">Indicador de nivel de batería</string>
+      
+  <string name="bezel">Bisel</string>
+      
+  <string name="hour_markings">Marcas de hora</string>
+      
+  <string name="second_indicator">Segundo indicador</string>
+      
+  <string name="minute_hand">Minutero</string>
+      
+  <string name="minute_arc">Arco de minutos</string>
+      
+  <string name="hour_hand">Horario</string>
+      
+  <string name="hour_arc">Arco de la hora</string>
+      
+  <string name="week_progress">Indicador de progreso semanal</string>
+      
+  <string name="clock_background">Fondo del reloj</string>
+      
+  <string name="battery_drain">Advertencia: Esto puede aumentar el consumo de batería</string>
+      
+  <string name="notification_text">No hay nada que ver aquí... solo actualizando el widget de tu reloj</string>
+  
+</resources>

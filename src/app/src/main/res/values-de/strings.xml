@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+      
+  <string name="app_name">BatterieUhr</string>
+      
+  <string name="configure">BatteryClock-Konfiguration</string>
+      
+  <string name="done_button">Speichern</string>
+      
+  <string name="app_widget_description">Batteriestandsanzeige und Uhr-Widget</string>
+      
+  <string name="thickness">Dicke</string>
+      
+  <string name="colour">Farbe</string>
+      
+  <string name="opacity">Opazität</string>
+      
+  <string name="cancel">Stornieren</string>
+      
+  <string name="an_analogue_clock">Eine analoge Uhr</string>
+      
+  <string name="timezone">Zeitzone</string>
+      
+  <string name="label_optional">Beschriftung (optional)</string>
+      
+  <string name="font_size">Schriftgröße</string>
+      
+  <string name="update_every_second">Sekunden anzeigen</string>
+      
+  <string name="battery_level">Batteriestandsanzeige</string>
+      
+  <string name="bezel">Lünette</string>
+      
+  <string name="hour_markings">Stundenmarkierungen</string>
+      
+  <string name="second_indicator">Zweiter Indikator</string>
+      
+  <string name="minute_hand">Minutenzeiger</string>
+      
+  <string name="minute_arc">Bogenminute</string>
+      
+  <string name="hour_hand">Stunden Zeiger</string>
+      
+  <string name="hour_arc">Stundenbogen</string>
+      
+  <string name="week_progress">Wochenfortschrittsanzeige</string>
+      
+  <string name="clock_background">Uhr-Hintergrund</string>
+      
+  <string name="battery_drain">Achtung: Dadurch kann die Batterie stärker beansprucht werden</string>
+      
+  <string name="notification_text">Hier gibt es nichts zu sehen... aktualisiere nur dein Uhr-Widget</string>
+  
+</resources>
