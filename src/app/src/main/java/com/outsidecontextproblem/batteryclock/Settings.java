@@ -140,8 +140,8 @@ public class Settings {
 
         _batteryLevelIndicatorSettings = new ElementSettings(appWidgetId, Constants.BezelIndicator, 51, 22, 20, 51);
         _bezelSettings = new ElementSettings(appWidgetId, Constants.BezelOutline,51, 51, 51, 51);
-        _ticksSettings = new ElementSettings(appWidgetId, Constants.TickThickness,13, 51, 51, 51);
-        _secondsSettings = new ElementSettings(appWidgetId, Constants.TickThickness,51, 22, 20, 51);
+        _ticksSettings = new ElementSettings(appWidgetId, Constants.TickThickness,35, 51, 51, 51);
+        _secondsSettings = new ElementSettings(appWidgetId, Constants.SecondsThickness,51, 22, 20, 51);
         _minuteSettings = new ElementSettings(appWidgetId, Constants.MinuteHandThickness, 51, 51, 51, 51);
         _minuteArcSettings = new ElementSettings(appWidgetId, Constants.BezelOutline, 13, 51, 51, 51);
         _hourSettings = new ElementSettings(appWidgetId, Constants.HourHandThickness, 51, 51, 51, 51);
@@ -153,7 +153,7 @@ public class Settings {
         _timeZone = TimeZone.getDefault().getID();
         _label = "";
         _labelSize = 1;
-        _updateSeconds = false;
+        _updateSeconds = true;
     }
 
     @SuppressLint("DefaultLocale")
@@ -162,7 +162,7 @@ public class Settings {
         _timeZone = prefs.getString(String.format("%s.%d", TIMEZONE, _appWidgetId), TimeZone.getDefault().getID());
         _label = prefs.getString(String.format("%s.%d", LABEL, _appWidgetId), "");
         _labelSize = prefs.getInt(String.format("%s.%d", LABEL_SIZE, _appWidgetId), 1);
-        _updateSeconds = prefs.getBoolean(String.format("%s", SHOW_SECONDS), false);
+        _updateSeconds = prefs.getBoolean(String.format("%s", SHOW_SECONDS), true);
 
         _batteryLevelIndicatorSettings.loadSettings(context, BATTERY_INDICATOR);
         _bezelSettings.loadSettings(context, BEZEL);

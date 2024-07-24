@@ -22,4 +22,5 @@ public class Constants {
     public static int MinuteHandThickness = 4;
     public static int HourHandThickness = 4;
     public static int TickThickness = 4;
+    public static int SecondsThickness = 25;
 }
