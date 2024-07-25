@@ -6,6 +6,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
+import java.util.Calendar;
+import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
+
 public class BatteryClockRenderer {
 
     public static Typeface _typeface;
@@ -20,6 +24,7 @@ public class BatteryClockRenderer {
     private final Paint _minuteTrailPaint;
     private final Paint _hourTrailPaint;
     private final Paint _dayArcPaint;
+    private final Paint _smokeArcPaint;
     private final Paint _labelPaint;
 
     public BatteryClockRenderer() {
@@ -69,6 +74,9 @@ public class BatteryClockRenderer {
 
         _dayArcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _dayArcPaint.setARGB(65, 255, 255, 255);
+
+        _smokeArcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        _smokeArcPaint.setARGB(128, 128, 0, 0);
 
         _labelPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _labelPaint.setARGB(255, 255, 255, 255);
@@ -120,6 +128,24 @@ public class BatteryClockRenderer {
         Canvas canvas = new Canvas(bitmap);
 
         canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.BackgroundRadius, _backgroundPaint);
+
+        long now = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTime().getTime();
+
+        long timer = 360;
+
+        long difference = now - Settings.getLastSmoke().getTime();
+
+        long seconds = TimeUnit.SECONDS.convert(difference, TimeUnit.MILLISECONDS);
+
+        if (seconds < timer) {
+            long remain = timer - seconds;
+
+            int smokeArcOffset = Constants.BitmapCenter - Constants.BackgroundRadius;
+
+            float smokeDegrees = (360F / (float) timer) * (float) remain;
+
+            canvas.drawArc(smokeArcOffset, smokeArcOffset, Constants.BitmapDimensions - smokeArcOffset, Constants.BitmapDimensions - smokeArcOffset, 270, smokeDegrees, true, _smokeArcPaint);
+        }
 
         canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.FrameRadius, _circlePaint);
 

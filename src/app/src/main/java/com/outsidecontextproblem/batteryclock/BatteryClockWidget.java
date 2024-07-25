@@ -1,5 +1,6 @@
 package com.outsidecontextproblem.batteryclock;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
@@ -19,6 +20,8 @@ public class BatteryClockWidget extends AppWidgetProvider {
 
     private static final HashMap<Integer, BatteryClockRenderer> _batteryClockRenderers = new HashMap<>();
     private static final HashMap<Integer, Settings> _settings = new HashMap<>();
+
+    private static final String WidgetOnClick = "WidgetOnClick";
 
     public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Settings settings) {
 
@@ -56,7 +59,13 @@ public class BatteryClockWidget extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         Log.i(BatteryClockWidget.class.getName(), "onUpdate()");
 
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.battery_clock_widget);
+
+        views.setOnClickPendingIntent(R.id.imageView, getPendingSelfIntent(context, WidgetOnClick));
+
         for (int appWidgetId : appWidgetIds) {
+            appWidgetManager.updateAppWidget(appWidgetId, views);
+
             updateAppWidget(context, appWidgetManager, appWidgetId, null);
         }
     }
@@ -90,6 +99,12 @@ public class BatteryClockWidget extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.i(BatteryClockWidget.class.getName(), "onReceive()");
+
+        if (intent.getAction().equals(WidgetOnClick)) {
+            Log.i(BatteryClockWidget.class.getName(), "Widget OnClick();");
+
+            Settings.setLastSmoke(Calendar.getInstance(TimeZone.getDefault()).getTime());
+        }
 
         super.onReceive(context, intent);
     }
@@ -149,5 +164,11 @@ public class BatteryClockWidget extends AppWidgetProvider {
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
         bitmap.recycle();
+    }
+
+    protected PendingIntent getPendingSelfIntent(Context context, String action) {
+        Intent intent = new Intent(context, getClass());
+        intent.setAction(action);
+        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
     }
 }

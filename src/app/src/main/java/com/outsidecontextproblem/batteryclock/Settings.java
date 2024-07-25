@@ -4,6 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.TimeZone;
 
 public class Settings {
@@ -113,6 +118,16 @@ public class Settings {
         _labelSize = labelSize;
     }
 
+    private static Date _lastSmoke;
+
+    public static Date getLastSmoke() {
+        return _lastSmoke;
+    }
+
+    public static void setLastSmoke(Date lastSmoke) {
+        _lastSmoke = lastSmoke;
+    }
+
     private final int _appWidgetId;
 
     private static boolean _updateSeconds;
@@ -154,6 +169,16 @@ public class Settings {
         _label = "";
         _labelSize = 1;
         _updateSeconds = true;
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        Date lastSmoke = Calendar.getInstance(TimeZone.getDefault()).getTime();
+
+        try {
+            lastSmoke = simpleDateFormat.parse("01/01/2023");
+        }
+        catch (ParseException e) { }
+
+        _lastSmoke = lastSmoke;
     }
 
     @SuppressLint("DefaultLocale")
