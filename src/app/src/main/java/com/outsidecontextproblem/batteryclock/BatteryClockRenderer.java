@@ -161,7 +161,7 @@ public class BatteryClockRenderer {
         }
 
         if (second > -1) {
-            float secondsRadians = (float) ((float) ((second * 12 + (double) millisecond / 83) * (Math.PI / 180)) - Math.PI / 2);
+            float secondsRadians = ((float) ((float) ((second * 12 + (double) millisecond / 83) * (Math.PI / 180)) - Math.PI / 2)) / 2;
 
             canvas.drawLine((float) (Constants.BitmapCenter + Math.cos(secondsRadians) * Constants.TickStart), (float) (Constants.BitmapCenter + Math.sin(secondsRadians) * Constants.TickStart),
                     (float) (Constants.BitmapCenter + Math.cos(secondsRadians) * Constants.TickEnd), (float) (Constants.BitmapCenter + Math.sin(secondsRadians) * Constants.TickEnd), _secondsPaint);
