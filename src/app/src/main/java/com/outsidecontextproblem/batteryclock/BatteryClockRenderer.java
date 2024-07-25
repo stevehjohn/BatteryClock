@@ -131,7 +131,7 @@ public class BatteryClockRenderer {
 
         long now = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTime().getTime();
 
-        long timer = 360;
+        long timer = 3_600;
 
         long difference = now - Settings.getLastSmoke().getTime();
 
