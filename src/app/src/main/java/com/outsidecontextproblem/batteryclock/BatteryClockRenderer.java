@@ -27,6 +27,8 @@ public class BatteryClockRenderer {
     private final Paint _smokeArcPaint;
     private final Paint _labelPaint;
 
+    private int _countdown;
+
     public BatteryClockRenderer() {
 
         _arcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -100,6 +102,8 @@ public class BatteryClockRenderer {
         updatePaint(_backgroundPaint, settings.getBackgroundSettings());
         updatePaint(_labelPaint, settings.getLabelSettings());
 
+        _countdown = settings.getCountdown();
+
         switch (settings.getLabelSize()) {
             case 0:
                 _labelPaint.setTextSize(Constants.LabelSizeSmall);
@@ -131,7 +135,7 @@ public class BatteryClockRenderer {
 
         long now = Calendar.getInstance(TimeZone.getDefault()).getTime().getTime();
 
-        long timer = 3_600;
+        long timer = _countdown * 60L;
 
         long difference = now - Settings.getLastSmoke().getTime();
 
