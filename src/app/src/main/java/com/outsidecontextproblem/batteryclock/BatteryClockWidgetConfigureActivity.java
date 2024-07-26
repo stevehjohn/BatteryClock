@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -94,6 +95,11 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
         setContentView(_binding.getRoot());
         _binding.buttonAdd.setOnClickListener(_addOnClickListener);
         _binding.buttonCancel.setOnClickListener(_cancelOnClickListener);
+
+        NumberPicker pickCountdown = findViewById(R.id.pickCountdown);
+
+        pickCountdown.setMinValue(1);
+        pickCountdown.setMaxValue(3_600);
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
