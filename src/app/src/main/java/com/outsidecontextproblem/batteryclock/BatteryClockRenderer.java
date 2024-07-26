@@ -129,7 +129,7 @@ public class BatteryClockRenderer {
 
         canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.BackgroundRadius, _backgroundPaint);
 
-        long now = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTime().getTime();
+        long now = Calendar.getInstance(TimeZone.getDefault()).getTime().getTime();
 
         long timer = 3_600;
 
