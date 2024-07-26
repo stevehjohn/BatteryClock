@@ -467,6 +467,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
         ClockElementConfigurator secondsConfigurator = findViewById(R.id.configuratorSeconds);
         secondsConfigurator.setVisibility(Settings.getUpdateSeconds() ? View.VISIBLE : View.GONE);
+
+        NumberPicker pickCountdown = findViewById(R.id.pickCountdown);
+        pickCountdown.setValue(_settings.getCountdown());
     }
 
     private void configureElement(ClockElementConfigurator configurator, ElementSettings settings) {
