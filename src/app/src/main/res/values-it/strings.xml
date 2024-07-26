@@ -49,5 +49,7 @@
   <string name="battery_drain">Avvertenza: ciò potrebbe aumentare il consumo della batteria</string>
       
   <string name="notification_text">Niente da vedere qui... sto solo aggiornando il widget dell\'orologio</string>
+      
+  <string name="countdown">Timer per il conto alla rovescia (minuti)</string>
   
 </resources>

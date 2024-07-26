@@ -49,5 +49,7 @@
   <string name="battery_drain">Advertencia: Esto puede aumentar el consumo de batería</string>
       
   <string name="notification_text">No hay nada que ver aquí... solo actualizando el widget de tu reloj</string>
+      
+  <string name="countdown">Temporizador de cuenta regresiva (minutos)</string>
   
 </resources>

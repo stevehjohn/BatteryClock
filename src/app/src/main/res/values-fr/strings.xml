@@ -49,5 +49,7 @@
   <string name="battery_drain">Attention: cela peut augmenter la consommation de votre batterie</string>
       
   <string name="notification_text">Rien à voir ici... juste mettre à jour votre widget horloge</string>
+      
+  <string name="countdown">Compte à rebours (minutes)</string>
   
 </resources>
