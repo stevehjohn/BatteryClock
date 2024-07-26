@@ -124,6 +124,8 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
         pickCountdown.setValue(_settings.getCountdown());
 
+        pickCountdown.setOnValueChangedListener((numberPicker, i, i1) -> _settings.setCountdown(pickCountdown.getValue()));
+
         EditText editText = findViewById(R.id.inputLabel);
         editText.setText(_settings.getLabel());
 
