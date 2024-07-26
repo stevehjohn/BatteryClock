@@ -25,4 +25,5 @@
     <string name="clock_background">Clock Background</string>
     <string name="battery_drain">Warning: This may increase drain on your battery</string>
     <string name="notification_text">Nothing to see here... just updating your clock widget</string>
+    <string name="countdown">Countdown timer (minutes)</string>
 </resources>
