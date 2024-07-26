@@ -135,11 +135,11 @@ public class BatteryClockRenderer {
 
         long now = Calendar.getInstance(TimeZone.getDefault()).getTime().getTime();
 
-        long timer = _countdown * 60L;
+        long timer = _countdown * 60_000L;
 
         long difference = now - Settings.getLastSmoke().getTime();
 
-        long seconds = TimeUnit.SECONDS.convert(difference, TimeUnit.MILLISECONDS);
+        long seconds = TimeUnit.MILLISECONDS.convert(difference, TimeUnit.MILLISECONDS);
 
         if (seconds < timer) {
             long remain = timer - seconds;
