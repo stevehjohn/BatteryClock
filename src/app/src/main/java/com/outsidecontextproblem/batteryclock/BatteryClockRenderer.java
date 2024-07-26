@@ -189,7 +189,7 @@ public class BatteryClockRenderer {
 
         float minuteRadians = (float) ((float) ((minute * 6 + (double) second / 10) * (Math.PI / 180)) - Math.PI / 2);
 
-        float hourSeconds = hour * 3600 + minute * 60 + second;
+        float hourSeconds = (hour % 12) * 3600 + minute * 60 + second;
 
         float hourDegrees = hourSeconds / 240F;
 
