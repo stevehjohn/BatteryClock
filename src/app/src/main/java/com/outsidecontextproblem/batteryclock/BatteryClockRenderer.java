@@ -195,7 +195,7 @@ public class BatteryClockRenderer {
 
         int hourArcOffset = Constants.BitmapCenter - Constants.HourHandLength;
 
-        canvas.drawArc(hourArcOffset, hourArcOffset, Constants.BitmapDimensions - hourArcOffset, Constants.BitmapDimensions - hourArcOffset, 270, hourDegrees + 180, false, _hourTrailPaint);
+        canvas.drawArc(hourArcOffset, hourArcOffset, Constants.BitmapDimensions - hourArcOffset, Constants.BitmapDimensions - hourArcOffset, 270, hourDegrees, false, _hourTrailPaint);
 
         canvas.drawLine(Constants.BitmapCenter, Constants.BitmapCenter, (float) (Constants.BitmapCenter + Math.cos(minuteRadians) * Constants.MinuteHandLength), (float) (Constants.BitmapCenter + Math.sin(minuteRadians) * Constants.MinuteHandLength), _minutePaint);
 
