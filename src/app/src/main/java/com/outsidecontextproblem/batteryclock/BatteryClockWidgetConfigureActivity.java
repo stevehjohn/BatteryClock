@@ -96,11 +96,6 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
         _binding.buttonAdd.setOnClickListener(_addOnClickListener);
         _binding.buttonCancel.setOnClickListener(_cancelOnClickListener);
 
-        NumberPicker pickCountdown = findViewById(R.id.pickCountdown);
-
-        pickCountdown.setMinValue(1);
-        pickCountdown.setMaxValue(3_600);
-
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         if (extras != null) {
@@ -121,6 +116,13 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
         _batteryClockRenderer = new BatteryClockRenderer();
 
         _settings = new Settings(_appWidgetId);
+
+        NumberPicker pickCountdown = findViewById(R.id.pickCountdown);
+
+        pickCountdown.setMinValue(1);
+        pickCountdown.setMaxValue(3_600);
+
+        pickCountdown.setValue(_settings.getCountdown());
 
         EditText editText = findViewById(R.id.inputLabel);
         editText.setText(_settings.getLabel());
