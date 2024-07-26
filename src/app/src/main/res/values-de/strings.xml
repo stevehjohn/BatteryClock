@@ -49,5 +49,7 @@
   <string name="battery_drain">Achtung: Dadurch kann die Batterie stärker beansprucht werden</string>
       
   <string name="notification_text">Hier gibt es nichts zu sehen... aktualisiere nur dein Uhr-Widget</string>
+      
+  <string name="countdown">Countdown-Timer (Minuten)</string>
   
 </resources>
