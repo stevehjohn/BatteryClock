@@ -6,6 +6,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
+import java.util.Calendar;
+import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
+
 public class BatteryClockRenderer {
 
     public static Typeface _typeface;
@@ -20,7 +24,10 @@ public class BatteryClockRenderer {
     private final Paint _minuteTrailPaint;
     private final Paint _hourTrailPaint;
     private final Paint _dayArcPaint;
+    private final Paint _smokeArcPaint;
     private final Paint _labelPaint;
+
+    private int _countdown;
 
     public BatteryClockRenderer() {
 
@@ -70,6 +77,9 @@ public class BatteryClockRenderer {
         _dayArcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _dayArcPaint.setARGB(65, 255, 255, 255);
 
+        _smokeArcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        _smokeArcPaint.setARGB(128, 128, 0, 0);
+
         _labelPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _labelPaint.setARGB(255, 255, 255, 255);
         _labelPaint.setTextSize(Constants.LabelSizeDefault);
@@ -91,6 +101,8 @@ public class BatteryClockRenderer {
         updatePaint(_dayArcPaint, settings.getWeekSettings());
         updatePaint(_backgroundPaint, settings.getBackgroundSettings());
         updatePaint(_labelPaint, settings.getLabelSettings());
+
+        _countdown = settings.getCountdown();
 
         switch (settings.getLabelSize()) {
             case 0:
@@ -121,6 +133,24 @@ public class BatteryClockRenderer {
 
         canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.BackgroundRadius, _backgroundPaint);
 
+        long now = Calendar.getInstance(TimeZone.getDefault()).getTime().getTime();
+
+        long timer = _countdown * 60_000L;
+
+        long difference = now - Settings.getLastSmoke().getTime();
+
+        long seconds = TimeUnit.MILLISECONDS.convert(difference, TimeUnit.MILLISECONDS);
+
+        if (seconds < timer) {
+            long remain = timer - seconds;
+
+            int smokeArcOffset = Constants.BitmapCenter - Constants.BackgroundRadius;
+
+            float smokeDegrees = (360F / (float) timer) * (float) remain;
+
+            canvas.drawArc(smokeArcOffset, smokeArcOffset, Constants.BitmapDimensions - smokeArcOffset, Constants.BitmapDimensions - smokeArcOffset, 270, smokeDegrees, true, _smokeArcPaint);
+        }
+
         canvas.drawCircle(Constants.BitmapCenter, Constants.BitmapCenter, Constants.FrameRadius, _circlePaint);
 
         int batteryArcOffset = Constants.BitmapCenter - Constants.BatteryIndicatorRadius;
@@ -135,7 +165,7 @@ public class BatteryClockRenderer {
         }
 
         if (second > -1) {
-            float secondsRadians = (float) ((float) ((second * 12 + (double) millisecond / 83) * (Math.PI / 180)) - Math.PI / 2);
+            float secondsRadians = (float) ((second + (double) millisecond / 1000) * (Math.PI / 30) - Math.PI / 2);
 
             canvas.drawLine((float) (Constants.BitmapCenter + Math.cos(secondsRadians) * Constants.TickStart), (float) (Constants.BitmapCenter + Math.sin(secondsRadians) * Constants.TickStart),
                     (float) (Constants.BitmapCenter + Math.cos(secondsRadians) * Constants.TickEnd), (float) (Constants.BitmapCenter + Math.sin(secondsRadians) * Constants.TickEnd), _secondsPaint);
@@ -163,9 +193,9 @@ public class BatteryClockRenderer {
 
         float minuteRadians = (float) ((float) ((minute * 6 + (double) second / 10) * (Math.PI / 180)) - Math.PI / 2);
 
-        float hourSeconds = hour * 3600 + minute * 60 + second;
+        float hourSeconds = (hour % 12) * 3600 + minute * 60 + second;
 
-        float hourDegrees = hourSeconds / 240F - 180;
+        float hourDegrees = hourSeconds / 120F;
 
         int hourArcOffset = Constants.BitmapCenter - Constants.HourHandLength;
 
@@ -173,7 +203,7 @@ public class BatteryClockRenderer {
 
         canvas.drawLine(Constants.BitmapCenter, Constants.BitmapCenter, (float) (Constants.BitmapCenter + Math.cos(minuteRadians) * Constants.MinuteHandLength), (float) (Constants.BitmapCenter + Math.sin(minuteRadians) * Constants.MinuteHandLength), _minutePaint);
 
-        float hourRadians = (float) ((float) (hourDegrees * (Math.PI / 180)) - Math.PI / 2);
+        float hourRadians = (float) ((float) ((float) (hourDegrees * (Math.PI / 180)) - Math.PI / 2));
 
         canvas.drawLine(Constants.BitmapCenter, Constants.BitmapCenter, (float) (Constants.BitmapCenter + Math.cos(hourRadians) * Constants.HourHandLength), (float) (Constants.BitmapCenter + Math.sin(hourRadians) * Constants.HourHandLength), _hourPaint);
 

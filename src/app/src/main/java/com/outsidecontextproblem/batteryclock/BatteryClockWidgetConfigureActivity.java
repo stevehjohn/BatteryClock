@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -115,6 +116,15 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
         _batteryClockRenderer = new BatteryClockRenderer();
 
         _settings = new Settings(_appWidgetId);
+
+        NumberPicker pickCountdown = findViewById(R.id.pickCountdown);
+
+        pickCountdown.setMinValue(1);
+        pickCountdown.setMaxValue(3_600);
+
+        pickCountdown.setValue(_settings.getCountdown());
+
+        pickCountdown.setOnValueChangedListener((numberPicker, i, i1) -> _settings.setCountdown(pickCountdown.getValue()));
 
         EditText editText = findViewById(R.id.inputLabel);
         editText.setText(_settings.getLabel());
@@ -459,6 +469,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
         ClockElementConfigurator secondsConfigurator = findViewById(R.id.configuratorSeconds);
         secondsConfigurator.setVisibility(Settings.getUpdateSeconds() ? View.VISIBLE : View.GONE);
+
+        NumberPicker pickCountdown = findViewById(R.id.pickCountdown);
+        pickCountdown.setValue(_settings.getCountdown());
     }
 
     private void configureElement(ClockElementConfigurator configurator, ElementSettings settings) {
