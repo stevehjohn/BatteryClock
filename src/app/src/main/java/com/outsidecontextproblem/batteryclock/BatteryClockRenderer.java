@@ -171,7 +171,7 @@ public class BatteryClockRenderer {
                     (float) (Constants.BitmapCenter + Math.cos(secondsRadians) * Constants.TickEnd), (float) (Constants.BitmapCenter + Math.sin(secondsRadians) * Constants.TickEnd), _secondsPaint);
         }
 
-        if (label != null && label.length() > 0) {
+        if (label != null && ! label.isEmpty()) {
             canvas.drawText(label, Constants.BitmapCenter, Constants.LabelY + _labelPaint.getTextSize() / 2, _labelPaint);
         }
 
