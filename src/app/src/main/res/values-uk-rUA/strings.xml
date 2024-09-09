@@ -25,4 +25,5 @@
     <string name="clock_background">Фон годинника</string>
     <string name="battery_drain">Увага: Це може пришвидшити розряджання вашого акумулятора</string>
     <string name="notification_text">Немає що тут дивитися... просто оновлення вашого годинникового віджету</string>
+    <string name="countdown">Таймер зворотного відліку (хвилини)</string>
 </resources>
