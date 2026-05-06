@@ -119,7 +119,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
         NumberPicker pickCountdown = findViewById(R.id.pickCountdown);
 
-        pickCountdown.setMinValue(1);
+        pickCountdown.setMinValue(0);
         pickCountdown.setMaxValue(3_600);
 
         pickCountdown.setValue(_settings.getCountdown());
