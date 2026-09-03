@@ -1,6 +1,6 @@
 *.iml
 
-/.gradle/
+/src/.gradle/
 
 /src/local.properties
 
@@ -14,7 +14,7 @@
 .DS_Store
 
 /src/build/
-/captures/
+/src/captures/
 
 .externalNativeBuild
 .cxx
