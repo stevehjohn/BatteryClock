@@ -15,7 +15,7 @@
         android:roundIcon="@drawable/appwidget_preview"
         android:supportsRtl="true"
         android:theme="@style/Theme.BatteryClock"
-        tools:targetApi="34">
+        tools:targetApi="37">
 
         <receiver
             android:name=".BatteryClockBootBroadcastReceiver"
@@ -46,7 +46,15 @@
             </intent-filter>
         </activity>
 
-        <service android:name="com.outsidecontextproblem.batteryclock.BatteryClockWidgetService" android:foregroundServiceType="specialUse" />
+        <service
+            android:name="com.outsidecontextproblem.batteryclock.BatteryClockWidgetService"
+            android:foregroundServiceType="specialUse">
+
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Continuously updates a user-configured home screen clock widget" />
+
+        </service>
     </application>
 
 </manifest>

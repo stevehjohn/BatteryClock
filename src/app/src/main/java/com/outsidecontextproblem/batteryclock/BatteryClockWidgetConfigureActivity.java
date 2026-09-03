@@ -12,12 +12,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -168,6 +170,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
         SwitchMaterial secondsSwitch = findViewById(R.id.switchSeconds);
         secondsSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
+            LinearLayout smoothSeconds = findViewById(R.id.layoutSecondsSmooth);
+            smoothSeconds.setVisibility(b ? View.VISIBLE : View.GONE);
+
             ClockElementConfigurator secondConfigurator = findViewById(R.id.configuratorSeconds);
             secondConfigurator.setVisibility(b ? View.VISIBLE : View.GONE);
 
@@ -179,6 +184,18 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
             BatteryClockWidgetService serviceInstance = BatteryClockWidgetService.getInstance();
             if (serviceInstance != null) {
                 BatteryClockWidgetService.getInstance().setNextCallback();
+            }
+        });
+
+        SwitchMaterial smoothSecondsSwitch = findViewById(R.id.switchSecondsSmooth);
+        smoothSecondsSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
+            Settings.setUpdateSmoothSeconds(b);
+
+            BatteryClockWidgetService serviceInstance =
+                    BatteryClockWidgetService.getInstance();
+
+            if (serviceInstance != null) {
+                serviceInstance.setNextCallback();
             }
         });
 
@@ -232,7 +249,15 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
         updatePreview();
 
-        _handler.postDelayed(this, 83);
+        if (Settings.getUpdateSeconds()) {
+            if (Settings.getUpdateSmoothSeconds()) {
+                _handler.postDelayed(this, 83);
+            } else {
+                _handler.postDelayed(this, 1_000 - System.currentTimeMillis() % 1_000);
+            }
+        } else {
+            _handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
+        }
     }
 
     @Override
@@ -241,7 +266,15 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
         updatePreview();
 
-        _handler.postDelayed(this, 83);
+        if (Settings.getUpdateSeconds()) {
+            if (Settings.getUpdateSmoothSeconds()) {
+                _handler.postDelayed(this, 83);
+            } else {
+                _handler.postDelayed(this, 1_000 - System.currentTimeMillis() % 1_000);
+            }
+        } else {
+            _handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
+        }
     }
 
     private void configureTimezones(Context context) {
@@ -463,6 +496,12 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
         SwitchMaterial switchSeconds = findViewById(R.id.switchSeconds);
         switchSeconds.setChecked(Settings.getUpdateSeconds());
+
+        LinearLayout smoothSeconds = findViewById(R.id.layoutSecondsSmooth);
+        smoothSeconds.setVisibility(Settings.getUpdateSeconds() ? View.VISIBLE : View.GONE);
+
+        SwitchMaterial switchSecondsSmooth = findViewById(R.id.switchSecondsSmooth);
+        switchSecondsSmooth.setChecked(Settings.getUpdateSmoothSeconds());
 
         TextView textWarning = findViewById(R.id.textWarning);
         textWarning.setVisibility(Settings.getUpdateSeconds() ? View.VISIBLE : View.GONE);

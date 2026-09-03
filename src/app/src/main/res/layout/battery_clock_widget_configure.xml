@@ -202,6 +202,35 @@
                 android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/layoutSeconds"/>
 
+            <LinearLayout
+                android:id="@+id/layoutSecondsSmooth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/textWarning">
+
+                <TextView
+                    android:id="@+id/textSecondsSmooth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/update_seconds_smoothly"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchSecondsSmooth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="@string/second_indicator"
                 app:elementThickness="4"
@@ -213,7 +242,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/textWarning" />
+                app:layout_constraintTop_toBottomOf="@id/layoutSecondsSmooth" />
 
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="@string/minute_hand"
