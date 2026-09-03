@@ -174,7 +174,7 @@ public class Settings {
         _labelSize = 1;
         _updateSeconds = true;
 
-        _countdown = 60;
+        _countdown = 0;
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         Date lastSmoke = Calendar.getInstance(TimeZone.getDefault()).getTime();
