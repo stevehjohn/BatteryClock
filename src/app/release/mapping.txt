@@ -3,8 +3,8 @@
 # min_api: 35
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.2"}
-# pg_map_id: 2392d9bbf7843de1748f4f9ff21e05ca70a53b7787bd6c7aba4b8124a9986a18
-# pg_map_hash: SHA-256 2392d9bbf7843de1748f4f9ff21e05ca70a53b7787bd6c7aba4b8124a9986a18
+# pg_map_id: fc006211930ecb5be238e8f4352f99ae9817bb355d6fae4a141c78df52e71c0c
+# pg_map_hash: SHA-256 fc006211930ecb5be238e8f4352f99ae9817bb355d6fae4a141c78df52e71c0c
 _COROUTINE.ArtificialStackFrames -> R8$$REMOVED$$CLASS$$0:
 # {"id":"sourceFile","fileName":"CoroutineDebugging.kt"}
 _COROUTINE.ArtificialStackFramesUnsafe -> y2:
@@ -91067,156 +91067,156 @@ com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity -> co
     14:25:void <init>():46:46 -> <init>
     26:39:void <init>():61:61 -> <init>
     1:2:int com.outsidecontextproblem.batteryclock.ElementSettings.getThickness():44:44 -> a
-    1:2:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):506 -> a
+    1:2:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):517 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lae;Lcom/outsidecontextproblem/batteryclock/ClockElementConfigurator;)V"}
-    3:5:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):506:506 -> a
+    3:5:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):517:517 -> a
     6:7:int com.outsidecontextproblem.batteryclock.ElementSettings.getOpacity():51:51 -> a
-    6:7:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):507 -> a
-    8:10:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):507:507 -> a
+    6:7:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):518 -> a
+    8:10:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):518:518 -> a
     11:12:int com.outsidecontextproblem.batteryclock.ElementSettings.getRed():58:58 -> a
-    11:12:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):508 -> a
-    13:15:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):508:508 -> a
+    11:12:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):519 -> a
+    13:15:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):519:519 -> a
     16:17:int com.outsidecontextproblem.batteryclock.ElementSettings.getGreen():65:65 -> a
-    16:17:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):509 -> a
-    18:20:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):509:509 -> a
+    16:17:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):520 -> a
+    18:20:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):520:520 -> a
     21:22:int com.outsidecontextproblem.batteryclock.ElementSettings.getBlue():70:70 -> a
-    21:22:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):510 -> a
-    23:25:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):510:510 -> a
-    26:33:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):512:512 -> a
-    4:9:void continentSelected():336:336 -> b
-    10:15:void continentSelected():338:338 -> b
-    16:20:void continentSelected():340:340 -> b
-    21:34:void continentSelected():342:342 -> b
-    35:38:void continentSelected():343:343 -> b
-    39:49:void continentSelected():345:345 -> b
-    50:57:void continentSelected():346:346 -> b
-    58:63:void continentSelected():350:350 -> b
-    64:68:void continentSelected():351:351 -> b
-    69:70:void continentSelected():353:353 -> b
+    21:22:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):521 -> a
+    23:25:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):521:521 -> a
+    26:33:void configureElement(com.outsidecontextproblem.batteryclock.ClockElementConfigurator,com.outsidecontextproblem.batteryclock.ElementSettings):523:523 -> a
+    4:9:void continentSelected():344:344 -> b
+    10:15:void continentSelected():346:346 -> b
+    16:20:void continentSelected():348:348 -> b
+    21:34:void continentSelected():350:350 -> b
+    35:38:void continentSelected():351:351 -> b
+    39:49:void continentSelected():353:353 -> b
+    50:57:void continentSelected():354:354 -> b
+    58:63:void continentSelected():358:358 -> b
+    64:68:void continentSelected():359:359 -> b
+    69:70:void continentSelected():361:361 -> b
     71:75:void com.outsidecontextproblem.batteryclock.Settings.setTimeZone(java.lang.String):100:100 -> b
-    71:75:void continentSelected():353 -> b
+    71:75:void continentSelected():361 -> b
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    76:81:void continentSelected():356:356 -> b
-    82:93:void continentSelected():358:358 -> b
-    94:96:void continentSelected():359:359 -> b
-    97:98:void continentSelected():361:361 -> b
+    76:81:void continentSelected():364:364 -> b
+    82:93:void continentSelected():366:366 -> b
+    94:96:void continentSelected():367:367 -> b
+    97:98:void continentSelected():369:369 -> b
     99:100:java.lang.String com.outsidecontextproblem.batteryclock.Settings.getTimeZone():96:96 -> b
-    99:100:void continentSelected():361 -> b
+    99:100:void continentSelected():369 -> b
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    101:104:void continentSelected():361:361 -> b
-    105:107:void continentSelected():363:363 -> b
-    108:116:void continentSelected():364:364 -> b
-    117:119:void continentSelected():367:367 -> b
-    120:121:void continentSelected():371:371 -> b
-    122:126:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.<init>(com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity):371:371 -> b
-    122:126:void continentSelected():371 -> b
-    127:133:void continentSelected():371:371 -> b
-    1:10:void updatePaints():404:404 -> c
-    11:16:void updatePaints():406:406 -> c
-    17:18:void updatePaints():407:407 -> c
+    101:104:void continentSelected():369:369 -> b
+    105:107:void continentSelected():371:371 -> b
+    108:116:void continentSelected():372:372 -> b
+    117:119:void continentSelected():375:375 -> b
+    120:121:void continentSelected():379:379 -> b
+    122:126:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.<init>(com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity):379:379 -> b
+    122:126:void continentSelected():379 -> b
+    127:133:void continentSelected():379:379 -> b
+    1:10:void updatePaints():412:412 -> c
+    11:16:void updatePaints():414:414 -> c
+    17:18:void updatePaints():415:415 -> c
     19:20:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getBatteryLevelIndicatorSettings():50:50 -> c
-    19:20:void updatePaints():407 -> c
+    19:20:void updatePaints():415 -> c
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    21:26:void updatePaints():407:407 -> c
-    27:32:void updatePaints():409:409 -> c
-    33:34:void updatePaints():410:410 -> c
+    21:26:void updatePaints():415:415 -> c
+    27:32:void updatePaints():417:417 -> c
+    33:34:void updatePaints():418:418 -> c
     35:36:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getBezelSettings():54:54 -> c
-    35:36:void updatePaints():410 -> c
+    35:36:void updatePaints():418 -> c
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    37:42:void updatePaints():410:410 -> c
-    43:48:void updatePaints():412:412 -> c
-    49:50:void updatePaints():413:413 -> c
+    37:42:void updatePaints():418:418 -> c
+    43:48:void updatePaints():420:420 -> c
+    49:50:void updatePaints():421:421 -> c
     51:52:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getTicksSettings():58:58 -> c
-    51:52:void updatePaints():413 -> c
+    51:52:void updatePaints():421 -> c
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    53:58:void updatePaints():413:413 -> c
-    59:64:void updatePaints():415:415 -> c
-    65:66:void updatePaints():416:416 -> c
+    53:58:void updatePaints():421:421 -> c
+    59:64:void updatePaints():423:423 -> c
+    65:66:void updatePaints():424:424 -> c
     67:68:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getSecondsSettings():62:62 -> c
-    67:68:void updatePaints():416 -> c
+    67:68:void updatePaints():424 -> c
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    69:74:void updatePaints():416:416 -> c
-    75:80:void updatePaints():418:418 -> c
-    81:82:void updatePaints():419:419 -> c
+    69:74:void updatePaints():424:424 -> c
+    75:80:void updatePaints():426:426 -> c
+    81:82:void updatePaints():427:427 -> c
     83:84:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getMinuteSettings():66:66 -> c
-    83:84:void updatePaints():419 -> c
+    83:84:void updatePaints():427 -> c
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    85:90:void updatePaints():419:419 -> c
-    91:96:void updatePaints():421:421 -> c
-    97:98:void updatePaints():422:422 -> c
+    85:90:void updatePaints():427:427 -> c
+    91:96:void updatePaints():429:429 -> c
+    97:98:void updatePaints():430:430 -> c
     99:100:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getMinuteArcSettings():70:70 -> c
-    99:100:void updatePaints():422 -> c
+    99:100:void updatePaints():430 -> c
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    101:106:void updatePaints():422:422 -> c
-    107:112:void updatePaints():424:424 -> c
-    113:114:void updatePaints():425:425 -> c
+    101:106:void updatePaints():430:430 -> c
+    107:112:void updatePaints():432:432 -> c
+    113:114:void updatePaints():433:433 -> c
     115:116:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getHourSettings():74:74 -> c
-    115:116:void updatePaints():425 -> c
+    115:116:void updatePaints():433 -> c
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    117:122:void updatePaints():425:425 -> c
-    123:128:void updatePaints():427:427 -> c
-    129:130:void updatePaints():428:428 -> c
+    117:122:void updatePaints():433:433 -> c
+    123:128:void updatePaints():435:435 -> c
+    129:130:void updatePaints():436:436 -> c
     131:132:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getHourArcSettings():78:78 -> c
-    131:132:void updatePaints():428 -> c
+    131:132:void updatePaints():436 -> c
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    133:138:void updatePaints():428:428 -> c
-    139:144:void updatePaints():430:430 -> c
-    145:146:void updatePaints():431:431 -> c
+    133:138:void updatePaints():436:436 -> c
+    139:144:void updatePaints():438:438 -> c
+    145:146:void updatePaints():439:439 -> c
     147:148:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getWeekSettings():82:82 -> c
-    147:148:void updatePaints():431 -> c
+    147:148:void updatePaints():439 -> c
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    149:154:void updatePaints():431:431 -> c
-    155:160:void updatePaints():433:433 -> c
-    161:162:void updatePaints():434:434 -> c
+    149:154:void updatePaints():439:439 -> c
+    155:160:void updatePaints():441:441 -> c
+    161:162:void updatePaints():442:442 -> c
     163:164:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getBackgroundSettings():86:86 -> c
-    163:164:void updatePaints():434 -> c
+    163:164:void updatePaints():442 -> c
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    165:170:void updatePaints():434:434 -> c
-    171:176:void updatePaints():436:436 -> c
-    177:178:void updatePaints():437:437 -> c
+    165:170:void updatePaints():442:442 -> c
+    171:176:void updatePaints():444:444 -> c
+    177:178:void updatePaints():445:445 -> c
     179:180:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getLabelSettings():90:90 -> c
-    179:180:void updatePaints():437 -> c
+    179:180:void updatePaints():445 -> c
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    181:184:void updatePaints():437:437 -> c
-    1:2:void updatePreview():517:517 -> d
+    181:184:void updatePaints():445:445 -> c
+    1:2:void updatePreview():528:528 -> d
     3:4:java.lang.String com.outsidecontextproblem.batteryclock.Settings.getTimeZone():96:96 -> d
-    3:4:void updatePreview():517 -> d
+    3:4:void updatePreview():528 -> d
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    5:12:void updatePreview():517:517 -> d
+    5:12:void updatePreview():528:528 -> d
     13:18:boolean com.outsidecontextproblem.batteryclock.Settings.getUpdateSeconds():138:138 -> d
-    13:18:void updatePreview():520 -> d
-    19:28:void updatePreview():521:521 -> d
-    29:34:void updatePreview():524:524 -> d
-    35:39:void updatePreview():525:525 -> d
-    40:49:void updatePreview():526:526 -> d
-    50:53:void updatePreview():527:527 -> d
-    54:66:void updatePreview():529:529 -> d
-    67:70:void updatePreview():530:530 -> d
-    71:74:void updatePreview():532:532 -> d
+    13:18:void updatePreview():531 -> d
+    19:28:void updatePreview():532:532 -> d
+    29:34:void updatePreview():535:535 -> d
+    35:39:void updatePreview():536:536 -> d
+    40:49:void updatePreview():537:537 -> d
+    50:53:void updatePreview():538:538 -> d
+    54:66:void updatePreview():540:540 -> d
+    67:70:void updatePreview():541:541 -> d
+    71:74:void updatePreview():543:543 -> d
     75:76:java.lang.String com.outsidecontextproblem.batteryclock.Settings.getLabel():106:106 -> d
-    75:76:void updatePreview():532 -> d
+    75:76:void updatePreview():543 -> d
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    77:83:void updatePreview():532:532 -> d
-    84:89:void updatePreview():534:534 -> d
-    90:93:void updatePreview():536:536 -> d
-    1:4:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):441:441 -> e
+    77:83:void updatePreview():543:543 -> d
+    84:89:void updatePreview():545:545 -> d
+    90:93:void updatePreview():547:547 -> d
+    1:4:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):449:449 -> e
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lae;Lcom/outsidecontextproblem/batteryclock/ClockElementConfigurator;)V"}
     5:6:void com.outsidecontextproblem.batteryclock.ElementSettings.setThickness(int):47:47 -> e
-    5:6:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):441 -> e
+    5:6:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):449 -> e
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    7:10:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):442:442 -> e
+    7:10:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):450:450 -> e
     11:12:void com.outsidecontextproblem.batteryclock.ElementSettings.setOpacity(int):54:54 -> e
-    11:12:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):442 -> e
-    13:16:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):443:443 -> e
+    11:12:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):450 -> e
+    13:16:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):451:451 -> e
     17:18:void com.outsidecontextproblem.batteryclock.ElementSettings.setRed(int):61:61 -> e
-    17:18:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):443 -> e
-    19:22:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):444:444 -> e
+    17:18:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):451 -> e
+    19:22:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):452:452 -> e
     23:24:void com.outsidecontextproblem.batteryclock.ElementSettings.setGreen(int):67:67 -> e
-    23:24:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):444 -> e
-    25:28:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):445:445 -> e
+    23:24:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):452 -> e
+    25:28:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):453:453 -> e
     29:31:void com.outsidecontextproblem.batteryclock.ElementSettings.setBlue(int):72:72 -> e
-    29:31:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):445 -> e
+    29:31:void updateSettings(com.outsidecontextproblem.batteryclock.ElementSettings,com.outsidecontextproblem.batteryclock.ClockElementConfigurator):453 -> e
     1:3:void onBackPressed():69:69 -> onBackPressed
     4:9:void onBackPressed():70:70 -> onBackPressed
     1:1:void onCreate(android.os.Bundle):92:92 -> onCreate
@@ -91394,212 +91394,226 @@ com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity -> co
     72:73:void onCreate(android.os.Bundle):171:172 -> onCreate
     74:75:void onCreate(android.os.Bundle):190:191 -> onCreate
     76:76:void onCreate(android.os.Bundle):202:202 -> onCreate
-    77:77:void configureTimezones(android.content.Context):273:273 -> onCreate
+    77:77:void configureTimezones(android.content.Context):281:281 -> onCreate
     77:77:void onCreate(android.os.Bundle):204 -> onCreate
-    78:78:void configureTimezones(android.content.Context):275:275 -> onCreate
+    78:78:void configureTimezones(android.content.Context):283:283 -> onCreate
     78:78:void onCreate(android.os.Bundle):204 -> onCreate
-    79:110:void configureTimezones(android.content.Context):277:308 -> onCreate
+    79:110:void configureTimezones(android.content.Context):285:316 -> onCreate
     79:110:void onCreate(android.os.Bundle):204 -> onCreate
-    111:112:void configureTimezones(android.content.Context):310:311 -> onCreate
+    111:112:void configureTimezones(android.content.Context):318:319 -> onCreate
     111:112:void onCreate(android.os.Bundle):204 -> onCreate
-    113:113:void configureTimezones(android.content.Context):313:313 -> onCreate
+    113:113:void configureTimezones(android.content.Context):321:321 -> onCreate
     113:113:void onCreate(android.os.Bundle):204 -> onCreate
     114:114:java.lang.String com.outsidecontextproblem.batteryclock.Settings.getTimeZone():96:96 -> onCreate
-    114:114:void configureTimezones(android.content.Context):313 -> onCreate
+    114:114:void configureTimezones(android.content.Context):321 -> onCreate
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     114:114:void onCreate(android.os.Bundle):204 -> onCreate
-    115:115:void configureTimezones(android.content.Context):313:313 -> onCreate
+    115:115:void configureTimezones(android.content.Context):321:321 -> onCreate
     115:115:void onCreate(android.os.Bundle):204 -> onCreate
-    116:116:void configureTimezones(android.content.Context):315:315 -> onCreate
+    116:116:void configureTimezones(android.content.Context):323:323 -> onCreate
     116:116:void onCreate(android.os.Bundle):204 -> onCreate
-    117:117:void configureTimezones(android.content.Context):318:318 -> onCreate
+    117:117:void configureTimezones(android.content.Context):326:326 -> onCreate
     117:117:void onCreate(android.os.Bundle):204 -> onCreate
-    118:118:void configureTimezones(android.content.Context):321:321 -> onCreate
+    118:118:void configureTimezones(android.content.Context):329:329 -> onCreate
     118:118:void onCreate(android.os.Bundle):204 -> onCreate
-    119:119:void configureTimezones(android.content.Context):323:323 -> onCreate
+    119:119:void configureTimezones(android.content.Context):331:331 -> onCreate
     119:119:void onCreate(android.os.Bundle):204 -> onCreate
-    120:120:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$3.<init>(com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity):323:323 -> onCreate
-    120:120:void configureTimezones(android.content.Context):323 -> onCreate
+    120:120:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$3.<init>(com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity):331:331 -> onCreate
+    120:120:void configureTimezones(android.content.Context):331 -> onCreate
     120:120:void onCreate(android.os.Bundle):204 -> onCreate
-    121:121:void configureTimezones(android.content.Context):323:323 -> onCreate
+    121:121:void configureTimezones(android.content.Context):331:331 -> onCreate
     121:121:void onCreate(android.os.Bundle):204 -> onCreate
-    122:122:void applySettingsToView(android.content.Context):449:449 -> onCreate
+    122:122:void applySettingsToView(android.content.Context):457:457 -> onCreate
     122:122:void onCreate(android.os.Bundle):206 -> onCreate
-    123:123:void applySettingsToView(android.content.Context):451:451 -> onCreate
+    123:123:void applySettingsToView(android.content.Context):459:459 -> onCreate
     123:123:void onCreate(android.os.Bundle):206 -> onCreate
     124:124:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getBatteryLevelIndicatorSettings():50:50 -> onCreate
-    124:124:void applySettingsToView(android.content.Context):451 -> onCreate
+    124:124:void applySettingsToView(android.content.Context):459 -> onCreate
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     124:124:void onCreate(android.os.Bundle):206 -> onCreate
-    125:126:void applySettingsToView(android.content.Context):451:452 -> onCreate
+    125:126:void applySettingsToView(android.content.Context):459:460 -> onCreate
     125:126:void onCreate(android.os.Bundle):206 -> onCreate
     127:127:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getBezelSettings():54:54 -> onCreate
-    127:127:void applySettingsToView(android.content.Context):452 -> onCreate
+    127:127:void applySettingsToView(android.content.Context):460 -> onCreate
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     127:127:void onCreate(android.os.Bundle):206 -> onCreate
-    128:129:void applySettingsToView(android.content.Context):452:453 -> onCreate
+    128:129:void applySettingsToView(android.content.Context):460:461 -> onCreate
     128:129:void onCreate(android.os.Bundle):206 -> onCreate
     130:130:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getTicksSettings():58:58 -> onCreate
-    130:130:void applySettingsToView(android.content.Context):453 -> onCreate
+    130:130:void applySettingsToView(android.content.Context):461 -> onCreate
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     130:130:void onCreate(android.os.Bundle):206 -> onCreate
-    131:132:void applySettingsToView(android.content.Context):453:454 -> onCreate
+    131:132:void applySettingsToView(android.content.Context):461:462 -> onCreate
     131:132:void onCreate(android.os.Bundle):206 -> onCreate
     133:133:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getSecondsSettings():62:62 -> onCreate
-    133:133:void applySettingsToView(android.content.Context):454 -> onCreate
+    133:133:void applySettingsToView(android.content.Context):462 -> onCreate
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     133:133:void onCreate(android.os.Bundle):206 -> onCreate
-    134:135:void applySettingsToView(android.content.Context):454:455 -> onCreate
+    134:135:void applySettingsToView(android.content.Context):462:463 -> onCreate
     134:135:void onCreate(android.os.Bundle):206 -> onCreate
     136:136:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getMinuteSettings():66:66 -> onCreate
-    136:136:void applySettingsToView(android.content.Context):455 -> onCreate
+    136:136:void applySettingsToView(android.content.Context):463 -> onCreate
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     136:136:void onCreate(android.os.Bundle):206 -> onCreate
-    137:138:void applySettingsToView(android.content.Context):455:456 -> onCreate
+    137:138:void applySettingsToView(android.content.Context):463:464 -> onCreate
     137:138:void onCreate(android.os.Bundle):206 -> onCreate
     139:139:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getMinuteArcSettings():70:70 -> onCreate
-    139:139:void applySettingsToView(android.content.Context):456 -> onCreate
+    139:139:void applySettingsToView(android.content.Context):464 -> onCreate
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     139:139:void onCreate(android.os.Bundle):206 -> onCreate
-    140:141:void applySettingsToView(android.content.Context):456:457 -> onCreate
+    140:141:void applySettingsToView(android.content.Context):464:465 -> onCreate
     140:141:void onCreate(android.os.Bundle):206 -> onCreate
     142:142:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getHourSettings():74:74 -> onCreate
-    142:142:void applySettingsToView(android.content.Context):457 -> onCreate
+    142:142:void applySettingsToView(android.content.Context):465 -> onCreate
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     142:142:void onCreate(android.os.Bundle):206 -> onCreate
-    143:144:void applySettingsToView(android.content.Context):457:458 -> onCreate
+    143:144:void applySettingsToView(android.content.Context):465:466 -> onCreate
     143:144:void onCreate(android.os.Bundle):206 -> onCreate
     145:145:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getHourArcSettings():78:78 -> onCreate
-    145:145:void applySettingsToView(android.content.Context):458 -> onCreate
+    145:145:void applySettingsToView(android.content.Context):466 -> onCreate
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     145:145:void onCreate(android.os.Bundle):206 -> onCreate
-    146:147:void applySettingsToView(android.content.Context):458:459 -> onCreate
+    146:147:void applySettingsToView(android.content.Context):466:467 -> onCreate
     146:147:void onCreate(android.os.Bundle):206 -> onCreate
     148:148:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getWeekSettings():82:82 -> onCreate
-    148:148:void applySettingsToView(android.content.Context):459 -> onCreate
+    148:148:void applySettingsToView(android.content.Context):467 -> onCreate
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     148:148:void onCreate(android.os.Bundle):206 -> onCreate
-    149:150:void applySettingsToView(android.content.Context):459:460 -> onCreate
+    149:150:void applySettingsToView(android.content.Context):467:468 -> onCreate
     149:150:void onCreate(android.os.Bundle):206 -> onCreate
     151:151:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getBackgroundSettings():86:86 -> onCreate
-    151:151:void applySettingsToView(android.content.Context):460 -> onCreate
+    151:151:void applySettingsToView(android.content.Context):468 -> onCreate
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     151:151:void onCreate(android.os.Bundle):206 -> onCreate
-    152:153:void applySettingsToView(android.content.Context):460:461 -> onCreate
+    152:153:void applySettingsToView(android.content.Context):468:469 -> onCreate
     152:153:void onCreate(android.os.Bundle):206 -> onCreate
     154:154:com.outsidecontextproblem.batteryclock.ElementSettings com.outsidecontextproblem.batteryclock.Settings.getLabelSettings():90:90 -> onCreate
-    154:154:void applySettingsToView(android.content.Context):461 -> onCreate
+    154:154:void applySettingsToView(android.content.Context):469 -> onCreate
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     154:154:void onCreate(android.os.Bundle):206 -> onCreate
-    155:155:void applySettingsToView(android.content.Context):461:461 -> onCreate
+    155:155:void applySettingsToView(android.content.Context):469:469 -> onCreate
     155:155:void onCreate(android.os.Bundle):206 -> onCreate
-    156:156:void applySettingsToView(android.content.Context):463:463 -> onCreate
+    156:156:void applySettingsToView(android.content.Context):471:471 -> onCreate
     156:156:void onCreate(android.os.Bundle):206 -> onCreate
-    157:157:void applySettingsToView(android.content.Context):465:465 -> onCreate
+    157:157:void applySettingsToView(android.content.Context):473:473 -> onCreate
     157:157:void onCreate(android.os.Bundle):206 -> onCreate
-    158:158:void applySettingsToView(android.content.Context):467:467 -> onCreate
+    158:158:void applySettingsToView(android.content.Context):475:475 -> onCreate
     158:158:void onCreate(android.os.Bundle):206 -> onCreate
     159:159:java.lang.String com.outsidecontextproblem.batteryclock.Settings.getTimeZone():96:96 -> onCreate
-    159:159:void applySettingsToView(android.content.Context):467 -> onCreate
+    159:159:void applySettingsToView(android.content.Context):475 -> onCreate
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     159:159:void onCreate(android.os.Bundle):206 -> onCreate
-    160:160:void applySettingsToView(android.content.Context):467:467 -> onCreate
+    160:160:void applySettingsToView(android.content.Context):475:475 -> onCreate
     160:160:void onCreate(android.os.Bundle):206 -> onCreate
-    161:161:void applySettingsToView(android.content.Context):469:469 -> onCreate
+    161:161:void applySettingsToView(android.content.Context):477:477 -> onCreate
     161:161:void onCreate(android.os.Bundle):206 -> onCreate
-    162:164:void applySettingsToView(android.content.Context):471:473 -> onCreate
+    162:164:void applySettingsToView(android.content.Context):479:481 -> onCreate
     162:164:void onCreate(android.os.Bundle):206 -> onCreate
-    165:166:void applySettingsToView(android.content.Context):475:476 -> onCreate
+    165:166:void applySettingsToView(android.content.Context):483:484 -> onCreate
     165:166:void onCreate(android.os.Bundle):206 -> onCreate
-    167:169:void applySettingsToView(android.content.Context):478:480 -> onCreate
+    167:169:void applySettingsToView(android.content.Context):486:488 -> onCreate
     167:169:void onCreate(android.os.Bundle):206 -> onCreate
-    170:171:void applySettingsToView(android.content.Context):483:484 -> onCreate
+    170:171:void applySettingsToView(android.content.Context):491:492 -> onCreate
     170:171:void onCreate(android.os.Bundle):206 -> onCreate
     172:172:java.lang.String com.outsidecontextproblem.batteryclock.Settings.getLabel():106:106 -> onCreate
-    172:172:void applySettingsToView(android.content.Context):484 -> onCreate
+    172:172:void applySettingsToView(android.content.Context):492 -> onCreate
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     172:172:void onCreate(android.os.Bundle):206 -> onCreate
-    173:173:void applySettingsToView(android.content.Context):484:484 -> onCreate
+    173:173:void applySettingsToView(android.content.Context):492:492 -> onCreate
     173:173:void onCreate(android.os.Bundle):206 -> onCreate
-    174:175:void applySettingsToView(android.content.Context):486:487 -> onCreate
+    174:175:void applySettingsToView(android.content.Context):494:495 -> onCreate
     174:175:void onCreate(android.os.Bundle):206 -> onCreate
     176:176:int com.outsidecontextproblem.batteryclock.Settings.getLabelSize():116:116 -> onCreate
-    176:176:void applySettingsToView(android.content.Context):487 -> onCreate
+    176:176:void applySettingsToView(android.content.Context):495 -> onCreate
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     176:176:void onCreate(android.os.Bundle):206 -> onCreate
-    177:177:void applySettingsToView(android.content.Context):487:487 -> onCreate
+    177:177:void applySettingsToView(android.content.Context):495:495 -> onCreate
     177:177:void onCreate(android.os.Bundle):206 -> onCreate
-    178:178:void applySettingsToView(android.content.Context):489:489 -> onCreate
+    178:178:void applySettingsToView(android.content.Context):497:497 -> onCreate
     178:178:void onCreate(android.os.Bundle):206 -> onCreate
     179:179:boolean com.outsidecontextproblem.batteryclock.Settings.getUpdateSeconds():138:138 -> onCreate
-    179:179:void applySettingsToView(android.content.Context):490 -> onCreate
+    179:179:void applySettingsToView(android.content.Context):498 -> onCreate
     179:179:void onCreate(android.os.Bundle):206 -> onCreate
-    180:180:void applySettingsToView(android.content.Context):490:490 -> onCreate
+    180:180:void applySettingsToView(android.content.Context):498:498 -> onCreate
     180:180:void onCreate(android.os.Bundle):206 -> onCreate
-    181:181:void applySettingsToView(android.content.Context):492:492 -> onCreate
+    181:181:void applySettingsToView(android.content.Context):500:500 -> onCreate
     181:181:void onCreate(android.os.Bundle):206 -> onCreate
-    182:182:boolean com.outsidecontextproblem.batteryclock.Settings.getUpdateSmoothSeconds():146:146 -> onCreate
-    182:182:void applySettingsToView(android.content.Context):493 -> onCreate
+    182:182:boolean com.outsidecontextproblem.batteryclock.Settings.getUpdateSeconds():138:138 -> onCreate
+    182:182:void applySettingsToView(android.content.Context):501 -> onCreate
     182:182:void onCreate(android.os.Bundle):206 -> onCreate
-    183:183:void applySettingsToView(android.content.Context):493:493 -> onCreate
+    183:183:void applySettingsToView(android.content.Context):501:501 -> onCreate
     183:183:void onCreate(android.os.Bundle):206 -> onCreate
-    184:184:void applySettingsToView(android.content.Context):495:495 -> onCreate
+    184:184:void applySettingsToView(android.content.Context):503:503 -> onCreate
     184:184:void onCreate(android.os.Bundle):206 -> onCreate
-    185:185:boolean com.outsidecontextproblem.batteryclock.Settings.getUpdateSeconds():138:138 -> onCreate
-    185:185:void applySettingsToView(android.content.Context):496 -> onCreate
+    185:185:boolean com.outsidecontextproblem.batteryclock.Settings.getUpdateSmoothSeconds():146:146 -> onCreate
+    185:185:void applySettingsToView(android.content.Context):504 -> onCreate
     185:185:void onCreate(android.os.Bundle):206 -> onCreate
-    186:186:void applySettingsToView(android.content.Context):496:496 -> onCreate
+    186:186:void applySettingsToView(android.content.Context):504:504 -> onCreate
     186:186:void onCreate(android.os.Bundle):206 -> onCreate
-    187:187:void applySettingsToView(android.content.Context):498:498 -> onCreate
+    187:187:void applySettingsToView(android.content.Context):506:506 -> onCreate
     187:187:void onCreate(android.os.Bundle):206 -> onCreate
     188:188:boolean com.outsidecontextproblem.batteryclock.Settings.getUpdateSeconds():138:138 -> onCreate
-    188:188:void applySettingsToView(android.content.Context):499 -> onCreate
+    188:188:void applySettingsToView(android.content.Context):507 -> onCreate
     188:188:void onCreate(android.os.Bundle):206 -> onCreate
-    189:189:void applySettingsToView(android.content.Context):499:499 -> onCreate
+    189:189:void applySettingsToView(android.content.Context):507:507 -> onCreate
     189:189:void onCreate(android.os.Bundle):206 -> onCreate
-    190:191:void applySettingsToView(android.content.Context):501:502 -> onCreate
-    190:191:void onCreate(android.os.Bundle):206 -> onCreate
-    192:192:int com.outsidecontextproblem.batteryclock.Settings.getCountdown():153:153 -> onCreate
-    192:192:void applySettingsToView(android.content.Context):502 -> onCreate
+    190:190:void applySettingsToView(android.content.Context):509:509 -> onCreate
+    190:190:void onCreate(android.os.Bundle):206 -> onCreate
+    191:191:boolean com.outsidecontextproblem.batteryclock.Settings.getUpdateSeconds():138:138 -> onCreate
+    191:191:void applySettingsToView(android.content.Context):510 -> onCreate
+    191:191:void onCreate(android.os.Bundle):206 -> onCreate
+    192:192:void applySettingsToView(android.content.Context):510:510 -> onCreate
     192:192:void onCreate(android.os.Bundle):206 -> onCreate
-    193:193:void applySettingsToView(android.content.Context):502:502 -> onCreate
-    193:193:void onCreate(android.os.Bundle):206 -> onCreate
-    194:194:void onCreate(android.os.Bundle):208:208 -> onCreate
-    195:196:void onCreate(android.os.Bundle):210:211 -> onCreate
-    197:198:void onCreate(android.os.Bundle):213:214 -> onCreate
-    199:200:void onCreate(android.os.Bundle):216:217 -> onCreate
-    201:202:void onCreate(android.os.Bundle):219:220 -> onCreate
-    203:204:void onCreate(android.os.Bundle):222:223 -> onCreate
-    205:206:void onCreate(android.os.Bundle):225:226 -> onCreate
-    207:208:void onCreate(android.os.Bundle):228:229 -> onCreate
-    209:210:void onCreate(android.os.Bundle):231:232 -> onCreate
-    211:212:void onCreate(android.os.Bundle):234:235 -> onCreate
-    213:214:void onCreate(android.os.Bundle):237:238 -> onCreate
-    215:216:void onCreate(android.os.Bundle):240:241 -> onCreate
-    217:217:boolean serviceIsRunning(android.content.Context):540:540 -> onCreate
-    217:217:void onCreate(android.os.Bundle):243 -> onCreate
-    218:219:boolean serviceIsRunning(android.content.Context):543:544 -> onCreate
-    218:219:void onCreate(android.os.Bundle):243 -> onCreate
-    220:220:void onCreate(android.os.Bundle):244:244 -> onCreate
-    221:222:void onCreate(android.os.Bundle):246:247 -> onCreate
-    223:223:void onCreate(android.os.Bundle):250:250 -> onCreate
-    224:224:void onCreate(android.os.Bundle):252:252 -> onCreate
-    225:226:com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding.bind(android.view.View):388:389 -> onCreate
-    225:226:com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding.inflate(android.view.LayoutInflater,android.view.ViewGroup,boolean):191 -> onCreate
-    225:226:com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding.inflate(android.view.LayoutInflater):181 -> onCreate
-    225:226:void onCreate(android.os.Bundle):96 -> onCreate
+    193:194:void applySettingsToView(android.content.Context):512:513 -> onCreate
+    193:194:void onCreate(android.os.Bundle):206 -> onCreate
+    195:195:int com.outsidecontextproblem.batteryclock.Settings.getCountdown():153:153 -> onCreate
+    195:195:void applySettingsToView(android.content.Context):513 -> onCreate
+    195:195:void onCreate(android.os.Bundle):206 -> onCreate
+    196:196:void applySettingsToView(android.content.Context):513:513 -> onCreate
+    196:196:void onCreate(android.os.Bundle):206 -> onCreate
+    197:197:void onCreate(android.os.Bundle):208:208 -> onCreate
+    198:199:void onCreate(android.os.Bundle):210:211 -> onCreate
+    200:201:void onCreate(android.os.Bundle):213:214 -> onCreate
+    202:203:void onCreate(android.os.Bundle):216:217 -> onCreate
+    204:205:void onCreate(android.os.Bundle):219:220 -> onCreate
+    206:207:void onCreate(android.os.Bundle):222:223 -> onCreate
+    208:209:void onCreate(android.os.Bundle):225:226 -> onCreate
+    210:211:void onCreate(android.os.Bundle):228:229 -> onCreate
+    212:213:void onCreate(android.os.Bundle):231:232 -> onCreate
+    214:215:void onCreate(android.os.Bundle):234:235 -> onCreate
+    216:217:void onCreate(android.os.Bundle):237:238 -> onCreate
+    218:219:void onCreate(android.os.Bundle):240:241 -> onCreate
+    220:220:boolean serviceIsRunning(android.content.Context):551:551 -> onCreate
+    220:220:void onCreate(android.os.Bundle):243 -> onCreate
+    221:222:boolean serviceIsRunning(android.content.Context):554:555 -> onCreate
+    221:222:void onCreate(android.os.Bundle):243 -> onCreate
+    223:223:void onCreate(android.os.Bundle):244:244 -> onCreate
+    224:225:void onCreate(android.os.Bundle):246:247 -> onCreate
+    226:226:void onCreate(android.os.Bundle):250:250 -> onCreate
+    227:227:boolean com.outsidecontextproblem.batteryclock.Settings.getUpdateSeconds():138:138 -> onCreate
+    227:227:void onCreate(android.os.Bundle):252 -> onCreate
+    228:228:void onCreate(android.os.Bundle):252:252 -> onCreate
+    229:229:boolean com.outsidecontextproblem.batteryclock.Settings.getUpdateSmoothSeconds():146:146 -> onCreate
+    229:229:void onCreate(android.os.Bundle):253 -> onCreate
+    230:230:void onCreate(android.os.Bundle):254:254 -> onCreate
+    231:231:void onCreate(android.os.Bundle):256:256 -> onCreate
+    232:232:void onCreate(android.os.Bundle):259:259 -> onCreate
+    233:234:com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding.bind(android.view.View):388:389 -> onCreate
+    233:234:com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding.inflate(android.view.LayoutInflater,android.view.ViewGroup,boolean):191 -> onCreate
+    233:234:com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding.inflate(android.view.LayoutInflater):181 -> onCreate
+    233:234:void onCreate(android.os.Bundle):96 -> onCreate
     1:5:void onStop():75:75 -> onStop
     6:9:void onStop():76:76 -> onStop
-    1:13:void run():257:257 -> run
-    14:16:void run():259:259 -> run
+    1:13:void run():265:265 -> run
+    14:16:void run():267:267 -> run
     17:18:boolean com.outsidecontextproblem.batteryclock.Settings.getUpdateSeconds():138:138 -> run
-    17:18:void run():261 -> run
-    19:22:void run():261:261 -> run
+    17:18:void run():269 -> run
+    19:22:void run():269:269 -> run
     23:28:boolean com.outsidecontextproblem.batteryclock.Settings.getUpdateSmoothSeconds():146:146 -> run
-    23:28:void run():262 -> run
-    29:34:void run():263:263 -> run
-    35:38:void run():265:265 -> run
-    39:51:void run():268:268 -> run
+    23:28:void run():270 -> run
+    29:32:void run():271:271 -> run
+    33:44:void run():273:273 -> run
+    45:57:void run():276:276 -> run
 com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$$ExternalSyntheticLambda0 -> v3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
@@ -91881,11 +91895,11 @@ com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$2 -> 
     16:23:void com.outsidecontextproblem.batteryclock.ClockElementConfigurator.raiseChange():119:119 -> onProgressChanged
     16:23:void com.outsidecontextproblem.batteryclock.ClockElementConfigurator.access$000(com.outsidecontextproblem.batteryclock.ClockElementConfigurator):13 -> onProgressChanged
     16:23:void com.outsidecontextproblem.batteryclock.ClockElementConfigurator$1.onProgressChanged(android.widget.SeekBar,int,boolean):89 -> onProgressChanged
-    24:26:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.onElementChanged():398:398 -> onProgressChanged
+    24:26:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.onElementChanged():406:406 -> onProgressChanged
     24:26:void com.outsidecontextproblem.batteryclock.ClockElementConfigurator.raiseChange():119 -> onProgressChanged
     24:26:void com.outsidecontextproblem.batteryclock.ClockElementConfigurator.access$000(com.outsidecontextproblem.batteryclock.ClockElementConfigurator):13 -> onProgressChanged
     24:26:void com.outsidecontextproblem.batteryclock.ClockElementConfigurator$1.onProgressChanged(android.widget.SeekBar,int,boolean):89 -> onProgressChanged
-    27:30:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.onElementChanged():400:400 -> onProgressChanged
+    27:30:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.onElementChanged():408:408 -> onProgressChanged
     27:30:void com.outsidecontextproblem.batteryclock.ClockElementConfigurator.raiseChange():119 -> onProgressChanged
     27:30:void com.outsidecontextproblem.batteryclock.ClockElementConfigurator.access$000(com.outsidecontextproblem.batteryclock.ClockElementConfigurator):13 -> onProgressChanged
     27:30:void com.outsidecontextproblem.batteryclock.ClockElementConfigurator$1.onProgressChanged(android.widget.SeekBar,int,boolean):89 -> onProgressChanged
@@ -91912,42 +91926,42 @@ com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$3 -> 
       # {"id":"com.android.tools.r8.residualsignature","signature":"Ljava/lang/Object;"}
     1:6:void BatteryClockWidgetConfigureActivity$3.<init>(byte):0:0 -> <init>
       # {"id":"com.android.tools.r8.synthesized"}
-    1:1:void onNothingSelected(android.widget.AdapterView):331:331 -> a
-    1:1:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onNothingSelected(android.widget.AdapterView):379:379 -> b
+    1:1:void onNothingSelected(android.widget.AdapterView):339:339 -> a
+    1:1:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onNothingSelected(android.widget.AdapterView):387:387 -> b
     1:1:void androidx.appcompat.widget.ListPopupWindow$3.onNothingSelected(android.widget.AdapterView):1200:1200 -> c
     9:17:void androidx.appcompat.widget.ListPopupWindow$3.onItemSelected(android.widget.AdapterView,android.view.View,int,long):1190:1190 -> onItemSelected
     18:21:void androidx.appcompat.widget.ListPopupWindow$3.onItemSelected(android.widget.AdapterView,android.view.View,int,long):1193:1193 -> onItemSelected
-    22:30:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onItemSelected(android.widget.AdapterView,android.view.View,int,long):374:374 -> onItemSelected
-    31:34:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.locationSelected():384:384 -> onItemSelected
+    22:30:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onItemSelected(android.widget.AdapterView,android.view.View,int,long):382:382 -> onItemSelected
+    31:34:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.locationSelected():392:392 -> onItemSelected
     31:34:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.access$400(com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity):36 -> onItemSelected
-    31:34:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onItemSelected(android.widget.AdapterView,android.view.View,int,long):374 -> onItemSelected
+    31:34:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onItemSelected(android.widget.AdapterView,android.view.View,int,long):382 -> onItemSelected
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(2)"]}
-    35:36:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.locationSelected():384:384 -> onItemSelected
+    35:36:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.locationSelected():392:392 -> onItemSelected
     35:36:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.access$400(com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity):36 -> onItemSelected
-    35:36:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onItemSelected(android.widget.AdapterView,android.view.View,int,long):374 -> onItemSelected
-    37:45:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.locationSelected():386:386 -> onItemSelected
+    35:36:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onItemSelected(android.widget.AdapterView,android.view.View,int,long):382 -> onItemSelected
+    37:45:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.locationSelected():394:394 -> onItemSelected
     37:45:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.access$400(com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity):36 -> onItemSelected
-    37:45:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onItemSelected(android.widget.AdapterView,android.view.View,int,long):374 -> onItemSelected
-    46:51:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.locationSelected():388:388 -> onItemSelected
+    37:45:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onItemSelected(android.widget.AdapterView,android.view.View,int,long):382 -> onItemSelected
+    46:51:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.locationSelected():396:396 -> onItemSelected
     46:51:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.access$400(com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity):36 -> onItemSelected
-    46:51:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onItemSelected(android.widget.AdapterView,android.view.View,int,long):374 -> onItemSelected
-    52:57:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.locationSelected():390:390 -> onItemSelected
+    46:51:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onItemSelected(android.widget.AdapterView,android.view.View,int,long):382 -> onItemSelected
+    52:57:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.locationSelected():398:398 -> onItemSelected
     52:57:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.access$400(com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity):36 -> onItemSelected
-    52:57:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onItemSelected(android.widget.AdapterView,android.view.View,int,long):374 -> onItemSelected
-    58:65:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.locationSelected():392:392 -> onItemSelected
+    52:57:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onItemSelected(android.widget.AdapterView,android.view.View,int,long):382 -> onItemSelected
+    58:65:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.locationSelected():400:400 -> onItemSelected
     58:65:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.access$400(com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity):36 -> onItemSelected
-    58:65:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onItemSelected(android.widget.AdapterView,android.view.View,int,long):374 -> onItemSelected
-    66:87:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.locationSelected():393:393 -> onItemSelected
+    58:65:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onItemSelected(android.widget.AdapterView,android.view.View,int,long):382 -> onItemSelected
+    66:87:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.locationSelected():401:401 -> onItemSelected
     66:87:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.access$400(com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity):36 -> onItemSelected
-    66:87:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onItemSelected(android.widget.AdapterView,android.view.View,int,long):374 -> onItemSelected
+    66:87:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onItemSelected(android.widget.AdapterView,android.view.View,int,long):382 -> onItemSelected
     88:90:void com.outsidecontextproblem.batteryclock.Settings.setTimeZone(java.lang.String):100:100 -> onItemSelected
-    88:90:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.locationSelected():393 -> onItemSelected
+    88:90:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.locationSelected():401 -> onItemSelected
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     88:90:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.access$400(com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity):36 -> onItemSelected
-    88:90:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onItemSelected(android.widget.AdapterView,android.view.View,int,long):374 -> onItemSelected
-    91:96:void onItemSelected(android.widget.AdapterView,android.view.View,int,long):326:326 -> onItemSelected
+    88:90:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity$4.onItemSelected(android.widget.AdapterView,android.view.View,int,long):382 -> onItemSelected
+    91:96:void onItemSelected(android.widget.AdapterView,android.view.View,int,long):334:334 -> onItemSelected
     97:100:void com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity.access$300(com.outsidecontextproblem.batteryclock.BatteryClockWidgetConfigureActivity):36:36 -> onItemSelected
-    97:100:void onItemSelected(android.widget.AdapterView,android.view.View,int,long):326 -> onItemSelected
+    97:100:void onItemSelected(android.widget.AdapterView,android.view.View,int,long):334 -> onItemSelected
     1:3:void BatteryClockWidgetConfigureActivity$3.onNothingSelected(android.widget.AdapterView):0:0 -> onNothingSelected
       # {"id":"com.android.tools.r8.synthesized"}
 com.outsidecontextproblem.batteryclock.BatteryClockWidgetService -> com.outsidecontextproblem.batteryclock.BatteryClockWidgetService:
@@ -91962,9 +91976,9 @@ com.outsidecontextproblem.batteryclock.BatteryClockWidgetService -> com.outsidec
     10:11:boolean com.outsidecontextproblem.batteryclock.Settings.getUpdateSmoothSeconds():146:146 -> a
     10:11:void setNextCallback():115 -> a
     12:17:void setNextCallback():118:118 -> a
-    18:23:void setNextCallback():116:116 -> a
-    24:27:void setNextCallback():118:118 -> a
-    28:42:void setNextCallback():121:121 -> a
+    18:21:void setNextCallback():116:116 -> a
+    22:33:void setNextCallback():118:118 -> a
+    34:48:void setNextCallback():120:120 -> a
     1:2:android.os.IBinder onBind(android.content.Intent):0:0 -> onBind
     1:1:void onDisplayAdded(int):0:0 -> onDisplayAdded
     1:4:void onDisplayChanged(int):109:109 -> onDisplayChanged
