@@ -15,4 +15,4 @@
 local.properties
 .DS_Store
 *.aab
-src/app/release
+app/release
