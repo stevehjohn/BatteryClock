@@ -19,6 +19,7 @@ public class Settings {
     private static final String BEZEL = "Bezel";
     private static final String TICKS = "Ticks";
     private static final String SHOW_SECONDS = "ShowSeconds";
+    private static final String SHOW_SMOOTH_SECONDS = "ShowSmoothSeconds";
     private static final String SECONDS = "Seconds";
     private static final String MINUTE = "Minute";
     private static final String MINUTE_ARC = "MinuteArc";
@@ -137,9 +138,15 @@ public class Settings {
         return _updateSeconds;
     }
 
-    public static void setUpdateSeconds(boolean updateSeconds) {
-        _updateSeconds = updateSeconds;
+    public static void setUpdateSeconds(boolean updateSeconds) { _updateSeconds = updateSeconds; }
+
+    private static boolean _updateSmoothSeconds;
+
+    public static boolean getUpdateSmoothSeconds() {
+        return _updateSmoothSeconds;
     }
+
+    public static void setUpdateSmoothSeconds(boolean updateSmoothSeconds) {_updateSmoothSeconds = updateSmoothSeconds;}
 
     private static int _countdown;
 
@@ -189,6 +196,7 @@ public class Settings {
         _label = prefs.getString(String.format("%s.%d", LABEL, _appWidgetId), "");
         _labelSize = prefs.getInt(String.format("%s.%d", LABEL_SIZE, _appWidgetId), 1);
         _updateSeconds = prefs.getBoolean(String.format("%s", SHOW_SECONDS), true);
+        _updateSmoothSeconds = prefs.getBoolean(String.format("%s", SHOW_SMOOTH_SECONDS), true);
         _countdown = prefs.getInt(String.format("%s.%d", COUNTDOWN, _appWidgetId), 60);
 
         _batteryLevelIndicatorSettings.loadSettings(context, BATTERY_INDICATOR);
@@ -211,6 +219,7 @@ public class Settings {
         prefs.putString(String.format("%s.%d", LABEL, _appWidgetId), _label);
         prefs.putInt(String.format("%s.%d", LABEL_SIZE, _appWidgetId), _labelSize);
         prefs.putBoolean(String.format("%s", SHOW_SECONDS), _updateSeconds);
+        prefs.putBoolean(String.format("%s", SHOW_SMOOTH_SECONDS), _updateSmoothSeconds);
         prefs.putInt(String.format("%s.%d", COUNTDOWN, _appWidgetId), _countdown);
         prefs.apply();
 
@@ -234,6 +243,7 @@ public class Settings {
         prefs.remove(String.format("%s.%d", LABEL, _appWidgetId));
         prefs.remove(String.format("%s.%d", LABEL_SIZE, _appWidgetId));
         prefs.remove(String.format("%s", SHOW_SECONDS));
+        prefs.remove(String.format("%s", SHOW_SMOOTH_SECONDS));
         prefs.remove(String.format("%s.%d", COUNTDOWN, _appWidgetId));
         prefs.apply();
 
