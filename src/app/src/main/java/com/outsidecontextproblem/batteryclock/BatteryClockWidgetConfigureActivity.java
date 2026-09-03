@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -257,7 +258,15 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
         updatePreview();
 
-        _handler.postDelayed(this, 83);
+        if (Settings.getUpdateSeconds()) {
+            if (Settings.getUpdateSmoothSeconds()) {
+                _handler.postDelayed(this, 83);
+            } else {
+                _handler.postDelayed(this, 1_000);
+            }
+        } else {
+            _handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
+        }
     }
 
     private void configureTimezones(Context context) {
