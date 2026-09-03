@@ -10,8 +10,8 @@ android {
         applicationId "com.outsidecontextproblem.batteryclock"
         minSdk 35
         targetSdk 37
-        versionCode 28
-        versionName '1.0.28'
+        versionCode 30
+        versionName '1.0.30'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -23,6 +23,9 @@ android {
             proguardFiles
             getDefaultProguardFile('proguard-android-optimize.txt')
             'proguard-rules.pro'
+            optimization {
+                enable = true
+            }
         }
     }
     compileOptions {
