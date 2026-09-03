@@ -197,7 +197,7 @@ public class Settings {
         _labelSize = prefs.getInt(String.format("%s.%d", LABEL_SIZE, _appWidgetId), 1);
         _updateSeconds = prefs.getBoolean(String.format("%s", SHOW_SECONDS), true);
         _updateSmoothSeconds = prefs.getBoolean(String.format("%s", SHOW_SMOOTH_SECONDS), true);
-        _countdown = prefs.getInt(String.format("%s.%d", COUNTDOWN, _appWidgetId), 60);
+        _countdown = prefs.getInt(String.format("%s.%d", COUNTDOWN, _appWidgetId), 0);
 
         _batteryLevelIndicatorSettings.loadSettings(context, BATTERY_INDICATOR);
         _bezelSettings.loadSettings(context, BEZEL);

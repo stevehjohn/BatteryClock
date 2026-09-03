@@ -186,6 +186,18 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
             }
         });
 
+        SwitchMaterial smoothSecondsSwitch = findViewById(R.id.switchSecondsSmooth);
+        smoothSecondsSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
+            Settings.setUpdateSmoothSeconds(b);
+
+            BatteryClockWidgetService serviceInstance =
+                    BatteryClockWidgetService.getInstance();
+
+            if (serviceInstance != null) {
+                serviceInstance.setNextCallback();
+            }
+        });
+
         context.getAssets();
 
         configureTimezones(context);
