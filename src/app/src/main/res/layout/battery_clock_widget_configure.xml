@@ -207,7 +207,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/configuratorTicks">
+                app:layout_constraintTop_toBottomOf="@id/textWarning">
 
                 <TextView
                     android:id="@+id/textSecondsSmooth"
