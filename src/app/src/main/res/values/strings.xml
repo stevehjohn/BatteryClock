@@ -17,6 +17,7 @@
     <string name="bezel">Bezel</string>
     <string name="hour_markings">Hour Markings</string>
     <string name="second_indicator">Second Indicator</string>
+    <string name="update_seconds_smoothly">Update smoothly</string>
     <string name="minute_hand">Minute Hand</string>
     <string name="minute_arc">Minute Arc</string>
     <string name="hour_hand">Hour Hand</string>
