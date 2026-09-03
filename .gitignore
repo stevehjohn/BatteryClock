@@ -1,12 +1,12 @@
 *.iml
 .gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+src/local.properties
+src/.idea/caches
+src/.idea/libraries
+src/.idea/modules.xml
+src/.idea/workspace.xml
+src/.idea/navEditor.xml
+src/.idea/assetWizardSettings.xml
 .DS_Store
 /build
 /captures
@@ -15,4 +15,4 @@
 local.properties
 .DS_Store
 *.aab
-app/release
+src/app/release
