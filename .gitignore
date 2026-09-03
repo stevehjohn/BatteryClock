@@ -4,13 +4,7 @@
 
 /src/local.properties
 
-/src/.idea/caches/
-/src/.idea/libraries/
-/src/.idea/modules.xml
-/src/.idea/workspace.xml
-/src/.idea/navEditor.xml
-/src/.idea/assetWizardSettings.xml
-
+/src/.idea/
 .DS_Store
 
 /src/build/
