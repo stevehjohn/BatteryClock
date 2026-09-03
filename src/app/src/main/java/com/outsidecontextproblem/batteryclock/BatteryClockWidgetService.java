@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.text.format.DateUtils;
 import android.util.Log;
+import android.view.Display;
 
 import androidx.annotation.Nullable;
 
@@ -105,12 +106,21 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
     }
 
     @Override
-    public void onDisplayChanged(int i) {
-        run();
+    public void onDisplayChanged(int displayId) {
+        if (areAnyDisplaysOn()) {
+            setNextCallback();
+        } else {
+            _handler.removeCallbacks(this);
+        }
     }
 
     public void setNextCallback() {
         _handler.removeCallbacks(this);
+
+        if (!areAnyDisplaysOn()) {
+            return;
+        }
+
         if (Settings.getUpdateSeconds()) {
             if (Settings.getUpdateSmoothSeconds()) {
                 _handler.postDelayed(this, 83);
@@ -120,5 +130,22 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
         } else {
             _handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
         }
+    }
+
+    private boolean areAnyDisplaysOn() {
+        DisplayManager displayManager =
+                (DisplayManager) getSystemService(Context.DISPLAY_SERVICE);
+
+        for (Display display : displayManager.getDisplays()) {
+            int state = display.getState();
+
+            if (state == Display.STATE_ON ||
+                    state == Display.STATE_DOZE ||
+                    state == Display.STATE_DOZE_SUSPEND) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
