@@ -242,7 +242,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/textSecondsSmooth" />
+                app:layout_constraintTop_toBottomOf="@id/layoutSecondsSmooth" />
 
             <com.outsidecontextproblem.batteryclock.ClockElementConfigurator
                 app:elementTitle="@string/minute_hand"
