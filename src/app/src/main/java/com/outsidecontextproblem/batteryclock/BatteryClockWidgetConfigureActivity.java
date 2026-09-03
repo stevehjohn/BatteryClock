@@ -25,6 +25,10 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.outsidecontextproblem.batteryclock.databinding.BatteryClockWidgetConfigureBinding;
 
@@ -97,6 +101,22 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
         setContentView(_binding.getRoot());
         _binding.buttonAdd.setOnClickListener(_addOnClickListener);
         _binding.buttonCancel.setOnClickListener(_cancelOnClickListener);
+
+        View root = findViewById(R.id.layoutRoot);
+
+        int left = root.getPaddingLeft();
+        int top = root.getPaddingTop();
+        int right = root.getPaddingRight();
+        int bottom = root.getPaddingBottom();
+
+        ViewCompat.setOnApplyWindowInsetsListener(root, (view, windowInsets) -> {
+            Insets insets =
+                    windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+
+            view.setPadding(left + insets.left, top + insets.top, right + insets.right, bottom + insets.bottom);
+
+            return windowInsets;
+        });
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
