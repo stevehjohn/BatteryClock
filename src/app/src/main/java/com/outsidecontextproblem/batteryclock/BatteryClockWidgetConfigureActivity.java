@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -168,6 +169,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
         SwitchMaterial secondsSwitch = findViewById(R.id.switchSeconds);
         secondsSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
+            LinearLayout smoothSeconds = findViewById(R.id.layoutSecondsSmooth);
+            smoothSeconds.setVisibility(b ? View.VISIBLE : View.GONE);
+
             ClockElementConfigurator secondConfigurator = findViewById(R.id.configuratorSeconds);
             secondConfigurator.setVisibility(b ? View.VISIBLE : View.GONE);
 
