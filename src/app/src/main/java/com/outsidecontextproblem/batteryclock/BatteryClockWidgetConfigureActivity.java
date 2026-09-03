@@ -489,6 +489,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
         SwitchMaterial switchSeconds = findViewById(R.id.switchSeconds);
         switchSeconds.setChecked(Settings.getUpdateSeconds());
 
+        SwitchMaterial switchSecondsSmooth = findViewById(R.id.switchSecondsSmooth);
+        switchSecondsSmooth.setChecked(Settings.getUpdateSmoothSeconds());
+
         TextView textWarning = findViewById(R.id.textWarning);
         textWarning.setVisibility(Settings.getUpdateSeconds() ? View.VISIBLE : View.GONE);
 
