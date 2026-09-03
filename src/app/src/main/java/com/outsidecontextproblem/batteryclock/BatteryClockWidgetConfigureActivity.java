@@ -249,7 +249,15 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
         updatePreview();
 
-        _handler.postDelayed(this, 83);
+        if (Settings.getUpdateSeconds()) {
+            if (Settings.getUpdateSmoothSeconds()) {
+                _handler.postDelayed(this, 83);
+            } else {
+                _handler.postDelayed(this, 1_000 - System.currentTimeMillis() % 1_000);
+            }
+        } else {
+            _handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
+        }
     }
 
     @Override
@@ -262,7 +270,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
             if (Settings.getUpdateSmoothSeconds()) {
                 _handler.postDelayed(this, 83);
             } else {
-                _handler.postDelayed(this, 1_000);
+                _handler.postDelayed(this, 1_000 - System.currentTimeMillis() % 1_000);
             }
         } else {
             _handler.postDelayed(this, DateUtils.MINUTE_IN_MILLIS - System.currentTimeMillis() % DateUtils.MINUTE_IN_MILLIS);
@@ -488,6 +496,9 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
 
         SwitchMaterial switchSeconds = findViewById(R.id.switchSeconds);
         switchSeconds.setChecked(Settings.getUpdateSeconds());
+
+        LinearLayout smoothSeconds = findViewById(R.id.layoutSecondsSmooth);
+        smoothSeconds.setVisibility(Settings.getUpdateSeconds() ? View.VISIBLE : View.GONE);
 
         SwitchMaterial switchSecondsSmooth = findViewById(R.id.switchSecondsSmooth);
         switchSecondsSmooth.setChecked(Settings.getUpdateSmoothSeconds());
