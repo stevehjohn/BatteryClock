@@ -70,6 +70,23 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
         return START_STICKY;
     }
 
+    @Override
+    public void onDestroy() {
+        if (_handler != null) {
+            _handler.removeCallbacks(this);
+        }
+
+        DisplayManager displayManager =
+                (DisplayManager) getSystemService(Context.DISPLAY_SERVICE);
+        displayManager.unregisterDisplayListener(this);
+
+        if (_instance == this) {
+            _instance = null;
+        }
+
+        super.onDestroy();
+    }
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
