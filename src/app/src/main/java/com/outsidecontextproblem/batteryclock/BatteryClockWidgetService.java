@@ -32,10 +32,6 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
         return _instance;
     }
 
-    public BatteryClockWidgetService() {
-        _instance = this;
-    }
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
@@ -57,12 +53,6 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
                 .setSmallIcon(R.drawable.notification);
 
         startForeground(NOTIFICATION_ID, notificationBuilder.build(), ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
-
-        if (_handler == null) {
-            _handler = new Handler();
-
-            setNextCallback();
-        }
 
         return START_STICKY;
     }
