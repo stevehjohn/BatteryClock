@@ -242,8 +242,6 @@ public class Settings {
         prefs.remove(String.format("%s.%d", TIMEZONE, _appWidgetId));
         prefs.remove(String.format("%s.%d", LABEL, _appWidgetId));
         prefs.remove(String.format("%s.%d", LABEL_SIZE, _appWidgetId));
-        prefs.remove(String.format("%s", SHOW_SECONDS, _appWidgetId));
-        prefs.remove(String.format("%s", SHOW_SMOOTH_SECONDS, _appWidgetId));
         prefs.remove(String.format("%s.%d", COUNTDOWN, _appWidgetId));
         prefs.apply();
 
