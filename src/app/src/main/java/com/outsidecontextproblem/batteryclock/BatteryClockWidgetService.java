@@ -139,9 +139,7 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
         for (Display display : displayManager.getDisplays()) {
             int state = display.getState();
 
-            if (state == Display.STATE_ON ||
-                    state == Display.STATE_DOZE ||
-                    state == Display.STATE_DOZE_SUSPEND) {
+            if (state == Display.STATE_ON{
                 return true;
             }
         }
