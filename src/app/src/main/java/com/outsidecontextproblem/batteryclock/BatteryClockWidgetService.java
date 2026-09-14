@@ -64,10 +64,18 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
             setNextCallback();
         }
 
-        DisplayManager displayManager = (DisplayManager) getApplicationContext().getSystemService(Context.DISPLAY_SERVICE);
-        displayManager.registerDisplayListener(this, null);
-
         return START_STICKY;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        _instance = this;
+        _handler = new Handler(getMainLooper());
+
+        DisplayManager displayManager = (DisplayManager) getSystemService(Context.DISPLAY_SERVICE);
+        displayManager.registerDisplayListener(this, _handler);
     }
 
     @Override
