@@ -54,6 +54,8 @@ public class BatteryClockWidgetService extends Service implements Runnable, Disp
 
         startForeground(NOTIFICATION_ID, notificationBuilder.build(), ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
 
+        setNextCallback();
+
         return START_STICKY;
     }
 

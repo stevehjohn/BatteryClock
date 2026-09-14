@@ -22,15 +22,9 @@ android {
         }
         release {
             debuggable false
-            shrinkResources true
-            minifyEnabled true
-            proguardFiles(
-                    getDefaultProguardFile('proguard-android-optimize.txt'),
-                    'proguard-rules.pro'
-                optimization {
-                    enable = true
-                }
-            )
+            optimization {
+                enable = true
+            }
         }
     }
     compileOptions {
