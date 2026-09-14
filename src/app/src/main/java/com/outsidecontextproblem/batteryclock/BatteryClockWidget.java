@@ -94,8 +94,11 @@ public class BatteryClockWidget extends AppWidgetProvider {
     @Override
     public void onDisabled(Context context) {
         Log.i(BatteryClockWidget.class.getName(), "onDisabled()");
-    }
 
+        context.stopService(
+                new Intent(context, BatteryClockWidgetService.class));
+    }
+    
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.i(BatteryClockWidget.class.getName(), "onReceive()");
