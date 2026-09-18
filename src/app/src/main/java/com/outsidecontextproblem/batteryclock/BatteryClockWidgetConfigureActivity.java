@@ -219,8 +219,6 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
             }
         });
 
-        context.getAssets();
-
         configureTimezones(context);
 
         applySettingsToView(context);

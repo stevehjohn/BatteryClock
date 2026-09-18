@@ -120,7 +120,7 @@ public class BatteryClockWidget extends AppWidgetProvider {
         DisplayManager displayManager = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
 
         for (Display display : displayManager.getDisplays()) {
-            if (display.getState() != Display.STATE_OFF) {
+            if (display.getState() == Display.STATE_ON) {
                 displayOn = true;
                 break;
             }
