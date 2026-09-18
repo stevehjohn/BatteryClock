@@ -504,7 +504,7 @@ public class BatteryClockWidgetConfigureActivity extends Activity implements Run
             Spinner locationSpinner = findViewById(R.id.spinLocation);
             @SuppressWarnings("unchecked")
             ArrayAdapter<String> locationAdapter = (ArrayAdapter<String>) locationSpinner.getAdapter();
-            index = locationAdapter.getPosition(timezone[0]);
+            index = locationAdapter.getPosition(timezone[1]);
             locationSpinner.setSelection(index);
         }
 
