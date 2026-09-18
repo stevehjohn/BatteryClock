@@ -165,8 +165,6 @@ public class BatteryClockWidget extends AppWidgetProvider {
         views.setImageViewBitmap(R.id.imageView, bitmap);
 
         appWidgetManager.updateAppWidget(appWidgetId, views);
-
-        bitmap.recycle();
     }
 
     protected PendingIntent getPendingSelfIntent(Context context, String action) {
